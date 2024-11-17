@@ -1,6 +1,6 @@
-
-
 import 'package:flutter/material.dart';
+
+import 'user_account_details.dart';
 
 class DrawerUpperBody extends StatelessWidget {
   const DrawerUpperBody({
@@ -11,25 +11,7 @@ class DrawerUpperBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const UserAccountsDrawerHeader(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/test.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          accountName: Text(
-            "ali Hassan",
-            style: TextStyle(
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-          ),
-          accountEmail: Text("ali@yahoo.com"),
-          currentAccountPicture: CircleAvatar(
-            radius: 55,
-            backgroundImage: AssetImage("assets/images/ali.jpg"),
-          ),
-        ),
+        const UserAccountDetails(),
         ListTile(
             title: const Text("Home"),
             leading: const Icon(Icons.home),
@@ -50,4 +32,3 @@ class DrawerUpperBody extends StatelessWidget {
     );
   }
 }
-

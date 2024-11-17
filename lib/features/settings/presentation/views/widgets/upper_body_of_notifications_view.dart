@@ -25,7 +25,7 @@ class UpperBodyOfNotificationsView extends StatelessWidget {
           const SizedBox(
             width: 8,
           ),
-          Expanded(
+          const Expanded(
             child: Text(
               "Notifications",
               style: TextStyle(

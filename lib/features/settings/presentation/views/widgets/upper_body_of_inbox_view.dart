@@ -24,8 +24,8 @@ class UpperBodyOfInboxView extends StatelessWidget {
           const SizedBox(
             width: 8,
           ),
-          Expanded(
-            child: Text(
+          const Expanded(
+            child:  Text(
               "Inbox",
               style: TextStyle(
                   color: TColor.primaryText,

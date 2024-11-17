@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/features/navigate_between_screens/presentation/views/bottom_navigation_page.dart';
+import 'package:store_app/core/utils/app_router.dart';
 
 
 void main() {
@@ -12,11 +12,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp.router(
+      routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
 
-      home:BottomNavigationPage() ,
 
     );
   }
 }
+
+

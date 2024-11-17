@@ -16,7 +16,7 @@ class UpperBodyOfSettingsView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          const Text(
             "More",
             style: TextStyle(
                 color: TColor.primaryText,

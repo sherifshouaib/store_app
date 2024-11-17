@@ -24,7 +24,7 @@ class UpperBodyOfAboutUs extends StatelessWidget {
           const SizedBox(
             width: 8,
           ),
-          Expanded(
+          const Expanded(
             child: Text(
               "About Us",
               style: TextStyle(

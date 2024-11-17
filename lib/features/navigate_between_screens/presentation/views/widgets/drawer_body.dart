@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import 'drawer_upper_body.dart';
@@ -24,4 +22,3 @@ class DrawerBody extends StatelessWidget {
     );
   }
 }
-

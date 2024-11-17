@@ -37,7 +37,7 @@ class InboxItem extends StatelessWidget {
               children: [
                 Text(
                   cObj["title"].toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: TColor.primaryText,
                       fontSize: 14,
                       fontWeight: FontWeight.w600),
@@ -48,7 +48,7 @@ class InboxItem extends StatelessWidget {
                 Text(
                   cObj["detail"].toString(),
                   maxLines: 2,
-                  style: TextStyle(color: TColor.secondaryText, fontSize: 14),
+                  style: const TextStyle(color: TColor.secondaryText, fontSize: 14),
                 ),
               ],
             ),

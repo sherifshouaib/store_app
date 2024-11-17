@@ -38,7 +38,7 @@ class NotificationItem extends StatelessWidget {
               children: [
                 Text(
                   cObj["title"].toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: TColor.primaryText,
                       fontSize: 14,
                       fontWeight: FontWeight.w600),
@@ -48,7 +48,7 @@ class NotificationItem extends StatelessWidget {
                 ),
                 Text(
                   cObj["time"].toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: TColor.secondaryText,
                       fontSize: 12,
                       fontWeight: FontWeight.w500),

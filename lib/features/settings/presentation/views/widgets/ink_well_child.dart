@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/colors.dart';
@@ -10,7 +8,6 @@ class InkWellChild extends StatelessWidget {
     required this.mObj,
     required this.countBase,
   });
-
 
   final Map mObj;
   final int countBase;
@@ -48,7 +45,7 @@ class InkWellChild extends StatelessWidget {
                 Expanded(
                   child: Text(
                     mObj["name"].toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: TColor.primaryText,
                         fontSize: 14,
                         fontWeight: FontWeight.w600),
@@ -66,7 +63,7 @@ class InkWellChild extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       countBase.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: TColor.white,
                           fontSize: 12,
                           fontWeight: FontWeight.w600),

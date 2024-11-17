@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:store_app/core/utils/app_router.dart';
 
-import '../about_us_view.dart';
-import '../inbox_view.dart';
-import '../my_order_view.dart';
-import '../notifications_view.dart';
-import '../payment_details_view.dart';
 import 'ink_well_child.dart';
 
 class SettingsListViewItem extends StatelessWidget {
@@ -20,27 +17,42 @@ class SettingsListViewItem extends StatelessWidget {
       onTap: () {
         switch (mObj["index"].toString()) {
           case "1":
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const PaymentDetailsView()));
+            GoRouter.of(context).push(AppRouter.kPaymentDetailsView);
+
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => const PaymentDetailsView()));
 
             break;
 
           case "2":
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MyOrderView()));
+            GoRouter.of(context).push(AppRouter.kMyOrderView);
+
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => const MyOrderView()));
+            break;
           case "3":
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const NotificationsView()));
+            GoRouter.of(context).push(AppRouter.kNotificationsView);
+
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => const NotificationsView()));
+
+            break;
           case "4":
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const InboxView()));
+            GoRouter.of(context).push(AppRouter.kInboxView);
+
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => const InboxView()));
+            break;
           case "5":
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const AboutUsView()));
+            GoRouter.of(context).push(AppRouter.kAboutUsView);
+
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => const AboutUsView()));
+
           // case "6":
           //   ServiceCall.logout();
 

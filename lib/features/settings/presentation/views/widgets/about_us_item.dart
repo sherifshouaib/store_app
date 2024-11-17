@@ -33,7 +33,7 @@ class AboutUsItem extends StatelessWidget {
           Expanded(
             child: Text(
               txt,
-              style: TextStyle(color: TColor.primaryText, fontSize: 14),
+              style: const TextStyle(color: TColor.primaryText, fontSize: 14),
             ),
           ),
         ],
