@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'favorites.dart';
-import 'home.dart';
-import 'myproducts.dart';
-import 'profile.dart';
+import 'favorites_view.dart';
+import 'home_view.dart';
+import 'myproducts_view.dart';
+import 'profile_view.dart';
 import '../../../settings/presentation/views/settings_view.dart';
 
 class BottomNavigationPage extends StatefulWidget {
@@ -17,11 +17,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   int myCurrentIndex = 0;
 
   List pages = const [
-    Home(),
-    Favorites(),
-    MyProducts(),
+    HomeView(),
+    FavoritesView(),
+    MyProductsView(),
     SettingsView(),
-    Profile(),
+    ProfileView(),
   ];
 
   @override

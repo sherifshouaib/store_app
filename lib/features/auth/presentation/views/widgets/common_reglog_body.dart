@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../login.dart';
+import '../login_view.dart';
 import 'constants.dart';
 import '../../../../../core/buttons/custom_row_sign.dart';
 import '../../../../../core/buttons/custom_textbutton.dart';
@@ -52,7 +52,7 @@ class CommonReglogBody extends StatelessWidget {
         CustomRowSign(
           text1: customRowSignmessage1,
           text2: customRowSignmessage2,
-          specificclass: const Login(),
+          specificclass: const LoginView(),
         ),
       ],
     );

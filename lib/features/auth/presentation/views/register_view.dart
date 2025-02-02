@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'widgets/register_body.dart';
 
-class Register extends StatelessWidget {
-  const Register({super.key});
+class RegisterView extends StatelessWidget {
+  const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {

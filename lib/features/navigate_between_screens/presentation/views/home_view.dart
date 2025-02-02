@@ -5,8 +5,8 @@ import 'package:store_app/features/navigate_between_screens/presentation/views/w
 import 'widgets/custom_row_appbar.dart';
 import 'widgets/drawer_body.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
 
   @override
