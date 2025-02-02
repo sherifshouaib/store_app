@@ -3,6 +3,7 @@ import 'package:store_app/features/settings/presentation/views/about_us_view.dar
 import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
 import 'package:store_app/features/settings/presentation/views/payment_details_view.dart';
+import 'package:store_app/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/navigate_between_screens/presentation/views/bottom_navigation_page.dart';
 import '../../features/settings/presentation/views/notifications_view.dart';
@@ -13,14 +14,20 @@ abstract class AppRouter {
   static const kNotificationsView = '/notificationsView';
   static const kInboxView = '/inboxView';
   static const kAboutUsView = '/aboutUsView';
+  static const kBottomNavigationPage = '/bottomNavigationPage';
 
   static final router = GoRouter(
     routes: [
+      
       GoRoute(
         path: '/',
-        builder: (context, state) => const BottomNavigationPage(),
+        builder: (context, state) => const SplashView(),
       ),
 
+      GoRoute(
+        path: kBottomNavigationPage,
+        builder: (context, state) => const BottomNavigationPage(),
+      ),
       GoRoute(
         path: kPaymentDetailsView,
         builder: (context, state) => const PaymentDetailsView(),
