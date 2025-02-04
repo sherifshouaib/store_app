@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../home/data/models/product_model/product_model.dart';
+import '../../../../home/data/repos/get_all_product_service.dart';
+import '../../../../home/presentation/views/widgets/custom_card.dart';
+
 class HomeviewBody extends StatelessWidget {
   const HomeviewBody({
     super.key,
@@ -8,45 +12,32 @@ class HomeviewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 22),
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 33),
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {},
-            child: GridTile(
-              footer: GridTileBar(
-                //backgroundColor: Color.fromARGB(66, 73, 127, 110),
-                trailing: IconButton(
-                    color: const Color.fromARGB(255, 62, 94, 70),
-                    onPressed: () {},
-                    icon: const Icon(Icons.add)),
-                leading: const Text("\$12.99"),
-                title: const Text(
-                  "",
-                ),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 65),
+      child: FutureBuilder<List<ProductModel>>(
+        future: AllProductsService().getAllProducts(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<ProductModel> products = snapshot.data!;
+            return GridView.builder(
+              itemCount: products.length,
+              clipBehavior: Clip.none,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.5,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 100,
               ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: -3,
-                    bottom: -9,
-                    right: 0,
-                    left: 0,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(55),
-                      child: Image.asset('assets/images/ali.jpg'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+              itemBuilder: (context, index) {
+                return CustomCard(
+                  product: products[index],
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
         },
       ),
     );

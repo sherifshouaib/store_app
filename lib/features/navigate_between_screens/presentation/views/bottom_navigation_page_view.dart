@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'favorites_view.dart';
-import 'home_view.dart';
+import '../../../home/presentation/views/home_view.dart';
 import 'myproducts_view.dart';
 import 'profile_view.dart';
 import '../../../settings/presentation/views/settings_view.dart';
@@ -14,15 +14,16 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
-  int myCurrentIndex = 0;
+  int myCurrentIndex = 2;
 
   List pages = const [
-    HomeView(),
     FavoritesView(),
     MyProductsView(),
+    HomeView(),
     SettingsView(),
     ProfileView(),
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +56,12 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             },
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined), label: 'Home'),
-              BottomNavigationBarItem(
                   icon: Icon(Icons.favorite_border_outlined),
                   label: 'Favourite'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.add_shopping_cart), label: 'My Products'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_outlined), label: 'Home'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings), label: 'Settings'),
               BottomNavigationBarItem(

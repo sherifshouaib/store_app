@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:store_app/features/auth/presentation/views/auth_selection_view.dart';
+import 'package:store_app/features/home/presentation/views/home_view.dart';
 import 'package:store_app/features/settings/presentation/views/about_us_view.dart';
 import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
@@ -19,16 +20,21 @@ abstract class AppRouter {
   static const kAuthSelectionView = '/authSelection';
   static const kLoginView = '/loginView';
   static const kRegisterView = '/registerView';
+  static const kHomeView = '/homeView';
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SplashView(),
+        builder: (context, state) => const BottomNavigationPage(),
       ),
       GoRoute(
         path: kAuthSelectionView,
         builder: (context, state) => const AuthSelectionView(),
+      ),
+      GoRoute(
+        path: kHomeView,
+        builder: (context, state) => const HomeView(),
       ),
       GoRoute(
         path: kBottomNavigationPage,
