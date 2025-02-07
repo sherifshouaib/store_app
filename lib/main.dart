@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/core/utils/app_router.dart';
+import 'package:store_app/core/utils/service_locator.dart';
+import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(const MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,13 +16,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.white,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProductsCubit(
+            getIt.get<HomeRepoImpl>(),
+          ),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: Colors.white,
+        ),
       ),
-    
     );
   }
 }
