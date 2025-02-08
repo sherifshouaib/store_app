@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/constants.dart';
-import 'package:store_app/features/navigate_between_screens/presentation/views/widgets/home_view_body.dart';
+import 'package:store_app/features/home/presentation/views/widgets/home_view_body.dart';
 
 import '../../../navigate_between_screens/presentation/views/widgets/custom_row_appbar.dart';
 import '../../../navigate_between_screens/presentation/views/widgets/drawer_body.dart';

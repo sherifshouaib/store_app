@@ -58,7 +58,7 @@ class CustomCard extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.add,
                           color: Colors.red,
                         ),

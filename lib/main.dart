@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ProductsCubit(
             getIt.get<HomeRepoImpl>(),
-          ),
+          )..getAllProducts(),
         ),
       ],
       child: MaterialApp.router(
