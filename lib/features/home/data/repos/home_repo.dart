@@ -3,10 +3,6 @@ import 'package:store_app/features/home/data/models/product_model/product_model.
 import 'package:dartz/dartz.dart';
 
 abstract class HomeRepo {
-
- Future<Either<Failure ,List<ProductModel>>> getAllProducts();
-  
-
-
-
+  Future<Either<Failure, List<ProductModel>>> getAllProducts();
+  Future<Either<Failure, List<ProductModel>>> getProductDetails();
 }

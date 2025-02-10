@@ -31,4 +31,28 @@ class HomeRepoImpl implements HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, List<ProductModel>>> getProductDetails() async{
+   
+ try {
+      var data = await apiService.get(endPoint: 'products');
+
+      List<ProductModel> products = [];
+
+      for (int i = 0; i < data.length; i++) {
+        products.add(
+          ProductModel.fromJson(data[i]),
+        );
+      }
+      return right(products);
+    } on Exception catch (e) {
+      if (e is DioError) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  
 }
