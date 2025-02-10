@@ -19,8 +19,6 @@ class CustomProductImage extends StatelessWidget {
         height: 100,
         width: 85,
         imageUrl: product.image,
-        // placeholder: (context, url) =>
-        //     const Center(child: CircularProgressIndicator()),
         errorWidget: (context, url, error) => const Icon(
           Icons.error,
           color: Colors.black,

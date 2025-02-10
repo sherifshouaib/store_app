@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../data/models/product_model/product_model.dart';
 import 'custom_product.image.dart';
 
+
+
+
 class CustomCard extends StatelessWidget {
   CustomCard({
     required this.product,
     super.key,
   });
+
+
 
   ProductModel product;
   @override
