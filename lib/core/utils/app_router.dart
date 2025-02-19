@@ -11,7 +11,9 @@ import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
 import 'package:store_app/features/settings/presentation/views/payment_details_view.dart';
 
+import '../../features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import '../../features/navigate_between_screens/presentation/views/bottom_navigation_page_view.dart';
+import '../../features/navigate_between_screens/presentation/views/myproducts_view.dart';
 import '../../features/settings/presentation/views/notifications_view.dart';
 
 abstract class AppRouter {
@@ -26,7 +28,7 @@ abstract class AppRouter {
   static const kRegisterView = '/registerView';
   static const kHomeView = '/homeView';
   static const kProductDetailsView = '/productDetailsView';
-  //static const kMyProductsView = '/myProductsView';
+  static const kMyProductsView = '/myProductsView';
 
   static final router = GoRouter(
     routes: [
@@ -66,13 +68,13 @@ abstract class AppRouter {
         path: kAboutUsView,
         builder: (context, state) => const AboutUsView(),
       ),
-      // GoRoute(
-      //   path: kMyProductsView,
-      //   builder: (context, state) => BlocProvider(
-      //     create: (context) => CounterCubit(),
-      //     child: const MyProductsView(),
-      //   ),
-      // ),
+      GoRoute(
+        path: kMyProductsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => CounterCubit(),
+          child: const MyProductsView(),
+        ),
+      ),
       GoRoute(
         path: kProductDetailsView,
         builder: (context, state) => BlocProvider(

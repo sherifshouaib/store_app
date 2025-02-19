@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import 'package:store_app/features/home/presentation/views/widgets/custom_row_appbar.dart';
+import 'package:store_app/features/navigate_between_screens/presentation/views/widgets/myproducts_view_body.dart';
 
 class MyProductsView extends StatelessWidget {
   const MyProductsView({super.key});
@@ -20,7 +21,7 @@ class MyProductsView extends StatelessWidget {
             ],
             title: Text('My Products'),
           ),
-        //  body: MyproductsViewBody(),
+          body: MyproductsViewBody(),
         );
       },
     );

@@ -21,15 +21,15 @@ class CounterCubit extends Cubit<CounterState> {
     //  // print(selectedProducts);
   }
 
-  // void productsDecrement(
-  //     {required double productPrice, required ProductModel product}) {
-  //   price -= productPrice.round();
-  //   selectedProducts.remove(product);
+  void productsDecrement(
+      {required double productPrice, required ProductModel product}) {
+    price -= productPrice.round();
+    selectedProducts.remove(product);
 
-  //   emit(CounterDecrement());
+    emit(CounterDecrement());
 
-  //   // print(price);
-  //   // print(selectedProducts.length);
-  //   //  // print(selectedProducts);
-  // }
+    print(price);
+    print(selectedProducts.length);
+    //  // print(selectedProducts);
+  }
 }

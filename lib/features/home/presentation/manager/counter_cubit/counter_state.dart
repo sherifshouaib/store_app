@@ -11,4 +11,4 @@ sealed class CounterState extends Equatable {
 
 final class CounterIncrement extends CounterState {}
 
-//final class CounterDecrement extends CounterState {}
+final class CounterDecrement extends CounterState {}
