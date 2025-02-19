@@ -4,5 +4,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class HomeRepo {
   Future<Either<Failure, List<ProductModel>>> getAllProducts();
-  Future<Either<Failure, List<ProductModel>>> getProductDetails();
+  Future<Either<Failure, List<ProductModel>>> getProductDetails({required int productNo});
 }
+
+

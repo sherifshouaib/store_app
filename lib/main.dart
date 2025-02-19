@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
             getIt.get<HomeRepoImpl>(),
           )..getAllProducts(),
         ),
+        BlocProvider(create: (context) => CounterCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,

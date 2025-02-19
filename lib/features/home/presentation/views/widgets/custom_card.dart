@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/app_router.dart';
-import 'package:store_app/features/home/presentation/views/product_details_view.dart';
 
 import '../../../data/models/product_model/product_model.dart';
+import '../../manager/counter_cubit/counter_cubit.dart';
 import 'custom_product.image.dart';
 
 class CustomCard extends StatelessWidget {
   CustomCard({
-    required this.product,
     super.key,
+    required this.indexx,
+    required this.product,
   });
 
   ProductModel product;
+  final int indexx;
+  static int indexxx = 0;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kProductDetailsView);
+        CustomCard.indexxx = indexx;
+        GoRouter.of(context).push(
+          AppRouter.kProductDetailsView,
+          // extra: ProductModel,
+        );
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -64,7 +73,13 @@ class CustomCard extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            BlocProvider.of<CounterCubit>(context)
+                                .productsIncrement(
+                              productPrice: product.price,
+                              product: product,
+                            );
+                          },
                           icon: const Icon(
                             Icons.add,
                             color: Colors.red,
@@ -80,7 +95,11 @@ class CustomCard extends StatelessWidget {
           Positioned(
             right: 32,
             top: -60,
-            child: CustomProductImage(product: product),
+            child: CustomProductImage(
+              heightt: 100,
+              widthh: 85,
+              product: product,
+            ),
           ),
         ],
       ),

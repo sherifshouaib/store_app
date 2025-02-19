@@ -1,5 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/views/auth_selection_view.dart';
+import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:store_app/features/home/presentation/manager/product_details_cubit/product_details_cubit.dart';
 import 'package:store_app/features/home/presentation/views/home_view.dart';
 import 'package:store_app/features/home/presentation/views/product_details_view.dart';
 import 'package:store_app/features/settings/presentation/views/about_us_view.dart';
@@ -22,8 +26,7 @@ abstract class AppRouter {
   static const kRegisterView = '/registerView';
   static const kHomeView = '/homeView';
   static const kProductDetailsView = '/productDetailsView';
-
-
+  //static const kMyProductsView = '/myProductsView';
 
   static final router = GoRouter(
     routes: [
@@ -63,9 +66,21 @@ abstract class AppRouter {
         path: kAboutUsView,
         builder: (context, state) => const AboutUsView(),
       ),
+      // GoRoute(
+      //   path: kMyProductsView,
+      //   builder: (context, state) => BlocProvider(
+      //     create: (context) => CounterCubit(),
+      //     child: const MyProductsView(),
+      //   ),
+      // ),
       GoRoute(
         path: kProductDetailsView,
-        builder: (context, state) => const ProductDetailsView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => ProductDetailsCubit(getIt.get<HomeRepoImpl>()),
+          child: const ProductDetailsView(
+              //  product: state.extra as ProductModel,
+              ),
+        ),
       ),
     ],
   );

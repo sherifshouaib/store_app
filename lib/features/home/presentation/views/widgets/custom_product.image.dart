@@ -7,17 +7,19 @@ class CustomProductImage extends StatelessWidget {
   const CustomProductImage({
     super.key,
     required this.product,
+    required this.heightt,
+    required this.widthh,
   });
 
   final ProductModel product;
-
+  final double heightt, widthh;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: CachedNetworkImage(
-        height: 100,
-        width: 85,
+        height: heightt,
+        width: widthh,
         imageUrl: product.image,
         errorWidget: (context, url, error) => const Icon(
           Icons.error,

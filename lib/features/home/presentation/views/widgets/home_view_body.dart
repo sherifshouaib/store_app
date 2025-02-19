@@ -16,11 +16,12 @@ class HomeviewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 65),
-      child: BlocBuilder<ProductsCubit,ProductsState>(
+      child: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
           if (state is ProductsSuccess) {
             List<ProductModel> products = state.products;
-           // print(state.products.length);
+            // print(state.products.length);
+
             return GridView.builder(
               itemCount: state.products.length,
               physics: const BouncingScrollPhysics(),
@@ -34,14 +35,14 @@ class HomeviewBody extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CustomCard(
                   product: state.products[index],
+                  indexx: index,
                 );
               },
             );
-          }else if(state is ProductsFailure){
+          } else if (state is ProductsFailure) {
             return CustomErrorWidget(errMessage: state.errMessage);
-          }  else {
+          } else {
             return const CustomLoadingIndicator();
-            
           }
         },
       ),

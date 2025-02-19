@@ -15,7 +15,6 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<ProductModel>>> getAllProducts() async {
     try {
       var data = await apiService.get(endPoint: 'products');
-
       List<ProductModel> products = [];
 
       for (int i = 0; i < data.length; i++) {
@@ -31,20 +30,20 @@ class HomeRepoImpl implements HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<ProductModel>>> getProductDetails() async{
-   
- try {
-      var data = await apiService.get(endPoint: 'products');
+  Future<Either<Failure, List<ProductModel>>> getProductDetails(
+      {required int productNo}) async {
+    try {
+      var data = await apiService.get2(endPoint: 'products/$productNo');
 
       List<ProductModel> products = [];
-
-      for (int i = 0; i < data.length; i++) {
+      for (int i = 0; i < 1; i++) {
         products.add(
-          ProductModel.fromJson(data[i]),
+          ProductModel.fromJson(data),
         );
       }
+
       return right(products);
     } on Exception catch (e) {
       if (e is DioError) {
@@ -53,6 +52,4 @@ class HomeRepoImpl implements HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-
-  
 }
