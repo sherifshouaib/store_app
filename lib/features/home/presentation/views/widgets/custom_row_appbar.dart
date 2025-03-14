@@ -28,7 +28,7 @@ class CustomRowAppbar extends StatelessWidget {
                         shape: BoxShape.circle),
                     child: Text(
                       "${BlocProvider.of<CounterCubit>(context).selectedProducts.length}",
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     ),
                   ),
                 ),

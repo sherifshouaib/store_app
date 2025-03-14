@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "163378598013",
+    "project_id": "store-app-df5ac",
+    "storage_bucket": "store-app-df5ac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163378598013:android:766f9fa9c8077cf4252114",
+        "android_client_info": {
+          "package_name": "com.example.store_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQgmCluXUv5YST6EDhJu8BmqmyNROxOt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -75,7 +77,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         //   duration: kTransitionDuration,
         // );
 
-        GoRouter.of(context).push(AppRouter.kHomeView);
+        GoRouter.of(context).push(AppRouter.kAuthSelectionView);
       },
     );
   }

@@ -14,7 +14,6 @@ class MyproductsViewBody extends StatelessWidget {
 
     return BlocConsumer<CounterCubit, CounterState>(
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         return Column(
@@ -44,7 +43,7 @@ class MyproductsViewBody extends StatelessWidget {
                                 product: carttt.selectedProducts[index],
                               );
                             },
-                            icon: Icon(Icons.remove)),
+                            icon: const Icon(Icons.remove)),
                       ),
                     );
                   },

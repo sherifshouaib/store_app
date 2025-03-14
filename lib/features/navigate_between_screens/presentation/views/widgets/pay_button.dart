@@ -19,15 +19,15 @@ class PayButton extends StatelessWidget {
         
         onPressed: () {},
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(bTNpink),
-          padding: MaterialStateProperty.all(EdgeInsets.all(12)),
+          backgroundColor: WidgetStateProperty.all(bTNpink),
+          padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
           
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          shape: WidgetStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8))),
         ),
         child: Text(
           "Pay \$${carttt.price}",
-          style: TextStyle(fontSize: 17),
+          style: const TextStyle(fontSize: 17),
         ),
       ),
     );

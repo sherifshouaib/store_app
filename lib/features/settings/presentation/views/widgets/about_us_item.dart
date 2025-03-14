@@ -1,43 +1,28 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/colors.dart';
+import 'custom_headline_details.dart';
+import 'custom_main_headline.dart';
 
 class AboutUsItem extends StatelessWidget {
   const AboutUsItem({
     super.key,
     required this.indexNotificationItem,
-    required this.txt,
+    required this.txt1,
+    required this.txt2,
   });
 
   final int indexNotificationItem;
-  final String txt;
-
+  final String txt1, txt2;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 4),
-            width: 6,
-            height: 6,
-            decoration: BoxDecoration(
-                color: TColor.primary, borderRadius: BorderRadius.circular(4)),
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          Expanded(
-            child: Text(
-              txt,
-              style: const TextStyle(color: TColor.primaryText, fontSize: 14),
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        CustomMainHeadline(txt1: txt1,),
+        CustomHeadlineDetails(txt2: txt2),
+      ],
     );
   }
 }
+

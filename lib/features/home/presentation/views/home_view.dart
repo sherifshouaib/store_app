@@ -26,7 +26,6 @@ class HomeView extends StatelessWidget {
         );
       },
       listener: (context, state) {
-        // TODO: implement listener
       },
     );
   }

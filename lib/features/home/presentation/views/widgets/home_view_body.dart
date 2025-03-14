@@ -34,7 +34,7 @@ class HomeviewBody extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return CustomCard(
-                  product: state.products[index],
+                  product: products[index],
                   indexx: index,
                 );
               },

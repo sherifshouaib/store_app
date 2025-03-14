@@ -5,7 +5,7 @@ import 'package:store_app/features/home/data/models/product_model/product_model.
 part 'counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
-  CounterCubit() : super(CounterIncrement());
+  CounterCubit() : super(CounterInitial());
 
   double price = 0;
   List selectedProducts = [];

@@ -7,7 +7,7 @@ sealed class CounterState extends Equatable {
   List<Object> get props => [];
 }
 
-//final class CounterInitial extends CounterState {}
+final class CounterInitial extends CounterState {}
 
 final class CounterIncrement extends CounterState {}
 

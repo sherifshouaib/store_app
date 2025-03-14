@@ -2,6 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/views/auth_selection_view.dart';
+import 'package:store_app/features/auth/presentation/views/forgot_password_view.dart';
+import 'package:store_app/features/auth/presentation/views/login_view.dart';
+import 'package:store_app/features/auth/presentation/views/register_view.dart';
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/product_details_cubit/product_details_cubit.dart';
 import 'package:store_app/features/home/presentation/views/home_view.dart';
@@ -10,6 +13,7 @@ import 'package:store_app/features/settings/presentation/views/about_us_view.dar
 import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
 import 'package:store_app/features/settings/presentation/views/payment_details_view.dart';
+import 'package:store_app/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import '../../features/navigate_between_screens/presentation/views/bottom_navigation_page_view.dart';
@@ -29,11 +33,29 @@ abstract class AppRouter {
   static const kHomeView = '/homeView';
   static const kProductDetailsView = '/productDetailsView';
   static const kMyProductsView = '/myProductsView';
+  static const kSplashView = '/splashView';
+  static const kForgotPassView = '/forgotPassView';
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: '/',
+        builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(
+        path: kForgotPassView,
+        builder: (context, state) =>  ForgotPassView(),
+      ),
+      GoRoute(
+        path: kLoginView,
+        builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
+        path: kRegisterView,
+        builder: (context, state) => const RegisterView(),
+      ),
+      GoRoute(
+        path: kBottomNavigationPage,
         builder: (context, state) => const BottomNavigationPage(),
       ),
       GoRoute(
@@ -43,10 +65,6 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
-      ),
-      GoRoute(
-        path: kBottomNavigationPage,
-        builder: (context, state) => const BottomNavigationPage(),
       ),
       GoRoute(
         path: kPaymentDetailsView,
