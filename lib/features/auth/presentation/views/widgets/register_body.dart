@@ -11,12 +11,14 @@ import '../../../../../core/utils/function/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_form_text_field.dart';
 import 'row_passwordauth.dart';
 
-class RegisterBody extends StatefulWidget {
+class RegisterViewBody extends StatefulWidget {
+  const RegisterViewBody({super.key});
+
   @override
-  State<RegisterBody> createState() => _RegisterBodyState();
+  State<RegisterViewBody> createState() => _RegisterViewBodyState();
 }
 
-class _RegisterBodyState extends State<RegisterBody> {
+class _RegisterViewBodyState extends State<RegisterViewBody> {
   String? email, password;
 
   bool isVisible = false;

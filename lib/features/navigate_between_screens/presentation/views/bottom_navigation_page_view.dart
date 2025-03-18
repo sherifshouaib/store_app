@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'favorites_view.dart';
 import '../../../home/presentation/views/home_view.dart';
 import 'myproducts_view.dart';
-import 'profile_view.dart';
+import '../../../profile/presentation/views/profile_view.dart';
 import '../../../settings/presentation/views/settings_view.dart';
 
 class BottomNavigationPage extends StatefulWidget {

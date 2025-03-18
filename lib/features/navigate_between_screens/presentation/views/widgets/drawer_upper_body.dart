@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-import 'user_account_details.dart';
+import '../../../../../core/utils/app_router.dart';
+import '../../../../profile/presentation/views/widgets/user_account_details.dart';
 
 class DrawerUpperBody extends StatelessWidget {
   const DrawerUpperBody({
@@ -11,7 +15,7 @@ class DrawerUpperBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const UserAccountDetails(),
+         UserAccountDetails(),
         ListTile(
             title: const Text("Home"),
             leading: const Icon(Icons.home),
@@ -27,7 +31,14 @@ class DrawerUpperBody extends StatelessWidget {
         ListTile(
             title: const Text("Logout"),
             leading: const Icon(Icons.exit_to_app),
-            onTap: () {}),
+            onTap: () async {
+              GoogleSignIn googleSignIn = GoogleSignIn();
+              googleSignIn.disconnect();
+              await FirebaseAuth.instance.signOut();
+              GoRouter.of(context).pushReplacement(
+                AppRouter.kLoginView,
+              );
+            }),
       ],
     );
   }

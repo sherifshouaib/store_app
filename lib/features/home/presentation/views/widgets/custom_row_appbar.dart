@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../manager/counter_cubit/counter_cubit.dart';
 
 class CustomRowAppbar extends StatelessWidget {
   const CustomRowAppbar({
     super.key,
   });
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +29,14 @@ class CustomRowAppbar extends StatelessWidget {
                         shape: BoxShape.circle),
                     child: Text(
                       "${BlocProvider.of<CounterCubit>(context).selectedProducts.length}",
-                      style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style:
+                          const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     ),
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                  },
                   icon: const Icon(Icons.add_shopping_cart),
                 ),
               ],

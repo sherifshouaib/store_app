@@ -10,7 +10,7 @@ class RegisterView extends StatelessWidget {
     return SafeArea(
       child:  Scaffold(
         appBar: AppBar(),
-        body: RegisterBody(),
+        body: const RegisterViewBody(),
       ),
     );
   }

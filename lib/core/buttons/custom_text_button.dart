@@ -18,9 +18,10 @@ class CustomTextButton extends StatelessWidget {
       child: Text(
         text2,
         style: TextStyle(
-            color: Colors.blue,
-            fontSize: fontSize,
-            decoration: TextDecoration.underline),
+          color: Colors.blue,
+          fontSize: fontSize,
+          decoration: TextDecoration.underline,
+        ),
       ),
     );
   }

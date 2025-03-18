@@ -1,29 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserAccountDetails extends StatelessWidget {
-  const UserAccountDetails({
+  UserAccountDetails({
     super.key,
   });
 
+  final userrr = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
-    return const UserAccountsDrawerHeader(
-      decoration: BoxDecoration(
+    return UserAccountsDrawerHeader(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/test.jpg"),
           fit: BoxFit.cover,
         ),
       ),
       accountName: Text(
-        "ali Hassan",
-        style: TextStyle(
+        userrr.displayName!,
+        style: const TextStyle(
           color: Color.fromARGB(255, 255, 255, 255),
         ),
       ),
-      accountEmail: Text("ali@yahoo.com"),
+      accountEmail: Text(userrr.email!),
       currentAccountPicture: CircleAvatar(
         radius: 55,
-        backgroundImage: AssetImage("assets/images/ali.jpg"),
+        backgroundImage: NetworkImage(userrr.photoURL!),
+        // AssetImage("assets/images/ali.jpg"),
       ),
     );
   }

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:store_app/core/utils/app_router.dart';
 
 import 'ink_well_child.dart';
@@ -53,8 +55,13 @@ class SettingsListViewItem extends StatelessWidget {
           // Navigator.push(context,
           //     MaterialPageRoute(builder: (context) => const AboutUsView()));
 
-          // case "6":
-          //   ServiceCall.logout();
+          case "6":
+             GoogleSignIn googleSignIn = GoogleSignIn();
+              googleSignIn.disconnect();
+               FirebaseAuth.instance.signOut();
+              GoRouter.of(context).pushReplacement(
+                AppRouter.kLoginView,
+              );
 
           default:
         }

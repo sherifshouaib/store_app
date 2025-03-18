@@ -5,6 +5,7 @@ import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/auth_cubit/auth_cubit.dart';
+import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/simple_bloc_observer.dart';
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
@@ -19,7 +20,7 @@ void main() async {
   );
   setupServiceLocator();
 
- // Bloc.observer = SimpleBlocObserver();
+  // Bloc.observer = SimpleBlocObserver();
 
   runApp(const StoreApp());
 }
@@ -40,8 +41,9 @@ class StoreApp extends StatelessWidget {
         BlocProvider(create: (context) => CounterCubit()),
         // BlocProvider(create: (context) => LoginCubit()),
         // BlocProvider(create: (context) => RegisterCubit()),
-        BlocProvider(create: (context) => AuthCubit()),
+      //  BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => AuthBloc()),
+      // BlocProvider(create: (context) => GoogleSignInCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
