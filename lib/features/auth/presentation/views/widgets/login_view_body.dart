@@ -15,7 +15,7 @@ import '../../../../../core/utils/function/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_form_text_field.dart';
 
 class LoginViewBody extends StatefulWidget {
-  LoginViewBody({super.key});
+  const LoginViewBody({super.key});
 
   @override
   State<LoginViewBody> createState() => _LoginViewBodyState();
@@ -173,8 +173,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     );
   }
 
-  Future<void> loginUser() async {
-    UserCredential user = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email!, password: password!);
-  }
+  // Future<void> loginUser() async {
+  //   UserCredential user = await FirebaseAuth.instance
+  //       .signInWithEmailAndPassword(email: email!, password: password!);
+  // }
 }

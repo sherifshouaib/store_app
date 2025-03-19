@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:store_app/features/auth/presentation/views/verify_email_view.dart';
 
 import '../../../../../core/buttons/custom_elevated_button.dart';
@@ -10,6 +11,7 @@ import '../../../../../core/utils/function/show_snack_bar.dart';
 
 class VerifyEmailViewBody extends StatefulWidget {
   const VerifyEmailViewBody({super.key});
+  static bool isSentCancel = false;
 
   @override
   State<VerifyEmailViewBody> createState() => _VerifyEmailViewBodyState();
@@ -31,6 +33,8 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
       sendVerificationEmail();
 
       timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
+        if (VerifyEmailViewBody.isSentCancel) return;
+
         // when we click on the link that existed on yahoo
         await FirebaseAuth.instance.currentUser!.reload();
 
@@ -41,7 +45,6 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
         });
 
         if (VerifyEmailView.isEmailVerified) {
-          //  isEmailVerified = false;
           timer.cancel();
         }
       });
@@ -51,9 +54,13 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
   sendVerificationEmail() async {
     try {
       await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+
+      if (VerifyEmailViewBody.isSentCancel) return;
+
       setState(() {
         canResendEmail = false;
       });
+
       await Future.delayed(const Duration(seconds: 5));
       setState(() {
         canResendEmail = true;
@@ -65,7 +72,6 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     timer?.cancel();
     super.dispose();
   }
@@ -124,7 +130,9 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
 
             CustomTextButton(
               onPressed: () {
-                FirebaseAuth.instance.signOut();
+                VerifyEmailViewBody.isSentCancel = true;
+                GoRouter.of(context).pop();
+                //  FirebaseAuth.instance.signOut();
               },
               text2: 'Cancel',
             ),

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/custom_row_sign.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
@@ -20,7 +19,6 @@ class RegisterViewBody extends StatefulWidget {
 
 class _RegisterViewBodyState extends State<RegisterViewBody> {
   String? email, password;
-
   bool isVisible = false;
 
   GlobalKey<FormState> formKey = GlobalKey();
@@ -68,6 +66,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    email = BlocProvider.of<AuthBloc>(context).email;
+    password = BlocProvider.of<AuthBloc>(context).password;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
@@ -116,6 +116,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       height: 12,
                     ),
                     CustomFormTextField(
+                      onChanged: (data) {
+                        BlocProvider.of<AuthBloc>(context).username = data;
+                      },
                       validator: (data) {
                         if (data!.isEmpty) {
                           return 'field is required';
@@ -131,6 +134,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       height: 8,
                     ),
                     CustomFormTextField(
+                      onChanged: (data) {
+                        BlocProvider.of<AuthBloc>(context).age = data;
+                      },
                       validator: (data) {
                         if (data!.isEmpty) {
                           return 'field is required';
@@ -146,6 +152,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       height: 8,
                     ),
                     CustomFormTextField(
+                      onChanged: (data) {
+                        BlocProvider.of<AuthBloc>(context).title = data;
+                      },
                       validator: (data) {
                         if (data!.isEmpty) {
                           return 'field is required';
@@ -155,12 +164,13 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       textfieldmessage: 'Title',
                       icon: const Icon(Icons.person_outline),
                     ),
+
                     const SizedBox(
                       height: 8,
                     ),
                     CustomFormTextField(
                       onChanged: (data) {
-                        email = data;
+                        BlocProvider.of<AuthBloc>(context).email = data;
                       },
                       validator: (data) {
                         return data!.contains(RegExp(
@@ -185,7 +195,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       onChanged: (data) {
                         onPasswordChanged(data);
 
-                        password = data;
+                        BlocProvider.of<AuthBloc>(context).password = data;
                       },
                       texttype: TextInputType.text,
                       textfieldmessage: 'Password',
@@ -318,8 +328,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     } else {}
   }
 
-  Future<void> registerUser() async {
-    UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email!, password: password!);
-  }
+  // Future<void> registerUser() async {
+  //   UserCredential user = await FirebaseAuth.instance
+  //       .createUserWithEmailAndPassword(email: email!, password: password!);
+  // }
 }

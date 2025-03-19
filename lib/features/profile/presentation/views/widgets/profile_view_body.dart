@@ -12,9 +12,9 @@ class ProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //  UserAccountDetails(),
-        const Padding(
-          padding: EdgeInsets.all(22),
+         UserAccountDetails(),
+         Padding(
+          padding: const EdgeInsets.all(22),
           child: PersonalInformation(),
         ),
         Container(

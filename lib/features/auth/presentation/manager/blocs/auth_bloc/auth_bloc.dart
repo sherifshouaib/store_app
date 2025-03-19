@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -6,6 +7,8 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  String? username, age, title, email, password;
+
   AuthBloc() : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
       if (event is loginEvent) {
@@ -27,10 +30,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
       if (event is RegisterEvent) {
         emit(RegisterLoading());
+
         try {
-          UserCredential user = await FirebaseAuth.instance
-              .createUserWithEmailAndPassword(
-                  email: event.email, password: event.password);
+          final UserCredential credential =
+              await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: event.email,
+            password: event.password,
+          );
+
+          CollectionReference users =
+              FirebaseFirestore.instance.collection('usersss');
+
+          print(credential.user!.uid);
+
+          users
+              .doc(credential.user!.uid)
+              .set({
+                'username': username,
+                'age': age,
+                'title': title,
+                'email': email,
+                'pass': password,
+              })
+              .then((value) => print("User Added"))
+              .catchError((error) => print("Failed to add user: $error"));
 
           emit(RegisterSuccess(succMessage: 'Success'));
         } on FirebaseAuthException catch (ex) {

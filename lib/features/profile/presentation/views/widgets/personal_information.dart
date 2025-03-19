@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PersonalInformation extends StatelessWidget {
-  const PersonalInformation({
+  PersonalInformation({
     super.key,
   });
 
+  final credential = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,9 +31,9 @@ class PersonalInformation extends StatelessWidget {
         const SizedBox(
           height: 11,
         ),
-        const Text(
-          'Email:       ',
-          style: TextStyle(
+        Text(
+          'Email: ${credential!.email}     ',
+          style: const TextStyle(
             fontSize: 17,
             color: Colors.black,
           ),
@@ -38,9 +41,11 @@ class PersonalInformation extends StatelessWidget {
         const SizedBox(
           height: 11,
         ),
-        const Text(
-          'Created data:     ',
-          style: TextStyle(
+        Text(
+          // DateFormat("MMMM d, y").format(    credential!.metadata.creationTime    );
+
+          'Created data:  ${DateFormat("MMMM d, y").format(credential!.metadata.creationTime!)}    ',
+          style: const TextStyle(
             fontSize: 17,
             color: Colors.black,
           ),
@@ -48,9 +53,9 @@ class PersonalInformation extends StatelessWidget {
         const SizedBox(
           height: 11,
         ),
-        const Text(
-          'Last Signed In:   ',
-          style: TextStyle(
+        Text(
+          'Last Signed In: ${DateFormat("MMMM d, y").format(credential!.metadata.lastSignInTime!)}  ',
+          style: const TextStyle(
             fontSize: 17,
             color: Colors.black,
           ),
