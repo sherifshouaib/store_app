@@ -41,9 +41,9 @@ class StoreApp extends StatelessWidget {
         BlocProvider(create: (context) => CounterCubit()),
         // BlocProvider(create: (context) => LoginCubit()),
         // BlocProvider(create: (context) => RegisterCubit()),
-      //  BlocProvider(create: (context) => AuthCubit()),
+        //  BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => AuthBloc()),
-      // BlocProvider(create: (context) => GoogleSignInCubit()),
+        BlocProvider(create: (context) => GoogleSignInCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
@@ -55,3 +55,4 @@ class StoreApp extends StatelessWidget {
     );
   }
 }
+

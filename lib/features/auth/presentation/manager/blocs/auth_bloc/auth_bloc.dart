@@ -30,9 +30,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
       if (event is RegisterEvent) {
         emit(RegisterLoading());
-
         try {
-          final UserCredential credential =
+        final  UserCredential credential =
               await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: event.email,
             password: event.password,
@@ -41,7 +40,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           CollectionReference users =
               FirebaseFirestore.instance.collection('usersss');
 
-          print(credential.user!.uid);
 
           users
               .doc(credential.user!.uid)

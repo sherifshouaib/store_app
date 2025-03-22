@@ -33,7 +33,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
       sendVerificationEmail();
 
       timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
-        if (VerifyEmailViewBody.isSentCancel) return;
+        //  if (VerifyEmailViewBody.isSentCancel == true) return;
 
         // when we click on the link that existed on yahoo
         await FirebaseAuth.instance.currentUser!.reload();
@@ -55,7 +55,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
     try {
       await FirebaseAuth.instance.currentUser!.sendEmailVerification();
 
-      if (VerifyEmailViewBody.isSentCancel) return;
+      // if (VerifyEmailViewBody.isSentCancel == true) return;
 
       setState(() {
         canResendEmail = false;

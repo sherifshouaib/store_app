@@ -51,7 +51,9 @@ class GoogleSignInCubit extends Cubit<GoogleSignInState> {
       idToken: googleAuth?.idToken,
     );
     // Once signed in, return the UserCredential
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    final UserCredential user =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
 
     GoRouter.of(context).push(
       AppRouter.kBottomNavigationPage,

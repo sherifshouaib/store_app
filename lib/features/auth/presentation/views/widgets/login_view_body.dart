@@ -32,139 +32,136 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GoogleSignInCubit(),
-      child: MultiBlocListener(
-        listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is LoginLoading) {
-                isLoading = true;
-              } else if (state is LoginSuccess) {
-                // GoRouter.of(context).push(
-                //   AppRouter.kBottomNavigationPage,
-                // );
-                GoRouter.of(context).push(
-                  AppRouter.kVerifyEmailView,
-                );
-                isLoading = false;
-              } else if (state is LoginFailure) {
-                showSnackBar(context, state.errMessage);
-                isLoading = false;
-              }
-            },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is LoginLoading) {
+              isLoading = true;
+            } else if (state is LoginSuccess) {
+              // GoRouter.of(context).push(
+              //   AppRouter.kBottomNavigationPage,
+              // );
+              GoRouter.of(context).push(
+                AppRouter.kVerifyEmailView,
+              );
+              isLoading = false;
+            } else if (state is LoginFailure) {
+              showSnackBar(context, state.errMessage);
+              isLoading = false;
+            }
+          },
+        ),
+        BlocListener<GoogleSignInCubit, GoogleSignInState>(
+          listener: (context, state) {
+            if (state is GoogleSignExecution) {
+              BlocProvider.of<GoogleSignInCubit>(context)
+                  .signInWithGoogle(context);
+            }
+          },
+        ),
+      ],
+      child: ModalProgressHUD(
+        inAsyncCall: isLoading,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
           ),
-          BlocListener<GoogleSignInCubit, GoogleSignInState>(
-            listener: (context, state) {
-              if (state is GoogleSignExecution) {
-                BlocProvider.of<GoogleSignInCubit>(context)
-                    .signInWithGoogle(context);
-              }
-            },
-          ),
-        ],
-        child: ModalProgressHUD(
-          inAsyncCall: isLoading,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-            ),
-            child: Form(
-              key: formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const UpperBodyLogin(),
-                    CustomFormTextField(
-                      validator: (data) {
-                        return data!.contains(RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#//$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"))
-                            ? null
-                            : 'Enter a valid email';
+          child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const UpperBodyLogin(),
+                  CustomFormTextField(
+                    validator: (data) {
+                      return data!.contains(RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#//$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"))
+                          ? null
+                          : 'Enter a valid email';
+                    },
+                    onChanged: (data) {
+                      email = data;
+                    },
+                    texttype: TextInputType.emailAddress,
+                    textfieldmessage: 'Email',
+                    icon: const Icon(Icons.email),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CustomFormTextField(
+                    validator: (data) {
+                      if (data!.isEmpty) {
+                        return 'field is required';
+                      }
+                    },
+                    onChanged: (data) {
+                      password = data;
+                    },
+                    texttype: TextInputType.text,
+                    obscureText: isVisible ? false : true,
+                    textfieldmessage: 'Password',
+                    icon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isVisible = !isVisible;
+                        });
                       },
-                      onChanged: (data) {
-                        email = data;
+                      icon: isVisible
+                          ? const Icon(
+                              Icons.visibility_off,
+                              color: Colors.white,
+                            )
+                          : const Icon(
+                              Icons.visibility,
+                              color: Colors.white,
+                            ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  CustomElevatedButton(
+                    colorfill: Colors.redAccent,
+                    text: 'Login',
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<AuthBloc>(context).add(
+                            loginEvent(email: email!, password: password!));
+                      } else {}
+                    },
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const NoLogicPart(),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 27),
+                    child: GestureDetector(
+                      onTap: () async {
+                        await BlocProvider.of<GoogleSignInCubit>(context)
+                            .signInWithGoogle(context);
+                        // GoRouter.of(context).push(
+                        //   AppRouter.kBottomNavigationPage,
+                        // );
                       },
-                      texttype: TextInputType.emailAddress,
-                      textfieldmessage: 'Email',
-                      icon: const Icon(Icons.email),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomFormTextField(
-                      validator: (data) {
-                        if (data!.isEmpty) {
-                          return 'field is required';
-                        }
-                      },
-                      onChanged: (data) {
-                        password = data;
-                      },
-                      texttype: TextInputType.text,
-                      obscureText: isVisible ? false : true,
-                      textfieldmessage: 'Password',
-                      icon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isVisible = !isVisible;
-                          });
-                        },
-                        icon: isVisible
-                            ? const Icon(
-                                Icons.visibility_off,
-                                color: Colors.white,
-                              )
-                            : const Icon(
-                                Icons.visibility,
-                                color: Colors.white,
-                              ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    CustomElevatedButton(
-                      colorfill: Colors.redAccent,
-                      text: 'Login',
-                      onPressed: () async {
-                        if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(
-                              loginEvent(email: email!, password: password!));
-                        } else {}
-                      },
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const NoLogicPart(),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 27),
-                      child: GestureDetector(
-                        onTap: () async {
-                          await BlocProvider.of<GoogleSignInCubit>(context)
-                              .signInWithGoogle(context);
-                          // GoRouter.of(context).push(
-                          //   AppRouter.kBottomNavigationPage,
-                          // );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(13),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: const Color.fromARGB(255, 200, 67, 79),
-                                  width: 1)),
-                          child: SvgPicture.asset(
-                            "assets/icons/icons8-google.svg",
-                            color: const Color.fromARGB(255, 200, 67, 79),
-                            height: 27,
-                          ),
+                      child: Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 200, 67, 79),
+                                width: 1)),
+                        child: SvgPicture.asset(
+                          "assets/icons/icons8-google.svg",
+                          color: const Color.fromARGB(255, 200, 67, 79),
+                          height: 27,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
