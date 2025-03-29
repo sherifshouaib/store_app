@@ -5,31 +5,27 @@ import 'package:store_app/features/home/data/models/product_model/product_model.
 part 'counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
-  CounterCubit() : super(CounterInitial());
+  CounterCubit() : super(const CounterState(0, []));
 
-  double price = 0;
-  List selectedProducts = [];
-
+  // double? price;
+  // List<ProductModel>? selectedProducts;
   void productsIncrement(
       {required double productPrice, required ProductModel product}) {
-    price += productPrice.round();
-    selectedProducts.add(product);
-    emit(CounterIncrement());
+    final newSelectedProducts = List<ProductModel>.from(state.selectedProducts);
+    newSelectedProducts.add(product);
 
-    print(price);
-    print(selectedProducts.length);
-    //  // print(selectedProducts);
+    emit(state.copyWith(
+        price: state.price + productPrice,
+        selectedProducts: newSelectedProducts));
+
   }
 
   void productsDecrement(
       {required double productPrice, required ProductModel product}) {
-    price -= productPrice.round();
-    selectedProducts.remove(product);
-
-    emit(CounterDecrement());
-
-    print(price);
-    print(selectedProducts.length);
-    //  // print(selectedProducts);
+    final newSelectedProducts = List<ProductModel>.from(state.selectedProducts);
+    newSelectedProducts.remove(product);
+    emit(state.copyWith(
+        price: state.price - productPrice,
+        selectedProducts: newSelectedProducts));
   }
 }

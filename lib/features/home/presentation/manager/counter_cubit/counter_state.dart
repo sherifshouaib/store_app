@@ -1,14 +1,20 @@
 part of 'counter_cubit.dart';
 
-sealed class CounterState extends Equatable {
-  const CounterState();
+class CounterState extends Equatable {
+  const CounterState(this.price, this.selectedProducts);
+
+  final double price;
+  final List<ProductModel> selectedProducts;
+  CounterState copyWith({
+    double? price,
+    List<ProductModel>? selectedProducts,
+  }) {
+    return CounterState(
+      price ?? this.price,
+      selectedProducts ?? this.selectedProducts,
+    );
+  }
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [price, selectedProducts];
 }
-
-final class CounterInitial extends CounterState {}
-
-final class CounterIncrement extends CounterState {}
-
-final class CounterDecrement extends CounterState {}

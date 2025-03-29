@@ -11,15 +11,17 @@ class ProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //  UserAccountDetails(),
-        Padding(
-          padding: const EdgeInsets.all(22),
-          child: PersonalInformation(),
-        ),
-        const DeveloperName(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          //  UserAccountDetails(),
+          Padding(
+            padding: const EdgeInsets.all(22),
+            child: PersonalInformation(),
+          ),
+          const DeveloperName(),
+        ],
+      ),
     );
   }
 }

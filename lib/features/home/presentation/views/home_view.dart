@@ -15,9 +15,9 @@ class HomeView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: const HomeviewBody(),
-          drawer: const Drawer(
-            child: DrawerBody(),
-          ),
+          // drawer: const Drawer(
+          //   child: DrawerBody(),
+          // ),
           appBar: AppBar(
             // backgroundColor: appbarGreen,
             title: const Text("Home"),

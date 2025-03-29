@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../constants.dart';
-import '../../../../home/presentation/manager/counter_cubit/counter_cubit.dart';
 
 class PayButton extends StatelessWidget {
   const PayButton({
     super.key,
-    required this.carttt,
+    required this.price,
   });
 
-  final CounterCubit carttt;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
+  
       padding: const EdgeInsets.only(top:4),
       child: ElevatedButton(
         
@@ -26,7 +26,7 @@ class PayButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8))),
         ),
         child: Text(
-          "Pay \$${carttt.price}",
+          "Pay \$${price.floor()}",
           style: const TextStyle(fontSize: 17),
         ),
       ),

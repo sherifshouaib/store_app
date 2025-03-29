@@ -2,12 +2,20 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../home/data/models/product_model/product_model.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   String? username, age, title, email, password;
+  double price = 0;
+  List<ProductModel> selectedProducts = [];
+  List<double> prices = [];
+  List<String> titles = [];
+  List<String> images = [];
 
   AuthBloc() : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
@@ -31,7 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event is RegisterEvent) {
         emit(RegisterLoading());
         try {
-        final  UserCredential credential =
+          final UserCredential credential =
               await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: event.email,
             password: event.password,
@@ -39,7 +47,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
           CollectionReference users =
               FirebaseFirestore.instance.collection('usersss');
-
 
           users
               .doc(credential.user!.uid)
@@ -49,6 +56,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 'title': title,
                 'email': email,
                 'pass': password,
+                'price': price,
+                'selectedProductslength': selectedProducts.length,
+                'prices': prices,
+                'titles': titles,
+                'images': images,
               })
               .then((value) => print("User Added"))
               .catchError((error) => print("Failed to add user: $error"));
