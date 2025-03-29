@@ -97,6 +97,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
+
+
+                    
                     const SizedBox(
                       height: 80,
                     ),
