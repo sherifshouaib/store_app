@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design.dart';
 import 'package:store_app/features/profile/presentation/views/widgets/developer_name.dart';
 
 import 'personal_information.dart';
@@ -14,7 +15,14 @@ class ProfileViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          //  UserAccountDetails(),
+          // UserAccountDetails(),
+          const SizedBox(
+            height: 12,
+          ),
+          const ProfilePictureDesign(),
+          const SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.all(22),
             child: PersonalInformation(),

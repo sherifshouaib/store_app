@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design.dart';
 
 class UserAccountDetails extends StatelessWidget {
   UserAccountDetails({
@@ -23,11 +24,7 @@ class UserAccountDetails extends StatelessWidget {
         ),
       ),
       accountEmail: Text(userrr.email!),
-      currentAccountPicture: CircleAvatar(
-        radius: 55,
-        backgroundImage: NetworkImage(userrr.photoURL!),
-        // AssetImage("assets/images/ali.jpg"),
-      ),
+      currentAccountPicture: const ProfilePictureDesign(),
     );
   }
 }

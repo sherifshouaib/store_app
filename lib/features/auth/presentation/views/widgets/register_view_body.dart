@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/custom_row_sign.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
@@ -97,10 +98,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(height: 20,),
+                    const ProfilePictureDesign(),
 
-
-
-                    
                     const SizedBox(
                       height: 80,
                     ),
