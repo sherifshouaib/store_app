@@ -11,7 +11,7 @@ class LoginView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
         ),
-        body: LoginViewBody(),
+        body: const LoginViewBody(),
       ),
     );
   }

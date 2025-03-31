@@ -35,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           } else if (ex.code == 'wrong-password') {
             emit(LoginFailure(errMessage: 'wrong password'));
           }
-        } on Exception catch (ex) {
+        } on Exception {
           emit(LoginFailure(errMessage: 'something went wrong'));
         }
       }

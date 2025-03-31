@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/colors.dart';
 import 'custom_headline_details.dart';
 import 'custom_main_headline.dart';
 

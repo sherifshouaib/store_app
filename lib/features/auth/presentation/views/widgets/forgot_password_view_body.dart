@@ -38,7 +38,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
 
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const LoginView()));
-    } on FirebaseException catch (e) {
+    } on FirebaseException {
       showSnackBar(context, "ERROR : Email Not found ");
     }
 

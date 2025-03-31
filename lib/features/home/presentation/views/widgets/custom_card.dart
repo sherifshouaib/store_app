@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
-import 'package:store_app/features/auth/presentation/manager/cubits/auth_cubit/auth_cubit.dart';
 
 import '../../../data/models/product_model/product_model.dart';
 import '../../manager/counter_cubit/counter_cubit.dart';

@@ -4,7 +4,6 @@ import 'package:store_app/features/home/presentation/manager/counter_cubit/count
 import 'package:store_app/features/home/presentation/views/widgets/home_view_body.dart';
 
 import 'widgets/custom_row_appbar.dart';
-import '../../../navigate_between_screens/presentation/views/widgets/drawer_body.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

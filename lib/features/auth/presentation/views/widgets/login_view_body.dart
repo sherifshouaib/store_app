@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -95,6 +94,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       if (data!.isEmpty) {
                         return 'field is required';
                       }
+                      return null;
                     },
                     onChanged: (data) {
                       password = data;

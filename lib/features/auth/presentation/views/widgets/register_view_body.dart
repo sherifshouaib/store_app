@@ -127,6 +127,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         if (data!.isEmpty) {
                           return 'field is required';
                         }
+                        return null;
                       },
                       texttype: TextInputType.text,
                       textfieldmessage: 'Username',
@@ -145,6 +146,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         if (data!.isEmpty) {
                           return 'field is required';
                         }
+                        return null;
                       },
                       texttype: TextInputType.number,
                       textfieldmessage: 'Age',
@@ -163,6 +165,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         if (data!.isEmpty) {
                           return 'field is required';
                         }
+                        return null;
                       },
                       texttype: TextInputType.text,
                       textfieldmessage: 'Title',
@@ -194,6 +197,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         if (data!.isEmpty) {
                           return 'field is required';
                         }
+                        return null;
                       },
                       obscureText: isVisible ? false : true,
                       onChanged: (data) {
