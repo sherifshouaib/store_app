@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -98,7 +99,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const ProfilePictureDesign(),
 
                     const SizedBox(
@@ -264,6 +267,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       colorfill: Colors.redAccent,
                       onPressed: () async {
                         await registerValidation(context);
+
                       },
                       text: 'Register',
                     ),
@@ -336,6 +340,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     } else {}
   }
 
+ 
+  
+  
   // Future<void> registerUser() async {
   //   UserCredential user = await FirebaseAuth.instance
   //       .createUserWithEmailAndPassword(email: email!, password: password!);

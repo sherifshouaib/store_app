@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:store_app/core/utils/api_keys.dart';
 import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
@@ -17,10 +19,13 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setupServiceLocator();
-
+  //Stripe.publishableKey = ApiKeys.publishableKey;
   // Bloc.observer = SimpleBlocObserver();
 
   runApp(const StoreApp());
+
+
+
 }
 
 class StoreApp extends StatelessWidget {
@@ -53,4 +58,3 @@ class StoreApp extends StatelessWidget {
     );
   }
 }
-

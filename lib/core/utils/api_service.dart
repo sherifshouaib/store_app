@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-
   final _baseUrl = 'https://fakestoreapi.com/';
   final Dio _dio;
 
@@ -12,11 +11,24 @@ class ApiService {
     return response.data;
   }
 
-
- Future<Map<String,dynamic>> get2({required String endPoint}) async {
+  Future<Map<String, dynamic>> get2({required String endPoint}) async {
     var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;
   }
 
-
+  Future<Response> post(
+      {required body,
+      required String url,
+      required String token,
+      Map<String,String>? headers,
+      String? contentType
+      }) async {
+    var response = await _dio.post(url,
+        data: body,
+        options: Options(
+          contentType: contentType,
+          headers: headers ??  {'Authorization': 'Bearer $token'},
+        ));
+    return response;
+  }
 }
