@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:store_app/features/checkout/presentation/manager/cubit/payment_cubit.dart';
@@ -56,10 +59,6 @@ class CustomButtonBlocConsumer extends StatelessWidget {
                         }
                       },
                       "description": "The payment transaction description.",
-                      // "payment_options": {
-                      //   "allowed_payment_method":
-                      //       "INSTANT_FUNDING_SOURCE"
-                      // },
                       "item_list": {
                         "items": [
                           {
@@ -75,18 +74,6 @@ class CustomButtonBlocConsumer extends StatelessWidget {
                             "currency": "USD"
                           }
                         ],
-
-                        // Optional
-                        //   "shipping_address": {
-                        //     "recipient_name": "Tharwat samy",
-                        //     "line1": "tharwat",
-                        //     "line2": "",
-                        //     "city": "tharwat",
-                        //     "country_code": "EG",
-                        //     "postal_code": "25025",
-                        //     "phone": "+00000000",
-                        //     "state": "ALex"
-                        //  },
                       }
                     }
                   ],
@@ -112,3 +99,4 @@ class CustomButtonBlocConsumer extends StatelessWidget {
     );
   }
 }
+
