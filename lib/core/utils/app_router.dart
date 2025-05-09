@@ -59,13 +59,7 @@ abstract class AppRouter {
         path: kThankYouView,
         builder: (context, state) => const ThankYouView(),
       ),
-//       GoRoute(
-//         path: '/uploadArea/:selectedFile',
-//         builder: (context, state) => UploadArea(
-// // selectedFile:state.pathParameters['selectedFile']!,
 
-//             ),
-//       ),
       GoRoute(
         path: '/',
         builder: (context, state) => const MyCartView(),

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/features/checkout/data/repos/checkout_repo_impl.dart';
 import 'package:store_app/features/checkout/presentation/manager/cubit/payment_cubit.dart';
 import 'package:store_app/features/checkout/presentation/views/widgets/order_info_items.dart';
-import 'package:store_app/features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
 import 'package:store_app/features/checkout/presentation/views/widgets/total_price_widget.dart';
 
 import '../../../../../core/buttons/custom_button.dart';

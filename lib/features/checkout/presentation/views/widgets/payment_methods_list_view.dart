@@ -4,6 +4,7 @@ import 'payment_method_item.dart';
 
 class PaymentMethodsListView extends StatefulWidget {
   const PaymentMethodsListView({super.key});
+  static int activeIndex = 0;
 
   @override
   State<PaymentMethodsListView> createState() => _PaymentMethodsListViewState();
@@ -16,7 +17,6 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
     'assets/images/master_card.svg',
   ];
 
-  int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,12 +29,12 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: GestureDetector(
               onTap: () {
-                activeIndex = index;
+                PaymentMethodsListView.activeIndex = index;
                 setState(() {});
               },
               child: PaymentMethodItem(
                 image: paymentMethodsItems[index],
-                isActive: activeIndex == index,
+                isActive: PaymentMethodsListView.activeIndex == index,
               ),
             ),
           );
