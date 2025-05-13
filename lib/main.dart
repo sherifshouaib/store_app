@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/core/utils/app_router.dart';
+import 'package:store_app/core/utils/local_notification_service.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
@@ -20,8 +21,11 @@ void main() async {
   setupServiceLocator();
   //Stripe.publishableKey = ApiKeys.publishableKey;
   // Bloc.observer = SimpleBlocObserver();
+  await LocalNotificationService.init();
 
   runApp(const StoreApp());
+  
+  
 }
 
 class StoreApp extends StatelessWidget {

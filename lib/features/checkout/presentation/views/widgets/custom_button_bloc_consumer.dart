@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/api_keys.dart';
+import 'package:store_app/core/utils/local_notification_service.dart';
 import 'package:store_app/features/checkout/data/models/amount_model/amount_model.dart';
 import 'package:store_app/features/checkout/data/models/amount_model/details.dart';
 import 'package:store_app/features/checkout/data/models/item_list_model/item.dart';
 import 'package:store_app/features/checkout/data/models/item_list_model/item_list_model.dart';
 import 'package:store_app/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:store_app/features/checkout/presentation/manager/cubit/payment_cubit.dart';
-import 'package:store_app/features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
 
 import '../../../../../core/buttons/custom_button.dart';
 import '../../../../../core/utils/app_router.dart';
@@ -47,11 +47,12 @@ class CustomButtonBlocConsumer extends StatelessWidget {
                       customerId: 'cus_SFj36u4d9CleY3');
 
               var transactionsData = getTransactionsData();
+              LocalNotificationService.showBasicNotification();
 
-              PaymentMethodsListView.activeIndex == 1
-                  ? executePaypalPayment(context, transactionsData)
-                  : BlocProvider.of<PaymentCubit>(context).makePayment(
-                      paymentIntentInputModel: paymentIntentInputModel);
+              // PaymentMethodsListView.activeIndex == 1
+              //     ? executePaypalPayment(context, transactionsData)
+              //     : BlocProvider.of<PaymentCubit>(context).makePayment(
+              //         paymentIntentInputModel: paymentIntentInputModel);
             },
             isLoading: state is PaymentLoading ? true : false,
             text: 'Continue');
