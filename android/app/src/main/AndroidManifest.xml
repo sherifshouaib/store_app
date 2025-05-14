@@ -7,6 +7,8 @@
         android:label="AMAZON"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDQgmCluXUv5YST6EDhJu8BmqmyNROxOt4"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
