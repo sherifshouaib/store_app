@@ -5,8 +5,8 @@ import '../../../../home/presentation/manager/counter_cubit/counter_cubit.dart';
 import '../../../../home/presentation/views/widgets/custom_product.image.dart';
 import 'pay_button.dart';
 
-class MyproductsViewBody extends StatelessWidget {
-  const MyproductsViewBody({super.key});
+class MyProductsViewBody extends StatelessWidget {
+  const MyProductsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

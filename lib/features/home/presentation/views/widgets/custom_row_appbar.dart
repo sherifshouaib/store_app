@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../manager/counter_cubit/counter_cubit.dart';
 
-class CustomRowAppbar extends StatelessWidget {
-  const CustomRowAppbar({
+class CustomRowAppBar extends StatelessWidget {
+  const CustomRowAppBar({
     super.key,
   });
 

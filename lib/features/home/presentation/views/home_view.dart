@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
           appBar: AppBar(
             // backgroundColor: appbarGreen,
             title: const Text("Home"),
-            actions: const [CustomRowAppbar()],
+            actions: const [CustomRowAppBar()],
           ),
         );
       },

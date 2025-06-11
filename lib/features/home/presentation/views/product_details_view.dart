@@ -35,7 +35,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
       appBar: AppBar(
         // backgroundColor: appbarGreen,
         title: const Text("Product Details"),
-        actions: const [CustomRowAppbar()],
+        actions: const [CustomRowAppBar()],
       ),
       body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
         builder: (context, state) {
