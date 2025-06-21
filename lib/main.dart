@@ -5,6 +5,7 @@ import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/core/utils/local_notification_service.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
+import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
@@ -24,8 +25,6 @@ void main() async {
   await LocalNotificationService.init();
 
   runApp(const StoreApp());
-  
-  
 }
 
 class StoreApp extends StatelessWidget {
@@ -47,6 +46,7 @@ class StoreApp extends StatelessWidget {
         //  BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
+        BlocProvider(create: (context) => FacebookSignInCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,

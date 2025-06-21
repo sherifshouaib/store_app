@@ -13,6 +13,9 @@ class ProfileView extends StatelessWidget {
         actions: const [
           CustomTextButtonIcon(),
         ],
+
+
+
         title: const Text('My Profile'),
       ),
      body: const ProfileViewBody(),

@@ -61,12 +61,12 @@ abstract class AppRouter {
       ),
 
       GoRoute(
-        path: '/',
+        path: kMyCartView,
         builder: (context, state) => const MyCartView(),
       ),
 
       GoRoute(
-        path: kProfileView,
+        path: '/',
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(

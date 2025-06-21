@@ -1,9 +1,14 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
+import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/no_logic_part.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/upper_body_Login.dart';
@@ -56,6 +61,14 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             if (state is GoogleSignExecution) {
               BlocProvider.of<GoogleSignInCubit>(context)
                   .signInWithGoogle(context);
+            }
+          },
+        ),
+        BlocListener<FacebookSignInCubit, FacebookSignInState>(
+          listener: (context, state) {
+            if (state is FacebookSignInExecution) {
+              BlocProvider.of<FacebookSignInCubit>(context)
+                  .signInWithFacebook(context);
             }
           },
         ),
@@ -136,30 +149,64 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     height: 8,
                   ),
                   const NoLogicPart(),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 27),
-                    child: GestureDetector(
-                      onTap: () async {
-                        await BlocProvider.of<GoogleSignInCubit>(context)
-                            .signInWithGoogle(context);
-                        // GoRouter.of(context).push(
-                        //   AppRouter.kBottomNavigationPage,
-                        // );
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(13),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: const Color.fromARGB(255, 200, 67, 79),
-                                width: 1)),
-                        child: SvgPicture.asset(
-                          "assets/icons/icons8-google.svg",
-                          color: const Color.fromARGB(255, 200, 67, 79),
-                          height: 27,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 27, horizontal: 10),
+                        child: GestureDetector(
+                          onTap: () async {
+                            await BlocProvider.of<GoogleSignInCubit>(context)
+                                .signInWithGoogle(context);
+                            // GoRouter.of(context).push(
+                            //   AppRouter.kBottomNavigationPage,
+                            // );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(13),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color:
+                                        const Color.fromARGB(255, 200, 67, 79),
+                                    width: 1)),
+                            child: SvgPicture.asset(
+                              "assets/icons/icons8-google.svg",
+                              color: const Color.fromARGB(255, 200, 67, 79),
+                              height: 27,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 27),
+                        child: GestureDetector(
+                          onTap: () async {
+                            // await  signInWithFacebook(context);
+                            await BlocProvider.of<FacebookSignInCubit>(context)
+                                .signInWithFacebook(context);
+                            // GoRouter.of(context).push(
+                            //   AppRouter.kBottomNavigationPage,
+                            // );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(13),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color:
+                                        const Color.fromARGB(255, 67, 158, 200),
+                                    width: 1)),
+                            child: SvgPicture.asset(
+                              "assets/icons/facebook.svg",
+                              color: const Color.fromARGB(255, 67, 173, 200),
+                              height: 27,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -173,5 +220,31 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   // Future<void> loginUser() async {
   //   UserCredential user = await FirebaseAuth.instance
   //       .signInWithEmailAndPassword(email: email!, password: password!);
+  // }
+
+  // Future<UserCredential> signInWithFacebook(BuildContext context) async {
+  //   // Trigger the sign-in flow
+  //   final LoginResult loginResult = await FacebookAuth.instance.login( );
+
+  //   log(loginResult.accessToken!.tokenString.toString());
+  //   log(loginResult.message.toString());
+
+  //   // Create a credential from the access token
+  //   final OAuthCredential facebookAuthCredential =
+  //       FacebookAuthProvider.credential('${loginResult.accessToken?.tokenString}');
+
+  //   // GoRouter.of(context).push(
+  //   //   AppRouter.kBottomNavigationPage,
+  //   // );
+
+  //   //igned in, return the UserCredential
+  //   UserCredential userCredential = await FirebaseAuth.instance
+  //       .signInWithCredential(facebookAuthCredential);
+
+  //   log(userCredential.additionalUserInfo!.username.toString());
+  //   log(userCredential.user!.email.toString());
+  //   log(userCredential.user!.photoURL.toString());
+
+  //   return userCredential;
   // }
 }
