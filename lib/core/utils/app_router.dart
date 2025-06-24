@@ -48,7 +48,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: kSplashView,
+        path: '/',
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -66,7 +66,7 @@ abstract class AppRouter {
       ),
 
       GoRoute(
-        path: '/',
+        path: kProfileView,
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(

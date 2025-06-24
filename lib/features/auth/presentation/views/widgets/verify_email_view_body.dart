@@ -86,81 +86,83 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              "A verification email has been sent to your email",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                "A verification email has been sent to your email",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            CustomElevatedButton(
-              onPressed: () {
-                canResendEmail ? sendVerificationEmail() : null;
-              },
-              text: "Resend Email",
-              width: 140,
-              colorfill: Colors.redAccent,
-            ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     // canResendEmail? sendVerificationEmail() : null;
-            //   },
-            //   style: ButtonStyle(
-            //     backgroundColor: MaterialStateProperty.all(BTNgreen),
-            //     padding:
-            //         MaterialStateProperty.all(const EdgeInsets.all(12)),
-            //     shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(8))),
-            //   ),
-            //   child: const Text(
-            //     "Resent Email",
-            //     style: TextStyle(fontSize: 20),
-            //   ),
-            // ),
-            const SizedBox(
-              height: 11,
-            ),
-        
-            CustomTextButton(
-              onPressed: () {
-                VerifyEmailViewBody.isSentCancel = true;
-                GoRouter.of(context).pop();
-                //  FirebaseAuth.instance.signOut();
-              },
-              text2: 'Cancel',
-            ),
-            // CustomElevatedButton(
-            //   onPressed: () {
-            //     //     FirebaseAuth.instance.signOut();
-            //   },
-            //   text: 'Cancel',
-            //   colorfill: Colors.redAccent,
-            // ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     FirebaseAuth.instance.signOut();
-            //   },
-            //   style: ButtonStyle(
-            //     backgroundColor: MaterialStateProperty.all(BTNpink),
-            //     padding:
-            //         MaterialStateProperty.all(const EdgeInsets.all(12)),
-            //     shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(8))),
-            //   ),
-            //   child: const Text(
-            //     "Cancel",
-            //     style: TextStyle(fontSize: 20),
-            //   ),
-            // ),
-          ],
+              const SizedBox(
+                height: 25,
+              ),
+              CustomElevatedButton(
+                onPressed: () {
+                  canResendEmail ? sendVerificationEmail() : null;
+                },
+                text: "Resend Email",
+                width: 140,
+                colorfill: Colors.redAccent,
+              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // canResendEmail? sendVerificationEmail() : null;
+              //   },
+              //   style: ButtonStyle(
+              //     backgroundColor: MaterialStateProperty.all(BTNgreen),
+              //     padding:
+              //         MaterialStateProperty.all(const EdgeInsets.all(12)),
+              //     shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(8))),
+              //   ),
+              //   child: const Text(
+              //     "Resent Email",
+              //     style: TextStyle(fontSize: 20),
+              //   ),
+              // ),
+              const SizedBox(
+                height: 11,
+              ),
+          
+              CustomTextButton(
+                onPressed: () {
+                  VerifyEmailViewBody.isSentCancel = true;
+                  GoRouter.of(context).pop();
+                  //  FirebaseAuth.instance.signOut();
+                },
+                text2: 'Cancel',
+              ),
+              // CustomElevatedButton(
+              //   onPressed: () {
+              //     //     FirebaseAuth.instance.signOut();
+              //   },
+              //   text: 'Cancel',
+              //   colorfill: Colors.redAccent,
+              // ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     FirebaseAuth.instance.signOut();
+              //   },
+              //   style: ButtonStyle(
+              //     backgroundColor: MaterialStateProperty.all(BTNpink),
+              //     padding:
+              //         MaterialStateProperty.all(const EdgeInsets.all(12)),
+              //     shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(8))),
+              //   ),
+              //   child: const Text(
+              //     "Cancel",
+              //     style: TextStyle(fontSize: 20),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/core/utils/app_router.dart';
+import 'package:store_app/core/utils/app_themes.dart';
 import 'package:store_app/core/utils/local_notification_service.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
@@ -10,11 +12,15 @@ import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
+import 'package:store_app/features/profile/presentation/manager/bloc/change_theme_bloc.dart';
 
 import 'firebase_options.dart';
 
+String? theme;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  theme = prefs.getString('theme') ?? 'light';
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -27,12 +33,21 @@ void main() async {
   runApp(const StoreApp());
 }
 
-class StoreApp extends StatelessWidget {
+class StoreApp extends StatefulWidget {
   const StoreApp({super.key});
+
+  @override
+  State<StoreApp> createState() => _StoreAppState();
+}
+
+class _StoreAppState extends State<StoreApp> {
+ChangeThemeBloc? changeThemeBloc;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -47,13 +62,18 @@ class StoreApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
         BlocProvider(create: (context) => FacebookSignInCubit()),
+        BlocProvider<ChangeThemeBloc>(
+            create: (context) => ChangeThemeBloc(theme!)),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Colors.white,
-        ),
+        theme: AppTheme.lightTheme,
+    
+        // theme: ThemeData.dark().copyWith(
+        //   scaffoldBackgroundColor: Colors.white,),
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.light,
       ),
     );
   }

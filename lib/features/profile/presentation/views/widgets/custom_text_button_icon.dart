@@ -23,12 +23,12 @@ class CustomTextButtonIcon extends StatelessWidget {
       label: const Text(
         'logout',
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
       icon: const Icon(
         Icons.logout,
-        color: Colors.white,
+        color: Colors.black,
       ),
     );
   }

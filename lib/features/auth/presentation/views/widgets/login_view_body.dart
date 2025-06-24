@@ -17,6 +17,7 @@ import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_form_text_field.dart';
+import 'sign_in_methods.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -149,65 +150,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     height: 8,
                   ),
                   const NoLogicPart(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 27, horizontal: 10),
-                        child: GestureDetector(
-                          onTap: () async {
-                            await BlocProvider.of<GoogleSignInCubit>(context)
-                                .signInWithGoogle(context);
-                            // GoRouter.of(context).push(
-                            //   AppRouter.kBottomNavigationPage,
-                            // );
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(13),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    color:
-                                        const Color.fromARGB(255, 200, 67, 79),
-                                    width: 1)),
-                            child: SvgPicture.asset(
-                              "assets/icons/icons8-google.svg",
-                              color: const Color.fromARGB(255, 200, 67, 79),
-                              height: 27,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 27),
-                        child: GestureDetector(
-                          onTap: () async {
-                            // await  signInWithFacebook(context);
-                            await BlocProvider.of<FacebookSignInCubit>(context)
-                                .signInWithFacebook(context);
-                            // GoRouter.of(context).push(
-                            //   AppRouter.kBottomNavigationPage,
-                            // );
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(13),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    color:
-                                        const Color.fromARGB(255, 67, 158, 200),
-                                    width: 1)),
-                            child: SvgPicture.asset(
-                              "assets/icons/facebook.svg",
-                              color: const Color.fromARGB(255, 67, 173, 200),
-                              height: 27,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  SignInMethods(),
                 ],
               ),
             ),
@@ -248,3 +191,4 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   //   return userCredential;
   // }
 }
+
