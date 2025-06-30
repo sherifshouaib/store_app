@@ -16,11 +16,11 @@ import 'package:store_app/features/profile/presentation/manager/bloc/change_them
 
 import 'firebase_options.dart';
 
-String? theme;
+//String? theme;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  theme = prefs.getString('theme') ?? 'light';
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
+  // theme = prefs.getString('theme') ?? 'light';
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -41,13 +41,11 @@ class StoreApp extends StatefulWidget {
 }
 
 class _StoreAppState extends State<StoreApp> {
-ChangeThemeBloc? changeThemeBloc;
+//ChangeThemeBloc? changeThemeBloc;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -62,14 +60,14 @@ ChangeThemeBloc? changeThemeBloc;
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
         BlocProvider(create: (context) => FacebookSignInCubit()),
-        BlocProvider<ChangeThemeBloc>(
-            create: (context) => ChangeThemeBloc(theme!)),
+        // BlocProvider<ChangeThemeBloc>(
+        //     create: (context) => ChangeThemeBloc(theme!)),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-    
+
         // theme: ThemeData.dark().copyWith(
         //   scaffoldBackgroundColor: Colors.white,),
         darkTheme: AppTheme.darkTheme,

@@ -26,7 +26,6 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     ProfileView(),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

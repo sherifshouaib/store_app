@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/features/auth/presentation/views/verify_email_view.dart';
 
 import '../../../../../core/buttons/custom_elevated_button.dart';
@@ -46,6 +47,11 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
 
         if (VerifyEmailView.isEmailVerified) {
           timer.cancel();
+
+          GoRouter.of(context).push(
+            AppRouter.kBottomNavigationPage,
+            // extra: ProductModel,
+          );
         }
       });
     }
@@ -129,7 +135,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
               const SizedBox(
                 height: 11,
               ),
-          
+
               CustomTextButton(
                 onPressed: () {
                   VerifyEmailViewBody.isSentCancel = true;

@@ -17,6 +17,7 @@ class PersonalInformationContainer extends StatelessWidget {
         child: const Text(
           'Personal Information',
           style: TextStyle(
+            color: Colors.white,
             fontSize: 22,
           ),
         ),
