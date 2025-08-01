@@ -266,7 +266,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       colorfill: Colors.redAccent,
                       onPressed: () async {
                         await registerValidation(context);
-                      
                       },
                       text: 'Register',
                     ),
@@ -340,9 +339,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       //   showSnackBar(context, 'there was an error');
       // }
       isLoading = false;
-    } 
-    
-    //else {}
+    } else {}
   }
 
   // Future<void> registerUser() async {

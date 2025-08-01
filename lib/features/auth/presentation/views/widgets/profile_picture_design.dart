@@ -30,7 +30,8 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
           ProfilePictureDesign.imgName = basename(pickedImg.path);
 
           int random = Random().nextInt(9999999);
-          ProfilePictureDesign.imgName = "$random${ProfilePictureDesign.imgName}";
+          ProfilePictureDesign.imgName =
+              "$random${ProfilePictureDesign.imgName}";
 
           print(ProfilePictureDesign.imgName);
         });

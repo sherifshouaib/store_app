@@ -52,6 +52,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: event.password,
           );
 
+          // Upload image to firebase storage
+
+          final storageRef =
+              FirebaseStorage.instance.ref("users-images/${ProfilePictureDesign.imgName}");
+          await storageRef.putFile(ProfilePictureDesign.imgPath!);
+
+          // Get img url
+          String urll = await storageRef.getDownloadURL();
+
           print(credential.user!.uid);
           CollectionReference users =
               FirebaseFirestore.instance.collection('usersss');
@@ -59,6 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           users
               .doc(credential.user!.uid)
               .set({
+                'imgLink': urll,
                 'username': username,
                 'age': age,
                 'title': title,
