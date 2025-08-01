@@ -15,6 +15,7 @@ import 'package:store_app/features/checkout/presentation/manager/cubit/payment_c
 
 import '../../../../../core/buttons/custom_button.dart';
 import '../../../../../core/utils/app_router.dart';
+import 'payment_methods_list_view.dart';
 
 class CustomButtonBlocConsumer extends StatelessWidget {
   const CustomButtonBlocConsumer({
@@ -49,10 +50,11 @@ class CustomButtonBlocConsumer extends StatelessWidget {
               var transactionsData = getTransactionsData();
               LocalNotificationService.showBasicNotification();
 
-              // PaymentMethodsListView.activeIndex == 1
-              //     ? executePaypalPayment(context, transactionsData)
-              //     : BlocProvider.of<PaymentCubit>(context).makePayment(
-              //         paymentIntentInputModel: paymentIntentInputModel);
+              PaymentMethodsListView.activeIndex ==
+                      1 // ال3 سطور دول هم اللى كانوا موقفين تشغيل الدفع
+                  ? executePaypalPayment(context, transactionsData)
+                  : BlocProvider.of<PaymentCubit>(context).makePayment(
+                      paymentIntentInputModel: paymentIntentInputModel);
             },
             isLoading: state is PaymentLoading ? true : false,
             text: 'Continue');

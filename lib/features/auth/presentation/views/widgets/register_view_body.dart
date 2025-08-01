@@ -101,7 +101,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const ProfilePictureDesign(),
+                    ProfilePictureDesign(),
 
                     const SizedBox(
                       height: 80,
@@ -266,7 +266,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       colorfill: Colors.redAccent,
                       onPressed: () async {
                         await registerValidation(context);
-
+                      
                       },
                       text: 'Register',
                     ),
@@ -293,7 +293,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     ),
                     const SizedBox(
                       height: 12,
-                      
                     ),
                   ],
                 ),
@@ -307,7 +306,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   Future<void> registerValidation(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      if (isPassword8Char == false ||
+      if (ProfilePictureDesign.imgName == null ||
+          ProfilePictureDesign.imgPath == null) {
+        showSnackBar(context, 'Upload Your Image');
+        return;
+      } else if (isPassword8Char == false ||
           isPasswordHas1Number == false ||
           hasUppercase == false ||
           hasLowercase == false ||
@@ -337,12 +340,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       //   showSnackBar(context, 'there was an error');
       // }
       isLoading = false;
-    } else {}
+    } 
+    
+    //else {}
   }
 
- 
-  
-  
   // Future<void> registerUser() async {
   //   UserCredential user = await FirebaseAuth.instance
   //       .createUserWithEmailAndPassword(email: email!, password: password!);

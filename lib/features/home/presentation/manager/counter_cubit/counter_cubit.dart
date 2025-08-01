@@ -17,7 +17,6 @@ class CounterCubit extends Cubit<CounterState> {
     emit(state.copyWith(
         price: state.price + productPrice,
         selectedProducts: newSelectedProducts));
-
   }
 
   void productsDecrement(

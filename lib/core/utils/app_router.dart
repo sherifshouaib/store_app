@@ -17,7 +17,6 @@ import 'package:store_app/features/settings/presentation/views/about_us_view.dar
 import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
 import 'package:store_app/features/splash/presentation/views/splash_view.dart';
-import 'package:store_app/google_maps_view.dart';
 
 import '../../features/auth/presentation/views/verify_email_view.dart';
 import '../../features/home/presentation/manager/counter_cubit/counter_cubit.dart';
@@ -49,10 +48,7 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      GoRoute(
-        path: kGoogleMapsView,
-        builder: (context, state) => const GoogleMapsView(),
-      ),
+      
       GoRoute(
         path: '/',
         builder: (context, state) => const SplashView(),

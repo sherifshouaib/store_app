@@ -19,7 +19,7 @@ class SettingsListViewItem extends StatelessWidget {
       onTap: () {
         switch (mObj["index"].toString()) {
           case "1":
-            GoRouter.of(context).push(AppRouter.kPaymentDetailsView);
+            GoRouter.of(context).push(AppRouter.kMyCartView);
 
             // Navigator.push(
             //     context,

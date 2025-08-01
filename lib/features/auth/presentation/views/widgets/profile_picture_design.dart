@@ -1,41 +1,39 @@
-import 'package:file_picker/file_picker.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/profile_picture.empty.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_filled.dart';
+import 'package:path/path.dart' show basename;
 
 class ProfilePictureDesign extends StatefulWidget {
   const ProfilePictureDesign({super.key});
+  static File? imgPath;
+  static String? imgName;
 
   @override
   State<ProfilePictureDesign> createState() => _ProfilePictureDesignState();
 }
 
 class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
-  File? imgPath;
-
   uploadImage2Screen(ImageSource sourcee) async {
-    // FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    // if (result != null) {
-    //   File file = File(result.files.single.path!);
-    // } else {
-    //   // User canceled the picker
-    // }
-
     final pickedImg = await ImagePicker().pickImage(source: sourcee);
 
     try {
       if (pickedImg != null) {
-        print(File(pickedImg.path));
-        return;
-        // setState(() {
-        //   imgPath = File(pickedImg.path);
-        // });
+        //   print(File(pickedImg.path));
+        // return;
+        setState(() {
+          ProfilePictureDesign.imgPath = File(pickedImg.path);
+          ProfilePictureDesign.imgName = basename(pickedImg.path);
+
+          int random = Random().nextInt(9999999);
+          ProfilePictureDesign.imgName = "$random${ProfilePictureDesign.imgName}";
+
+          print(ProfilePictureDesign.imgName);
+        });
       } else {
         print("NO img selected");
       }
@@ -43,7 +41,8 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
       print("Error => $e");
     }
 
-    // Navigator.pop(context);
+    if (!mounted) return;
+    Navigator.pop(context);
   }
 
   showModel() {
@@ -126,9 +125,9 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
       ),
       child: Stack(
         children: [
-          imgPath == null
+          ProfilePictureDesign.imgPath == null
               ? const ProfilePictureEmpty()
-              : ProfilePictureFilled(imgPath: imgPath),
+              : ProfilePictureFilled(imgPath: ProfilePictureDesign.imgPath),
           Positioned(
             left: 99,
             bottom: -10,
@@ -146,34 +145,5 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
         ],
       ),
     );
-  }
-
-  void _openFilePicker() async {
-    FilePickerResult? _filePickerResult;
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      allowMultiple: false,
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'mp4'],
-      type: FileType.custom,
-    );
-
-    setState(() {
-      _filePickerResult = result;
-    });
-
-    GoRouter.of(context).pushNamed(
-      AppRouter.kUploadArea,
-      extra: _filePickerResult,
-    );
-
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) {
-    //       return const UploadArea();
-    //     },
-    //   ),
-    // );
-
-    // Navigator.pushNamed(context, '/upload', arguments: _filePickerResult);
   }
 }
