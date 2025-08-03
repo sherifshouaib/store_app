@@ -23,7 +23,7 @@ class SignInMethods extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         googleSignInMethod(),
-        facebookSignInMethod(),
+        FacebookSignInMethod(),
       ],
     );
   }

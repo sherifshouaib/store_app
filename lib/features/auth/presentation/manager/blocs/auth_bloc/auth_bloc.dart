@@ -4,8 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:store_app/core/utils/app_router.dart';
 
 import '../../../../../home/data/models/product_model/product_model.dart';
 import '../../../views/widgets/profile_picture_design.dart';
@@ -23,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc() : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
-      if (event is loginEvent) {
+      if (event is LoginEvent) {
         emit(LoginLoading());
         try {
           UserCredential user = await FirebaseAuth.instance
@@ -53,35 +51,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
 
           // Upload image to firebase storage
-
-          final storageRef =
-              FirebaseStorage.instance.ref("users-images/${ProfilePictureDesign.imgName}");
-          await storageRef.putFile(ProfilePictureDesign.imgPath!);
+          Reference storageRef = await uploadImageToFirebaseStorage();
 
           // Get img url
           String urll = await storageRef.getDownloadURL();
 
           print(credential.user!.uid);
-          CollectionReference users =
-              FirebaseFirestore.instance.collection('usersss');
-
-          users
-              .doc(credential.user!.uid)
-              .set({
-                'imgLink': urll,
-                'username': username,
-                'age': age,
-                'title': title,
-                'email': email,
-                'pass': password,
-                // 'price': price,
-                // 'selectedProductslength': selectedProducts.length,
-                // 'prices': prices,
-                // 'titles': titles,
-                // 'images': images,
-              })
-              .then((value) => print("User Added"))
-              .catchError((error) => print("Failed to add user: $error"));
+          uploadDataToFireStore(credential, urll);
 
           emit(RegisterSuccess(succMessage: 'Success'));
         } on FirebaseAuthException catch (ex) {
@@ -96,6 +72,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       }
     });
+  }
+
+  Future<Reference> uploadImageToFirebaseStorage() async {
+    final storageRef = FirebaseStorage.instance
+        .ref("users-images/${ProfilePictureDesign.imgName}");
+    await storageRef.putFile(ProfilePictureDesign.imgPath!);
+    return storageRef;
+  }
+
+  void uploadDataToFireStore(UserCredential credential, String urll) {
+    CollectionReference users =
+        FirebaseFirestore.instance.collection('usersss');
+
+    users
+        .doc(credential.user!.uid)
+        .set({
+          'imgLink': urll,
+          'username': username,
+          'age': age,
+          'title': title,
+          'email': email,
+          'pass': password,
+          // 'price': price,
+          // 'selectedProductslength': selectedProducts.length,
+          // 'prices': prices,
+          // 'titles': titles,
+          // 'images': images,
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 
   // @override

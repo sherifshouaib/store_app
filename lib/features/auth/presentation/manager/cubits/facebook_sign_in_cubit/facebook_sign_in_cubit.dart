@@ -25,6 +25,7 @@ class FacebookSignInCubit extends Cubit<FacebookSignInState> {
         FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
     GoRouter.of(context).push(
+      
       AppRouter.kBottomNavigationPage,
     );
 

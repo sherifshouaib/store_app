@@ -1,17 +1,13 @@
-import 'dart:developer';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/no_logic_part.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/upper_body_Login.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/upper_body_login.dart';
 
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/utils/app_router.dart';
@@ -142,7 +138,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         BlocProvider.of<AuthBloc>(context).add(
-                            loginEvent(email: email!, password: password!));
+                            LoginEvent(email: email!, password: password!));
                       } else {}
                     },
                   ),

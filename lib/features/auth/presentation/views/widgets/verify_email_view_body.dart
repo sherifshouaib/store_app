@@ -36,6 +36,17 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
       timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
         //  if (VerifyEmailViewBody.isSentCancel == true) return;
 
+////////////////////////////////////////////////////////////
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          try {
+            await user.reload();
+            print("User reloaded successfully.");
+          } catch (e) {
+            print("Reload failed: $e");
+          }
+        }
+//////////////////////////////////////////////////////////
         // when we click on the link that existed on yahoo
         await FirebaseAuth.instance.currentUser!.reload();
 
@@ -47,6 +58,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
 
         if (VerifyEmailView.isEmailVerified) {
           timer.cancel();
+          if (!mounted) return;
 
           GoRouter.of(context).push(
             AppRouter.kBottomNavigationPage,
@@ -72,6 +84,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
         canResendEmail = true;
       });
     } catch (e) {
+      if (!mounted) return;
       showSnackBar(context, "ERROR => ${e.toString()}");
     }
   }

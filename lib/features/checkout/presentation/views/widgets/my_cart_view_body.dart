@@ -4,11 +4,9 @@ import 'package:store_app/features/checkout/data/repos/checkout_repo_impl.dart';
 import 'package:store_app/features/checkout/presentation/manager/cubit/payment_cubit.dart';
 import 'package:store_app/features/checkout/presentation/views/widgets/order_info_items.dart';
 import 'package:store_app/features/checkout/presentation/views/widgets/total_price_widget.dart';
-import 'package:store_app/features/order_location/presentation/views/pickup_map_widget.dart';
 
 import '../../../../../core/buttons/custom_button.dart';
 import '../../../../../core/utils/colors.dart';
-import '../thank_you_view.dart';
 import 'change_location.dart';
 import 'payment_methods_bottom_sheet.dart';
 

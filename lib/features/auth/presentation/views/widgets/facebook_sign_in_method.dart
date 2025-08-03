@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 
-class facebookSignInMethod extends StatelessWidget {
-  const facebookSignInMethod({
+class FacebookSignInMethod extends StatelessWidget {
+  const FacebookSignInMethod({
     super.key,
   });
 

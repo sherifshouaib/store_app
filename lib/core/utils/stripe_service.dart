@@ -11,9 +11,9 @@ import '../../features/checkout/data/models/payment_intent_model/payment_intent_
 class StripeService {
   final ApiService apiService = ApiService(Dio());
   Future<PaymentIntentModel> createPaymentIntent(
-      PaymentIntentInputModel PaymentIntentInputModel) async {
+      PaymentIntentInputModel paymentIntentInputModel) async {
     var response = await apiService.post(
-        body: PaymentIntentInputModel.toJson(),
+        body: paymentIntentInputModel.toJson(),
         contentType: Headers.formUrlEncodedContentType,
         url: 'https://api.stripe.com/v1/payment_intents',
         token: ApiKeys.secretKey);

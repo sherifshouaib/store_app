@@ -13,7 +13,7 @@ class DataEditAndDelete extends StatelessWidget {
       children: [
         Text(
           text1,
-          style: const TextStyle(color: Colors.black, fontSize: 17),
+          style: const TextStyle(color: Colors.black, fontSize: 13),
         ),
         Row(
           children: [

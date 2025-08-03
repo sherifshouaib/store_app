@@ -1,12 +1,9 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/app_router.dart';
-import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 
 import '../../../data/models/product_model/product_model.dart';
 import '../../manager/counter_cubit/counter_cubit.dart';
@@ -86,35 +83,35 @@ class CustomCard extends StatelessWidget {
                                     product: product,
                                   );
 
-                              CollectionReference users = FirebaseFirestore
-                                  .instance
-                                  .collection('usersss');
-                              final credential =
-                                  FirebaseAuth.instance.currentUser;
+                              // CollectionReference users = FirebaseFirestore
+                              //     .instance
+                              //     .collection('usersss');
+                              // final credential =
+                              //     FirebaseAuth.instance.currentUser;
 
-                              BlocProvider.of<AuthBloc>(context)
-                                  .prices
-                                  .add(product.price);
+                              // BlocProvider.of<AuthBloc>(context)
+                              //     .prices
+                              //     .add(product.price);
 
-                              BlocProvider.of<AuthBloc>(context)
-                                  .titles
-                                  .add(product.title);
-                              BlocProvider.of<AuthBloc>(context)
-                                  .images
-                                  .add(product.image);
-                              users
-                                  .doc(credential!.uid)
-                                  .update({
-                                    'prices': BlocProvider.of<AuthBloc>(context)
-                                        .prices,
-                                    'titles': BlocProvider.of<AuthBloc>(context)
-                                        .titles,
-                                    'images': BlocProvider.of<AuthBloc>(context)
-                                        .images,
-                                  })
-                                  .then((value) => print("data Added"))
-                                  .catchError((error) =>
-                                      print("Failed to add data: $error"));
+                              // BlocProvider.of<AuthBloc>(context)
+                              //     .titles
+                              //     .add(product.title);
+                              // BlocProvider.of<AuthBloc>(context)
+                              //     .images
+                              //     .add(product.image);
+                              // users
+                              //     .doc(credential!.uid)
+                              //     .update({
+                              //       'prices': BlocProvider.of<AuthBloc>(context)
+                              //           .prices,
+                              //       'titles': BlocProvider.of<AuthBloc>(context)
+                              //           .titles,
+                              //       'images': BlocProvider.of<AuthBloc>(context)
+                              //           .images,
+                              //     })
+                              //     .then((value) => print("data Added"))
+                              //     .catchError((error) =>
+                              //         print("Failed to add data: $error"));
                             },
                             icon: const Icon(
                               Icons.add,

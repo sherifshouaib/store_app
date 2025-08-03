@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/profile_picture.empty.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_filled.dart';
 import 'package:path/path.dart' show basename;
 
 class ProfilePictureDesign extends StatefulWidget {
-  const ProfilePictureDesign({super.key});
+  const ProfilePictureDesign({super.key, required this.optionn});
   static File? imgPath;
   static String? imgName;
 
+  final Widget optionn;
   @override
   State<ProfilePictureDesign> createState() => _ProfilePictureDesignState();
 }
@@ -127,7 +127,7 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
       child: Stack(
         children: [
           ProfilePictureDesign.imgPath == null
-              ? const ProfilePictureEmpty()
+              ? widget.optionn
               : ProfilePictureFilled(imgPath: ProfilePictureDesign.imgPath),
           Positioned(
             left: 99,

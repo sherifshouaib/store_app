@@ -16,6 +16,7 @@ class CustomTextButtonIcon extends StatelessWidget {
         GoogleSignIn googleSignIn = GoogleSignIn();
         googleSignIn.disconnect();
         await FirebaseAuth.instance.signOut();
+        
         GoRouter.of(context).pushReplacement(
           AppRouter.kLoginView,
         );

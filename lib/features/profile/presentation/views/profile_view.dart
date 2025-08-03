@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_app/features/profile/presentation/manager/bloc/change_theme_bloc.dart';
 
 import 'widgets/custom_text_button_icon.dart';
 import 'widgets/profile_view_body.dart';
@@ -48,3 +46,5 @@ class ProfileView extends StatelessWidget {
     );
   }
 }
+
+

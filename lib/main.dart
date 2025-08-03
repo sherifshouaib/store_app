@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/core/utils/app_themes.dart';
 import 'package:store_app/core/utils/local_notification_service.dart';
@@ -13,8 +12,6 @@ import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
-import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
-import 'package:store_app/features/profile/presentation/manager/bloc/change_theme_bloc.dart';
 
 import 'core/utils/api_keys.dart';
 import 'firebase_options.dart';

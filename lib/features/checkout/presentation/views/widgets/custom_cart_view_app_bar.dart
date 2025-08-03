@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:store_app/core/utils/styles.dart';
 
-class Custom_Cart_View_AppBar extends StatelessWidget {
-  const Custom_Cart_View_AppBar({
+class CustomCartViewAppBar extends StatelessWidget {
+  const CustomCartViewAppBar({
     super.key,
   });
 

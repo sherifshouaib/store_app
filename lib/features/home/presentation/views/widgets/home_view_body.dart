@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/core/widgets/custom_error_widget.dart';
 import 'package:store_app/core/widgets/custom_loading_indicator.dart';
 import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
-import 'package:store_app/features/profile/presentation/manager/bloc/change_theme_bloc.dart';
 
 import '../../../data/models/product_model/product_model.dart';
 import 'custom_card.dart';

@@ -8,7 +8,7 @@ class CustomText extends StatelessWidget {
     return Text(
       '$textinput',
       style: const TextStyle(
-        fontSize: 17,
+        fontSize: 13,
         color: Colors.black,
       ),
     );
