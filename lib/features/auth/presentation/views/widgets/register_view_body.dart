@@ -5,12 +5,11 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/custom_row_sign.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design_register.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_form_text_field.dart';
-import 'profile_picture_empty.dart';
 import 'row_passwordauth.dart';
 
 class RegisterViewBody extends StatefulWidget {
@@ -103,9 +102,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     const SizedBox(
                       height: 20,
                     ),
-                    ProfilePictureDesign(
-                      optionn: ProfilePictureEmpty(),
-                    ),
+
+                  
+                     ProfilePictureDesignRegister(),
 
                     const SizedBox(
                       height: 80,
@@ -317,11 +316,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         showSnackBar(context, 'weak password');
         return;
       }
-      if (ProfilePictureDesign.imgName == null ||
-          ProfilePictureDesign.imgPath == null) {
+      if (ProfilePictureDesignRegister.imgName == null ||
+          ProfilePictureDesignRegister.imgPath == null) {
         showSnackBar(context, 'Upload Your Image');
         return;
       }
+
       isLoading = true;
       BlocProvider.of<AuthBloc>(context)
           .add(RegisterEvent(email: email!, password: password!));
@@ -343,6 +343,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       //   showSnackBar(context, 'there was an error');
       // }
       isLoading = false;
+      print(isLoading);
     } else {}
   }
 

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design.dart';
+import 'package:store_app/features/profile/presentation/views/widgets/profile_picture_design.dart';
 import 'package:store_app/features/profile/presentation/views/widgets/developer_name.dart';
 
 import 'personal_information.dart';
-import 'user_img_from_firestore.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({
@@ -19,9 +18,7 @@ class ProfileViewBody extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          const ProfilePictureDesign(
-            optionn: ImgUser(),
-          ),
+          const ProfilePictureDesign(),
           const SizedBox(
             height: 10,
           ),

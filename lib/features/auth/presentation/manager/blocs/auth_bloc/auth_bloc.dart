@@ -6,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../home/data/models/product_model/product_model.dart';
-import '../../../views/widgets/profile_picture_design.dart';
+import '../../../views/widgets/profile_picture_design_register.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -76,8 +76,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<Reference> uploadImageToFirebaseStorage() async {
     final storageRef = FirebaseStorage.instance
-        .ref("users-images/${ProfilePictureDesign.imgName}");
-    await storageRef.putFile(ProfilePictureDesign.imgPath!);
+        .ref("users-images/${ProfilePictureDesignRegister.imgName}");
+    await storageRef.putFile(ProfilePictureDesignRegister.imgPath!);
     return storageRef;
   }
 

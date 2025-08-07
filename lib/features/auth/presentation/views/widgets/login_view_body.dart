@@ -137,11 +137,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     text: 'Login',
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                        isLoading = true;
+                      //  isLoading = true;
 
                         BlocProvider.of<AuthBloc>(context).add(
                             LoginEvent(email: email!, password: password!));
-                        isLoading = false;
+                        //isLoading = false;
                       } else {}
                     },
                   ),

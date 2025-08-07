@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -10,19 +9,24 @@ import 'package:image_picker/image_picker.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_filled.dart';
 import 'package:path/path.dart' show basename;
 
-class ProfilePictureDesign extends StatefulWidget {
-  const ProfilePictureDesign({super.key, required this.optionn});
+import 'profile_picture_empty.dart';
+
+class ProfilePictureDesignRegister extends StatefulWidget {
+  const ProfilePictureDesignRegister({
+    super.key,
+  });
   static File? imgPath;
   static String? imgName;
 
-  final Widget optionn;
   @override
-  State<ProfilePictureDesign> createState() => _ProfilePictureDesignState();
+  State<ProfilePictureDesignRegister> createState() =>
+      _ProfilePictureDesignRegisterState();
 }
 
-class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
-  //CollectionReference users = FirebaseFirestore.instance.collection('userSSS');
- // final credential = FirebaseAuth.instance.currentUser;
+class _ProfilePictureDesignRegisterState
+    extends State<ProfilePictureDesignRegister> {
+  CollectionReference users = FirebaseFirestore.instance.collection('userSSS');
+  final credential = FirebaseAuth.instance.currentUser;
 
   uploadImage2Screen(ImageSource sourcee) async {
     final pickedImg = await ImagePicker().pickImage(source: sourcee);
@@ -32,14 +36,14 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
         //   print(File(pickedImg.path));
         // return;
         setState(() {
-          ProfilePictureDesign.imgPath = File(pickedImg.path);
-          ProfilePictureDesign.imgName = basename(pickedImg.path);
+          ProfilePictureDesignRegister.imgPath = File(pickedImg.path);
+          ProfilePictureDesignRegister.imgName = basename(pickedImg.path);
 
           int random = Random().nextInt(9999999);
-          ProfilePictureDesign.imgName =
-              "$random${ProfilePictureDesign.imgName}";
+          ProfilePictureDesignRegister.imgName =
+              "$random${ProfilePictureDesignRegister.imgName}";
 
-          print(ProfilePictureDesign.imgName);
+          print(ProfilePictureDesignRegister.imgName);
         });
       } else {
         print("NO img selected");
@@ -86,18 +90,6 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
               GestureDetector(
                 onTap: () async {
                   await uploadImage2Screen(ImageSource.gallery);
-                  // final credential = FirebaseAuth.instance.currentUser;
-                  // CollectionReference users =
-                  //     FirebaseFirestore.instance.collection('usersss');
-
-                  // users
-                  //     .doc(credential.user!.uid)
-                  //     .set({
-                  //       'username': username,
-                  //     })
-                  //     .then((value) => print("User Added"))
-                  //     .catchError(
-                  //         (error) => print("Failed to add user: $error"));
                 },
                 child: const Row(
                   children: [
@@ -132,9 +124,10 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
       ),
       child: Stack(
         children: [
-          ProfilePictureDesign.imgPath == null
-              ? widget.optionn
-              : ProfilePictureFilled(imgPath: ProfilePictureDesign.imgPath),
+          ProfilePictureDesignRegister.imgPath == null
+              ? ProfilePictureEmpty()
+              : ProfilePictureFilled(
+                  imgPath: ProfilePictureDesignRegister.imgPath),
           Positioned(
             left: 99,
             bottom: -10,
@@ -142,18 +135,6 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
               onPressed: () async {
                 // uploadImage2Screen();
                 await showModel();
-//dfdfdhjh
-                // // Upload image to firebase storage
-                // final storageRef = FirebaseStorage.instance
-                //     .ref("users-images/${ProfilePictureDesign.imgName}");
-                // await storageRef.putFile(ProfilePictureDesign.imgPath!);
-
-                // // Get img url
-                // String url = await storageRef.getDownloadURL();
-
-                // users.doc(credential!.uid).update({
-                //   "imgLink": url,
-                // });
               },
               icon: const Icon(Icons.add_a_photo),
               color: const Color.fromARGB(255, 94, 115, 128),
