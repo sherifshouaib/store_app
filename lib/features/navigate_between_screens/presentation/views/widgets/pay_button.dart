@@ -23,7 +23,7 @@ class PayButton extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         ),
         child: Text(
-          "Pay \$${price.floor()}",
+          "Pay \$${price.round()}",
           style: const TextStyle(
             fontSize: 17,
             color: Colors.white,
