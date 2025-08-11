@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/custom_row_sign.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design.dart';
@@ -266,7 +267,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       height: 22,
                     ),
                     CustomElevatedButton(
-                      colorfill: Colors.redAccent,
+                      colorfill: TColor.primary,
                       onPressed: () async {
                         await registerValidation(context);
                       },

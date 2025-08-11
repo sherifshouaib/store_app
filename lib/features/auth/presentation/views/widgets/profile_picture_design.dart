@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -18,6 +21,9 @@ class ProfilePictureDesign extends StatefulWidget {
 }
 
 class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
+  //CollectionReference users = FirebaseFirestore.instance.collection('userSSS');
+ // final credential = FirebaseAuth.instance.currentUser;
+
   uploadImage2Screen(ImageSource sourcee) async {
     final pickedImg = await ImagePicker().pickImage(source: sourcee);
 
@@ -133,11 +139,21 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
             left: 99,
             bottom: -10,
             child: IconButton(
-              onPressed: () {
+              onPressed: () async {
                 // uploadImage2Screen();
-                showModel();
+                await showModel();
 
-                //     _openFilePicker();
+                // // Upload image to firebase storage
+                // final storageRef = FirebaseStorage.instance
+                //     .ref("users-images/${ProfilePictureDesign.imgName}");
+                // await storageRef.putFile(ProfilePictureDesign.imgPath!);
+
+                // // Get img url
+                // String url = await storageRef.getDownloadURL();
+
+                // users.doc(credential!.uid).update({
+                //   "imgLink": url,
+                // });
               },
               icon: const Icon(Icons.add_a_photo),
               color: const Color.fromARGB(255, 94, 115, 128),

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/api_keys.dart';
+import 'package:store_app/core/utils/function/show_snack_bar.dart';
 import 'package:store_app/core/utils/local_notification_service.dart';
 import 'package:store_app/features/checkout/data/models/amount_model/amount_model.dart';
 import 'package:store_app/features/checkout/data/models/amount_model/details.dart';
@@ -35,7 +36,9 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         if (state is PaymentFailure) {
           GoRouter.of(context).pop();
           SnackBar snackBar = SnackBar(content: Text(state.errMessage));
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+          showSnackBar(context, 'Payment Did Not Completed correctly');
+          // ScaffoldMessenger.of(context).showSnackBar(snackBar); //////////////////////////
         }
       },
       builder: (context, state) {

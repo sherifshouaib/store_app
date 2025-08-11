@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/app_router.dart';
+import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/views/verify_email_view.dart';
 
 import '../../../../../core/buttons/custom_elevated_button.dart';
@@ -126,8 +127,8 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
                   canResendEmail ? sendVerificationEmail() : null;
                 },
                 text: "Resend Email",
-                width: 140,
-                colorfill: Colors.redAccent,
+                width: 170,
+                colorfill: TColor.primary,
               ),
               // ElevatedButton(
               //   onPressed: () {

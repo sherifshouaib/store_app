@@ -28,8 +28,8 @@ class LocalNotificationService {
     );
     await flutterLocalNotificationsPlugin.show(
       0,
-      'Basic Notification',
-      'body',
+      'Payment Succeeded',
+      'Your order has been picked up',
       details,
       payload: 'Payload Data',
     );

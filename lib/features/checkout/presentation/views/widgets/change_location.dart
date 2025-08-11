@@ -61,9 +61,10 @@ class NoLocationDelivery extends StatelessWidget {
             "Change",
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: TColor.primary,
-                fontSize: 13,
-                fontWeight: FontWeight.w700),
+              color: Colors.blue,
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         )
       ],

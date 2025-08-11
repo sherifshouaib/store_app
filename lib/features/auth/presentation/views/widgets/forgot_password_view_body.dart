@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:store_app/core/utils/colors.dart';
 
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
@@ -85,7 +86,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
                 height: 33,
               ),
               CustomElevatedButton(
-                colorfill: Colors.redAccent,
+                colorfill: TColor.primary,
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     resetPassword();

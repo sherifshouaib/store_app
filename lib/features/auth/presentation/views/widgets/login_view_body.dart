@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
@@ -133,12 +133,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     height: 12,
                   ),
                   CustomElevatedButton(
-                    colorfill: Colors.redAccent,
+                    colorfill: TColor.primary,
                     text: 'Login',
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
+                        isLoading = true;
+
                         BlocProvider.of<AuthBloc>(context).add(
                             LoginEvent(email: email!, password: password!));
+                        isLoading = false;
                       } else {}
                     },
                   ),
@@ -187,4 +190,3 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   //   return userCredential;
   // }
 }
-

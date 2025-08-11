@@ -10,6 +10,7 @@ class MyCartView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         title: 'My Cart',
+        context: context,
       ),
       body: const MyCartViewBody(),
     );

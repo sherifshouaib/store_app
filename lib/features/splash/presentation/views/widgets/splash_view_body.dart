@@ -77,7 +77,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         //   duration: kTransitionDuration,
         // );
 
-        GoRouter.of(context).push(AppRouter.kAuthSelectionView);
+        GoRouter.of(context).pushReplacement(AppRouter.kAuthSelectionView);
       },
     );
   }

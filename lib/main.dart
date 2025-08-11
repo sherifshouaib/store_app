@@ -60,7 +60,7 @@ class _StoreAppState extends State<StoreApp> {
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
         BlocProvider(create: (context) => FacebookSignInCubit()),
-      //  BlocProvider(create: (context) => ChangeLocationCubit()),
+        //  BlocProvider(create: (context) => ChangeLocationCubit()),
 
         // BlocProvider<ChangeThemeBloc>(
         //     create: (context) => ChangeThemeBloc(theme!)),

@@ -15,8 +15,9 @@ class SlidingText extends StatelessWidget {
         builder: (context, _) {
           return SlideTransition(
             position: slidingAnimation,
-            child: const Text(
+            child: Text(
               'Buy What you want',
+              style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
             ),
           );

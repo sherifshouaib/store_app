@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/buttons/custom_elevated_button.dart';
+import 'package:store_app/core/utils/colors.dart';
 
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
@@ -39,7 +40,7 @@ class AuthSelectionViewBody extends StatelessWidget {
               );
             },
             text: "Login",
-            colorfill: Colors.redAccent,
+            colorfill: TColor.primary,
           ),
           const SizedBox(
             height: 10,
@@ -51,7 +52,7 @@ class AuthSelectionViewBody extends StatelessWidget {
               );
             },
             text: 'Create an Account',
-            colorfill: Colors.redAccent,
+            colorfill: TColor.primary,
           ),
         ],
       ),

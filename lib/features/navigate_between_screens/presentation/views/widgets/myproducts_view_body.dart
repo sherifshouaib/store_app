@@ -10,20 +10,19 @@ class MyProductsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<CounterCubit, CounterState>(
       builder: (context, state) {
         return Column(
           children: [
             SingleChildScrollView(
               child: SizedBox(
-                height: 370,
+                height: 560,
                 child: ListView.builder(
                   padding: const EdgeInsets.all(5),
                   itemCount: state.selectedProducts.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
-                      key:Key( state.selectedProducts[index].id.toString()),
+                      key: Key(state.selectedProducts[index].id.toString()),
                       child: ListTile(
                         title: Text(state.selectedProducts[index].title
                             .substring(0, 6)),
@@ -35,27 +34,26 @@ class MyProductsViewBody extends StatelessWidget {
                             widthh: 200),
                         trailing: IconButton(
                             onPressed: () {
-                              context.read<CounterCubit>()
-                                  .productsDecrement(
-                                productPrice: state.selectedProducts[index].price,
-                                product: state.selectedProducts[index],
-                              );
+                              context.read<CounterCubit>().productsDecrement(
+                                    productPrice:
+                                        state.selectedProducts[index].price,
+                                    product: state.selectedProducts[index],
+                                  );
 
-
-                                // setState(() {
-                                    //   users.doc(credential.uid).update({
-                                    //     "titles": FieldValue.arrayRemove(
-                                    //         [data['titles'][index]]),
-                                    //   });
-                                    //   users.doc(credential.uid).update({
-                                    //     "images": FieldValue.arrayRemove(
-                                    //         data['images'][index])
-                                    //   });
-                                    //   users.doc(credential.uid).update({
-                                    //     "prices": FieldValue.arrayRemove(
-                                    //         data['prices'][index])
-                                    //   });
-                                    // });
+                              // setState(() {
+                              //   users.doc(credential.uid).update({
+                              //     "titles": FieldValue.arrayRemove(
+                              //         [data['titles'][index]]),
+                              //   });
+                              //   users.doc(credential.uid).update({
+                              //     "images": FieldValue.arrayRemove(
+                              //         data['images'][index])
+                              //   });
+                              //   users.doc(credential.uid).update({
+                              //     "prices": FieldValue.arrayRemove(
+                              //         data['prices'][index])
+                              //   });
+                              // });
                             },
                             icon: const Icon(Icons.remove)),
                       ),

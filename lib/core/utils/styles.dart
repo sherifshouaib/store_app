@@ -45,7 +45,7 @@ abstract class Styles {
     height: 0,
   );
 
-  static  TextStyle textStylecheckout20 = TextStyle(
+  static TextStyle textStylecheckout20 = TextStyle(
     color: Colors.black.withOpacity(0.8000000011920929),
     fontSize: 20,
     fontFamily: 'Inter',
@@ -54,12 +54,10 @@ abstract class Styles {
   );
 
   static const textStylecheckout22 = TextStyle(
-    color: Colors.black,
+    color: Colors.white,
     fontSize: 22,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w500,
     height: 0,
   );
-
- 
 }
