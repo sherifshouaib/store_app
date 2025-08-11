@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
         width: 350,
         height: 60,
         decoration: ShapeDecoration(
-            color: const Color(0xFF34A853),
+            color: Colors.black,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             )),
