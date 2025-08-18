@@ -26,7 +26,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         try {
           UserCredential user = await FirebaseAuth.instance
               .signInWithEmailAndPassword(
-                  email: event.email, password: event.password);
+                email: event.email,
+                password: event.password,
+              );
           // print(FirebaseAuth.instance.currentUser!);
           // print(FirebaseAuth.instance.currentUser!.displayName);
           // print(FirebaseAuth.instance.currentUser!.email);
@@ -44,11 +46,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event is RegisterEvent) {
         emit(RegisterLoading());
         try {
-          final UserCredential credential =
-              await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: event.email,
-            password: event.password,
-          );
+          final UserCredential credential = await FirebaseAuth.instance
+              .createUserWithEmailAndPassword(
+                email: event.email,
+                password: event.password,
+              );
 
           // Upload image to firebase storage
           Reference storageRef = await uploadImageToFirebaseStorage();
@@ -67,23 +69,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(RegisterFailure(errMessage: 'weak password'));
           }
         } catch (ex) {
-          emit(RegisterFailure(
-              errMessage: 'there was an error ,please try again'));
+          emit(
+            RegisterFailure(errMessage: 'there was an error ,please try again'),
+          );
         }
       }
     });
   }
 
   Future<Reference> uploadImageToFirebaseStorage() async {
-    final storageRef = FirebaseStorage.instance
-        .ref("users-images/${ProfilePictureDesignRegister.imgName}");
+    final storageRef = FirebaseStorage.instance.ref(
+      "users-images/${ProfilePictureDesignRegister.imgName}",
+    );
     await storageRef.putFile(ProfilePictureDesignRegister.imgPath!);
     return storageRef;
   }
 
   void uploadDataToFireStore(UserCredential credential, String urll) {
-    CollectionReference users =
-        FirebaseFirestore.instance.collection('usersss');
+    CollectionReference users = FirebaseFirestore.instance.collection(
+      'usersss',
+    );
 
     users
         .doc(credential.user!.uid)
@@ -94,11 +99,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           'title': title,
           'email': email,
           'pass': password,
-          // 'price': price,
-          // 'selectedProductslength': selectedProducts.length,
-          // 'prices': prices,
-          // 'titles': titles,
-          // 'images': images,
+          ///////////////////////////////
+          'price': price,
+          'selectedProductslength': 0,
+          'prices': prices,
+          'titles': titles,
+          'images': images,
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));

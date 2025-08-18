@@ -42,13 +42,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(
-          AssetsData.logo,
-          height: 250,
-        ),
-        const SizedBox(
-          height: 4,
-        ),
+        Image.asset(AssetsData.logo, height: 250),
+        const SizedBox(height: 4),
         SlidingText(slidingAnimation: slidingAnimation),
       ],
     );
@@ -60,25 +55,23 @@ class _SplashViewBodyState extends State<SplashViewBody>
       duration: const Duration(seconds: 1),
     );
 
-    slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
-            .animate(animationController);
+    slidingAnimation = Tween<Offset>(
+      begin: const Offset(0, 2),
+      end: Offset.zero,
+    ).animate(animationController);
 
     animationController.forward();
   }
 
   void navigateToAuthSelection() {
-    Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        // Get.to(
-        //   () => const HomeView(),
-        //   transition: Transition.fade,
-        //   duration: kTransitionDuration,
-        // );
+    Future.delayed(const Duration(seconds: 2), () {
+      // Get.to(
+      //   () => const HomeView(),
+      //   transition: Transition.fade,
+      //   duration: kTransitionDuration,
+      // );
 
-        GoRouter.of(context).pushReplacement(AppRouter.kAuthSelectionView);
-      },
-    );
+      GoRouter.of(context).pushReplacement(AppRouter.kAuthSelectionView);
+    });
   }
 }

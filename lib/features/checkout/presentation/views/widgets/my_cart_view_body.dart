@@ -8,6 +8,7 @@ import 'package:store_app/features/checkout/presentation/views/widgets/total_pri
 import '../../../../../core/buttons/custom_button.dart';
 import '../../../../../core/utils/colors.dart';
 import 'change_location.dart';
+import 'data_cart_view_from_firestore.dart';
 import 'payment_methods_bottom_sheet.dart';
 
 class MyCartViewBody extends StatelessWidget {
@@ -37,16 +38,7 @@ class MyCartViewBody extends StatelessWidget {
           Expanded(
             child: Image.asset('assets/images/basket_image.png'),
           ),
-          const OrderInfoItems(),
-          const SizedBox(
-            width: 25,
-          ),
-          const Divider(
-            thickness: 2,
-            height: 34,
-            color: Color(0xffC7C7C7),
-          ),
-          const TotalPrice(title: 'Total', value: r'$50.97'),
+          DataCartViewFromFireStore(),
           const SizedBox(
             height: 16,
           ),
@@ -77,3 +69,4 @@ class MyCartViewBody extends StatelessWidget {
     );
   }
 }
+
