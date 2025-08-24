@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../home/data/models/product_model/product_model.dart';
 import '../../../views/widgets/profile_picture_design_register.dart';
 
 part 'auth_event.dart';
@@ -13,22 +12,22 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   String? username, age, title, email, password;
-  double price = 0;
-  List<ProductModel> selectedProducts = [];
-  List<double> prices = [];
-  List<String> titles = [];
-  List<String> images = [];
+  //double price = 0;
+//  List<ProductModel> selectedProducts = [];
+  // List<double> prices = [];
+  // List<String> titles = [];
+  // List<String> images = [];
 
   AuthBloc() : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
       if (event is LoginEvent) {
         emit(LoginLoading());
         try {
-          UserCredential user = await FirebaseAuth.instance
-              .signInWithEmailAndPassword(
-                email: event.email,
-                password: event.password,
-              );
+          UserCredential user =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: event.email,
+            password: event.password,
+          );
           // print(FirebaseAuth.instance.currentUser!);
           // print(FirebaseAuth.instance.currentUser!.displayName);
           // print(FirebaseAuth.instance.currentUser!.email);
@@ -46,11 +45,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event is RegisterEvent) {
         emit(RegisterLoading());
         try {
-          final UserCredential credential = await FirebaseAuth.instance
-              .createUserWithEmailAndPassword(
-                email: event.email,
-                password: event.password,
-              );
+          final UserCredential credential =
+              await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: event.email,
+            password: event.password,
+          );
 
           // Upload image to firebase storage
           Reference storageRef = await uploadImageToFirebaseStorage();
@@ -87,11 +86,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void uploadDataToFireStore(UserCredential credential, String urll) {
     CollectionReference users = FirebaseFirestore.instance.collection(
-      'usersss',
+      'users',
     );
 
     users
         .doc(credential.user!.uid)
+        .collection('user')
+        .doc('userData')
         .set({
           'imgLink': urll,
           'username': username,
@@ -100,14 +101,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           'email': email,
           'pass': password,
           ///////////////////////////////
-          'price': price,
-          'selectedProductslength': 0,
-          'prices': prices,
-          'titles': titles,
-          'images': images,
+          //  'price': price,
+          // 'selectedProductslength': 0,
+          // 'prices': prices,
+          // 'titles': titles,
+          // 'images': images,
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
+
+    users
+        .doc(credential.user!.uid)
+        .collection('cart')
+        .doc('cartData')
+        .set({
+          'products': [],
+          'totalPrice': 0.0,
+        })
+        .then((value) => print("Cart Added"))
+        .catchError((error) => print("Failed to add cart: $error"));
+
+    users
+        .doc(credential.user!.uid)
+        .collection('order')
+        .doc('orderlocation')
+        .set({
+          "title": "",
+          "subtitle": "",
+        })
+        .then((value) => print("orderlocation Added"))
+        .catchError((error) => print("Failed to add orderlocation: $error"));
   }
 
   // @override

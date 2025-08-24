@@ -15,15 +15,16 @@ class ImgUser extends StatefulWidget {
 
 class _ImgUserState extends State<ImgUser> {
   final credential = FirebaseAuth.instance.currentUser;
-  CollectionReference users = FirebaseFirestore.instance.collection('usersss');
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users =
-        FirebaseFirestore.instance.collection('usersss');
+    // CollectionReference users =
+    //     FirebaseFirestore.instance.collection('users');
 
     return FutureBuilder<DocumentSnapshot>(
-      future: users.doc(credential!.uid).get(),
+      future:
+          users.doc(credential!.uid).collection('user').doc('userData').get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {

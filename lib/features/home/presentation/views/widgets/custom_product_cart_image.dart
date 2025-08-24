@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 import '../../../data/models/product_model/product_model.dart';
 
-class CustomProductImage extends StatelessWidget {
-  const CustomProductImage({
+class CustomProductCartImage extends StatelessWidget {
+  const CustomProductCartImage({
     super.key,
-    required this.product,
+    required this.productImage,
     required this.heightt,
     required this.widthh,
   });
 
-  final ProductModel product;
+  final String productImage;
   final double heightt, widthh;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CustomProductImage extends StatelessWidget {
       child: CachedNetworkImage(
         height: heightt,
         width: widthh,
-        imageUrl: product.image,
+        imageUrl: productImage,
         errorWidget: (context, url, error) => const Icon(
           Icons.error,
           color: Colors.black,

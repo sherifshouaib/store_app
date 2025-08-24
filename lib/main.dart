@@ -12,8 +12,10 @@ import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
+import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
 
 import 'core/utils/api_keys.dart';
+import 'features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'firebase_options.dart';
 
 //String? theme;
@@ -53,13 +55,16 @@ class _StoreAppState extends State<StoreApp> {
             getIt.get<HomeRepoImpl>(),
           )..getAllProducts(),
         ),
-        BlocProvider(create: (context) => CounterCubit()),
+        // BlocProvider(create: (context) => CounterCubit()),
         // BlocProvider(create: (context) => LoginCubit()),
         // BlocProvider(create: (context) => RegisterCubit()),
         //  BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
         BlocProvider(create: (context) => FacebookSignInCubit()),
+        BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(create: (context) => ChangeLocationCubit()),
+
         //  BlocProvider(create: (context) => ChangeLocationCubit()),
 
         // BlocProvider<ChangeThemeBloc>(

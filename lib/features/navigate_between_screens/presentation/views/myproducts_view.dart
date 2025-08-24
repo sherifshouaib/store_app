@@ -10,20 +10,14 @@ class MyProductsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CounterCubit, CounterState>(
-      listener: (context, state) {
-      },
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            actions: const [
-               CustomRowAppBar(),
-            ],
-            title: const Text('My Products'),
-          ),
-          body: const MyProductsViewBody(),
-        );
-      },
+    return Scaffold(
+      appBar: AppBar(
+        actions: const [
+           CustomRowAppBar(),
+        ],
+        title: const Text('My Products'),
+      ),
+      body: const MyProductsViewBody(),
     );
   }
 }

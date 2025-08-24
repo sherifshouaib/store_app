@@ -13,6 +13,7 @@ import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_form_text_field.dart';
+import '../../../../home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'sign_in_methods.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -43,6 +44,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               // GoRouter.of(context).push(
               //   AppRouter.kBottomNavigationPage,
               // );
+              onLoginSuccess();
+
               GoRouter.of(context).push(
                 AppRouter.kVerifyEmailView,
               );
@@ -137,7 +140,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     text: 'Login',
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                      //  isLoading = true;
+                        //  isLoading = true;
 
                         BlocProvider.of<AuthBloc>(context).add(
                             LoginEvent(email: email!, password: password!));
@@ -157,6 +160,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         ),
       ),
     );
+  }
+
+  onLoginSuccess() {
+    context.read<CartCubit>().loadCart();
   }
 
   // Future<void> loginUser() async {

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
@@ -5,25 +6,41 @@ import 'package:store_app/features/order_location/presentation/manager/cubit/cha
 import '../../../../../core/utils/colors.dart';
 import '../../../../order_location/presentation/views/pickup_map_widget.dart';
 
-class ChangeLocation extends StatelessWidget {
+class ChangeLocation extends StatefulWidget {
   const ChangeLocation({
     super.key,
   });
 
   @override
+  State<ChangeLocation> createState() => _ChangeLocationState();
+}
+
+class _ChangeLocationState extends State<ChangeLocation> {
+  @override
+  void initState() {
+    super.initState();
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    context.read<ChangeLocationCubit>().loadLocation(uid);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ChangeLocationCubit(),
-      child: BlocBuilder<ChangeLocationCubit, ChangeLocationState>(
-        builder: (context, state) {
-          if (state is ChangeLocationInitial) {
-            return NoLocationDelivery();
-            // state.title1 = 'Add Delivery Location,Please';
-          } else {
-            return WithLocationDelivery();
-          }
-        },
-      ),
+    return BlocBuilder<ChangeLocationCubit, ChangeLocationState>(
+      builder: (context, state) {
+        if (state is ChangeLocationLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is ChangeLocationSucceed) {
+          return WithLocationDelivery(
+              title: state.title, subtitle: state.subtitle);
+        } else if (state is ChangeLocationFailure) {
+          return Text(
+            state.errorMessage,
+            style: const TextStyle(color: Colors.red),
+          );
+        } else {
+          return const Text("No location selected");
+        }
+      },
     );
   }
 }
@@ -61,7 +78,7 @@ class NoLocationDelivery extends StatelessWidget {
             "Change",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.blue,
+              color: TColor.primary,
               fontSize: 13,
               fontWeight: FontWeight.w700,
             ),
@@ -75,23 +92,28 @@ class NoLocationDelivery extends StatelessWidget {
 class WithLocationDelivery extends StatelessWidget {
   const WithLocationDelivery({
     super.key,
+    required this.title,
+    required this.subtitle,
   });
+
+  final String title, subtitle;
 
   @override
   Widget build(BuildContext context) {
-    String title = BlocProvider.of<ChangeLocationCubit>(context).title1;
+    // final double price = state.totalPrice.roundToDouble();
+    //   final String total =
+    //       price == 0 ? "0" : "\$${(price + 8).round().toString()}";
 
-    String subtitle = BlocProvider.of<ChangeLocationCubit>(context).subtitle1;
-    print(title);
-    print(subtitle);
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
           child: Text(
-            "$title.\n$subtitle",
+            title == "" || subtitle == ""
+                ? "Add Delivery Location,Please"
+                : "$title. $subtitle",
             style: TextStyle(
-                color: TColor.primaryText,
+                color: TColor.primary,
                 fontSize: 15,
                 fontWeight: FontWeight.w700),
           ),

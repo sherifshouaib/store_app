@@ -10,22 +10,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CounterCubit, CounterState>(
-      builder: (context, state) {
-        return Scaffold(
-          body: const HomeviewBody(),
-          // drawer: const Drawer(
-          //   child: DrawerBody(),
-          // ),
-          appBar: AppBar(
-            // backgroundColor: appbarGreen,
-            title: const Text("Home"),
-            actions: const [CustomRowAppBar()],
-          ),
-        );
-      },
-      listener: (context, state) {
-      },
+    return Scaffold(
+      body: const HomeviewBody(),
+      // drawer: const Drawer(
+      //   child: DrawerBody(),
+      // ),
+      appBar: AppBar(
+        // backgroundColor: appbarGreen,
+        title: const Text("Home"),
+        actions: const [CustomRowAppBar()],
+      ),
     );
   }
 }

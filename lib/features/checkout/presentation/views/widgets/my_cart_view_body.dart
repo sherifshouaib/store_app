@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/features/checkout/data/repos/checkout_repo_impl.dart';
 import 'package:store_app/features/checkout/presentation/manager/cubit/payment_cubit.dart';
-import 'package:store_app/features/checkout/presentation/views/widgets/order_info_items.dart';
-import 'package:store_app/features/checkout/presentation/views/widgets/total_price_widget.dart';
 
 import '../../../../../core/buttons/custom_button.dart';
 import '../../../../../core/utils/colors.dart';
@@ -35,9 +33,7 @@ class MyCartViewBody extends StatelessWidget {
           const SizedBox(
             height: 18,
           ),
-          Expanded(
-            child: Image.asset('assets/images/basket_image.png'),
-          ),
+          Image.asset('assets/images/basket_image.png'),
           DataCartViewFromFireStore(),
           const SizedBox(
             height: 16,

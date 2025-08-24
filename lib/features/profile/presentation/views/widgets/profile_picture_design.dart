@@ -11,7 +11,6 @@ import 'package:store_app/features/auth/presentation/views/widgets/profile_pictu
 import 'package:path/path.dart' show basename;
 import 'package:store_app/features/profile/presentation/views/widgets/user_img_from_firestore.dart';
 
-
 class ProfilePictureDesign extends StatefulWidget {
   const ProfilePictureDesign({super.key});
 
@@ -73,7 +72,8 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
 
                   if (imgPath != null) {
                     // Upload image to firebase storage
-                    print('hellllllllllllllllllllllllllllllllllllooooooooooooooooooooo');
+                    print(
+                        'hellllllllllllllllllllllllllllllllllllooooooooooooooooooooo');
 
                     final storageRef = FirebaseStorage.instance.ref(
                       "users-images/$imgName",

@@ -1,15 +1,12 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/app_router.dart';
 
-import '../../../../auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import '../../../data/models/product_model/product_model.dart';
-import '../../manager/counter_cubit/counter_cubit.dart';
+import '../../manager/cart_cubit/cart_cubit.dart';
 import 'custom_product.image.dart';
 
 class CustomCard extends StatelessWidget {
@@ -25,136 +22,137 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CounterCubit, CounterState>(
-      listener: (context, state) {},
-      builder: (BuildContext context, CounterState state) {
-        return GestureDetector(
-          onTap: () {
-            CustomCard.indexxx = indexx;
-            GoRouter.of(context).push(
-              AppRouter.kProductDetailsView,
-              // extra: ProductModel,
-            );
-          },
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 50,
-                      color: Colors.grey,
-                      spreadRadius: 0,
-                      offset: Offset(10, 10),
-                    ),
-                  ],
+    return GestureDetector(
+      onTap: () {
+        CustomCard.indexxx = indexx;
+        GoRouter.of(context).push(
+          AppRouter.kProductDetailsView,
+          // extra: ProductModel,
+        );
+      },
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 50,
+                  color: Colors.grey,
+                  spreadRadius: 0,
+                  offset: Offset(10, 10),
                 ),
-                child: Card(
-                  elevation: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 16,
+              ],
+            ),
+            child: Card(
+              elevation: 10,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product.title.substring(0, 6),
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          product.title.substring(0, 6),
+                          r"$" "${product.price.toString()}",
                           style: const TextStyle(
-                            color: Colors.grey,
                             fontSize: 16,
                           ),
                         ),
-                        const SizedBox(
-                          height: 3,
+                        IconButton(
+                          onPressed: () {
+                            context.read<CartCubit>().addProductToCart({
+                              'id': product.id,
+                              'title': product.title,
+                              'price': product.price,
+                              'image': product.image,
+                            });
+                            // context.read<CounterCubit>().productsIncrement(
+                            //       productPrice: product.price,
+                            //       product: product,
+                            //     );
+
+                            // CollectionReference users = FirebaseFirestore
+                            //     .instance
+                            //     .collection('usersss');
+                            // final credential =
+                            //     FirebaseAuth.instance.currentUser;
+
+                            // // double price = BlocProvider.of<AuthBloc>(
+                            // //         context) ///////////////////
+                            // //     .price += state.price.round();
+
+                            // BlocProvider.of<AuthBloc>(context)
+                            //     .prices
+                            //     .add(product.price);
+
+                            // BlocProvider.of<AuthBloc>(context)
+                            //     .titles
+                            //     .add(product.title);
+                            // BlocProvider.of<AuthBloc>(context)
+                            //     .images
+                            //     .add(product.image);
+                            // users
+                            //     .doc(credential!.uid)
+                            //     .update({
+                            //       'price': state.price.round() +
+                            //           product.price.round(),
+                            //       'selectedProductslength':
+                            //           BlocProvider.of<AuthBloc>(context)
+                            //               .prices
+                            //               .length,
+                            //       'prices':
+                            //           BlocProvider.of<AuthBloc>(context)
+                            //               .prices,
+                            //       'titles':
+                            //           BlocProvider.of<AuthBloc>(context)
+                            //               .titles,
+                            //       'images':
+                            //           BlocProvider.of<AuthBloc>(context)
+                            //               .images,
+                            //     })
+                            //     .then((value) => print("data Added"))
+                            //     .catchError((error) =>
+                            //         print("Failed to add data: $error"));
+                          },
+                          icon: const Icon(
+                            Icons.add,
+                            color: Colors.red,
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              r"$" "${product.price.toString()}",
-                              style: const TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                context.read<CounterCubit>().productsIncrement(
-                                      productPrice: product.price,
-                                      product: product,
-                                    );
-
-                                CollectionReference users = FirebaseFirestore
-                                    .instance
-                                    .collection('usersss');
-                                final credential =
-                                    FirebaseAuth.instance.currentUser;
-
-                                // double price = BlocProvider.of<AuthBloc>(
-                                //         context) ///////////////////
-                                //     .price += state.price.round();
-
-                                BlocProvider.of<AuthBloc>(context)
-                                    .prices
-                                    .add(product.price);
-
-                                BlocProvider.of<AuthBloc>(context)
-                                    .titles
-                                    .add(product.title);
-                                BlocProvider.of<AuthBloc>(context)
-                                    .images
-                                    .add(product.image);
-                                users
-                                    .doc(credential!.uid)
-                                    .update({
-                                      'price': state.price.round() +
-                                          product.price.round(),
-                                      'selectedProductslength':
-                                          BlocProvider.of<AuthBloc>(context)
-                                              .prices
-                                              .length,
-                                      'prices':
-                                          BlocProvider.of<AuthBloc>(context)
-                                              .prices,
-                                      'titles':
-                                          BlocProvider.of<AuthBloc>(context)
-                                              .titles,
-                                      'images':
-                                          BlocProvider.of<AuthBloc>(context)
-                                              .images,
-                                    })
-                                    .then((value) => print("data Added"))
-                                    .catchError((error) =>
-                                        print("Failed to add data: $error"));
-                              },
-                              icon: const Icon(
-                                Icons.add,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        )
                       ],
-                    ),
-                  ),
+                    )
+                  ],
                 ),
               ),
-              Positioned(
-                right: 32,
-                top: -60,
-                child: CustomProductImage(
-                  heightt: 100,
-                  widthh: 85,
-                  product: product,
-                ),
-              ),
-            ],
+            ),
           ),
-        );
-      },
+          Positioned(
+            right: 32,
+            top: -60,
+            child: CustomProductImage(
+              heightt: 100,
+              widthh: 85,
+              product: product,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
