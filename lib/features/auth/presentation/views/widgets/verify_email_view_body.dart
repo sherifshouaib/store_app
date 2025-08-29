@@ -24,15 +24,21 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
 
   Timer? timer;
 
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    VerifyEmailView.isEmailVerified =
-        FirebaseAuth.instance.currentUser!.emailVerified;
+    final user = FirebaseAuth.instance.currentUser;
+
+    VerifyEmailView.isEmailVerified = user?.emailVerified ?? false;
 
     if (!VerifyEmailView.isEmailVerified) {
-      sendVerificationEmail();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        sendVerificationEmail();
+      });
+
+      //   sendVerificationEmail();
 
       timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
         //  if (VerifyEmailViewBody.isSentCancel == true) return;
@@ -46,17 +52,22 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
           } catch (e) {
             print("Reload failed: $e");
           }
+        } else {
+          print("User is null, probably logged out.");
+          timer.cancel(); // وقف التايمر عشان ميفضلش يشتغل بعد اللوج آوت
+          return;
         }
 //////////////////////////////////////////////////////////
         // when we click on the link that existed on yahoo
         await FirebaseAuth.instance.currentUser!.reload();
 
         // is email verified or not (clicked on the link or not) (true or false)
-        setState(() {
-          VerifyEmailView.isEmailVerified =
-              FirebaseAuth.instance.currentUser!.emailVerified;
-        });
-
+        if (FirebaseAuth.instance.currentUser != null) {
+          setState(() {
+            VerifyEmailView.isEmailVerified =
+                FirebaseAuth.instance.currentUser!.emailVerified;
+          });
+        }
         if (VerifyEmailView.isEmailVerified) {
           timer.cancel();
           if (!mounted) return;

@@ -58,9 +58,16 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         ),
         BlocListener<GoogleSignInCubit, GoogleSignInState>(
           listener: (context, state) {
-            if (state is GoogleSignExecution) {
-              BlocProvider.of<GoogleSignInCubit>(context)
-                  .signInWithGoogle(context);
+            if (state is GoogleSignInLoading) {
+              // show loading
+              isLoading = true;
+            } else if (state is GoogleSignInSuccess) {
+              context.read<CartCubit>().loadCart();
+              GoRouter.of(context).push(AppRouter.kBottomNavigationPage);
+              isLoading = false;
+            } else if (state is GoogleSignInFailure) {
+              showSnackBar(context, state.message);
+              isLoading = false;
             }
           },
         ),

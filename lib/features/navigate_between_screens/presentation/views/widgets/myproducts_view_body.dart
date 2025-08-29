@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_app/features/home/data/models/product_model/product_model.dart';
 import 'package:store_app/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/cart_cubit/cart_state.dart';
 
-import '../../../../home/presentation/views/widgets/custom_product.image.dart';
 import '../../../../home/presentation/views/widgets/custom_product_cart_image.dart';
 import 'pay_button.dart';
 

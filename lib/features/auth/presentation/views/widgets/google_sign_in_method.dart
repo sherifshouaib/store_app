@@ -1,14 +1,11 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 
-class googleSignInMethod extends StatelessWidget {
-  const googleSignInMethod({
+class GoogleSignInMethod extends StatelessWidget {
+  const GoogleSignInMethod({
     super.key,
   });
 
@@ -18,8 +15,7 @@ class googleSignInMethod extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 27, horizontal: 10),
       child: GestureDetector(
         onTap: () async {
-          await BlocProvider.of<GoogleSignInCubit>(context)
-              .signInWithGoogle(context);
+          await BlocProvider.of<GoogleSignInCubit>(context).signInWithGoogle();
           // GoRouter.of(context).push(
           //   AppRouter.kBottomNavigationPage,
           // );

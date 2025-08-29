@@ -35,12 +35,12 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
           expiryDate: expiryDate,
           cardHolderName: cardHolderName,
           cvvCode: cvvCode,
-          onCreditCardModelChange: (CreditCardModel) {
-            cardHolderName = CreditCardModel.cardHolderName;
-            expiryDate = CreditCardModel.expiryDate;
-            cvvCode = CreditCardModel.cvvCode;
-            cardNumber = CreditCardModel.cardNumber;
-            showBackView = CreditCardModel.isCvvFocused;
+          onCreditCardModelChange: (creditcardmodel) {
+            cardHolderName = creditcardmodel.cardHolderName;
+            expiryDate = creditcardmodel.expiryDate;
+            cvvCode = creditcardmodel.cvvCode;
+            cardNumber = creditcardmodel.cardNumber;
+            showBackView = creditcardmodel.isCvvFocused;
             setState(() {});
           },
           formKey: widget.formKey,

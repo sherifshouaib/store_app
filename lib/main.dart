@@ -1,20 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:store_app/core/utils/app_router.dart';
 import 'package:store_app/core/utils/app_themes.dart';
-import 'package:store_app/core/utils/local_notification_service.dart';
 import 'package:store_app/core/utils/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
-import 'package:store_app/features/home/presentation/manager/counter_cubit/counter_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
 import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
 
-import 'core/utils/api_keys.dart';
 import 'features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'firebase_options.dart';
 
@@ -28,9 +24,9 @@ void main() async {
   );
 
   setupServiceLocator();
-  Stripe.publishableKey = ApiKeys.publishableKey;
+  //  Stripe.publishableKey = ApiKeys.publishableKey;
   // Bloc.observer = SimpleBlocObserver();
-  await LocalNotificationService.init();
+  //  await LocalNotificationService.init();
 
   runApp(const StoreApp());
 }
