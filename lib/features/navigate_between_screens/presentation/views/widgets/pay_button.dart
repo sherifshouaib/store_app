@@ -9,11 +9,12 @@ class PayButton extends StatelessWidget {
   });
 
   final double price;
-
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Padding(
-      padding: const EdgeInsets.only(top: 8),
+      padding: EdgeInsets.only(top: screenHeight * 0.02),
       child: ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(

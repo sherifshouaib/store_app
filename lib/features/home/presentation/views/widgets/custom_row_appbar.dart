@@ -29,8 +29,10 @@ class CustomRowAppBar extends StatelessWidget {
                         shape: BoxShape.circle),
                     child: Text(
                       "${state.cartProducts.length}",
-                      style:
-                          const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 10,
+                      ),
                     ),
                   ),
                 ),
