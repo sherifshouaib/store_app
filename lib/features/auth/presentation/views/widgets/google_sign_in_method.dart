@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:store_app/core/utils/colors.dart';
 
 import '../../manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 
@@ -28,7 +29,10 @@ class GoogleSignInMethod extends StatelessWidget {
                   color: const Color.fromARGB(255, 200, 67, 79), width: 1)),
           child: SvgPicture.asset(
             "assets/icons/icons8-google.svg",
-            color: const Color.fromARGB(255, 200, 67, 79),
+            colorFilter: const ColorFilter.mode(
+              TColor.svgColor2,
+              BlendMode.srcIn,
+            ),
             height: 27,
           ),
         ),

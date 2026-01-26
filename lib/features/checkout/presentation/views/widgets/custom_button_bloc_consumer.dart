@@ -35,7 +35,6 @@ class CustomButtonBlocConsumer extends StatelessWidget {
 
         if (state is PaymentFailure) {
           GoRouter.of(context).pop();
-          SnackBar snackBar = SnackBar(content: Text(state.errMessage));
 
           showSnackBar(context, 'Payment Did Not Completed correctly');
           // ScaffoldMessenger.of(context).showSnackBar(snackBar); //////////////////////////
@@ -89,7 +88,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           Navigator.pop(context);
         },
         onCancel: () {
-          print('cancelled:');
+          debugPrint('cancelled:');
           Navigator.pop(context);
         },
       ),

@@ -7,4 +7,6 @@ abstract class TColor {
   static const textfield = Color(0xffF2F2F2);
   static const placeholder = Color(0xffB6B7B7);
   static const white = Color(0xffffffff);
+  static const svgColor1 = Color.fromARGB(255, 67, 173, 200);
+  static const svgColor2 = Color.fromARGB(255, 200, 67, 79);
 }

@@ -9,7 +9,7 @@ buildscript {
 
 dependencies{
 classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-     classpath 'com.android.tools.build:gradle:8.3.0'
+     classpath 'com.android.tools.build:gradle:8.6.0'
 
 }
 }
@@ -23,6 +23,12 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0"
     }
 }
 rootProject.buildDir = "../build"

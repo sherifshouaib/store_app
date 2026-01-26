@@ -46,7 +46,7 @@ abstract class Styles {
   );
 
   static TextStyle textStylecheckout20 = TextStyle(
-    color: Colors.black.withOpacity(0.8000000011920929),
+    color: Colors.black.withValues(alpha: 0.8),
     fontSize: 20,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w400,

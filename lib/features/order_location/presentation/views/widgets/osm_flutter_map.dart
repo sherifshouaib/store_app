@@ -1,17 +1,33 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 
-class OSMFlutterMap extends StatelessWidget {
+class OSMFlutterMap extends StatefulWidget {
   const OSMFlutterMap({super.key, required this.controller});
 
   final MapController controller;
+  
+                          ///this widget was stls not stfl ,but i made it stfl to dispose controller 
+                          ///  
+  @override
+  State<OSMFlutterMap> createState() => _OSMFlutterMapState();
+}
+
+class _OSMFlutterMapState extends State<OSMFlutterMap> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return OSMFlutter(
-      controller: controller,
+      controller: widget.controller,
       osmOption: OSMOption(
         userTrackingOption: const UserTrackingOption(
           enableTracking: false,

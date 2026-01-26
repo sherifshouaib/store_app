@@ -29,7 +29,7 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
 
     try {
       if (pickedImg != null) {
-        //   print(File(pickedImg.path));
+        //   debugPrint(File(pickedImg.path));
         // return;
         setState(() {
           imgPath = File(pickedImg.path);
@@ -38,17 +38,17 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
           int random = Random().nextInt(9999999);
           imgName = "$random$imgName";
 
-          print(imgName);
+          debugPrint(imgName);
         });
       } else {
         //    showSnackBar(context, "NO img selected");
 
-        print("NO img selected");
+        debugPrint("NO img selected");
       }
     } catch (e) {
       //   showSnackBar(context, "Error => $e");
 
-      print("Error => $e");
+      debugPrint("Error => $e");
     }
 
     if (!mounted) return;
@@ -72,7 +72,7 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
 
                   if (imgPath != null) {
                     // Upload image to firebase storage
-                    print(
+                    debugPrint(
                         'hellllllllllllllllllllllllllllllllllllooooooooooooooooooooo');
 
                     final storageRef = FirebaseStorage.instance.ref(
@@ -80,7 +80,7 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
                     );
                     await storageRef.putFile(imgPath!);
 
-                    //  print('helllllllooooo');
+                    //  debugPrint('helllllllooooo');
 
                     // Get img url
                     String url = await storageRef.getDownloadURL();
@@ -104,7 +104,7 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
 
                   if (imgPath != null) {
                     // Upload image to firebase storage
-                    print(
+                    debugPrint(
                         'hellllllllllllllllllllllllllllllooooooooooooooooooooooooooo');
                   
                     final storageRef = FirebaseStorage.instance.ref(
@@ -112,7 +112,7 @@ class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
                     );
                     await storageRef.putFile(imgPath!);
 
-                    // print('helllllllooooo');
+                    // debugPrint('helllllllooooo');
 
                     // Get img url
                     String url = await storageRef.getDownloadURL();

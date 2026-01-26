@@ -343,7 +343,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       //   showSnackBar(context, 'there was an error');
       // }
       isLoading = false;
-      print(isLoading);
+      debugPrint('$isLoading');
     } else {}
   }
 

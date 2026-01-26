@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 
 class SimpleBlocObserver extends BlocObserver {
   @override
@@ -6,13 +7,12 @@ class SimpleBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
 
 
-    print(transition);
+    debugPrint('$transition');
   }
 
   // @override
   // void onChange(BlocBase bloc, Change change) {
-  //   // TODO: implement onChange
   //   super.onChange(bloc, change);
-  //   print(change);
+  //   debugPrint(change);
   // }
 }

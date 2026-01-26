@@ -27,7 +27,6 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     final user = FirebaseAuth.instance.currentUser;
 
@@ -48,12 +47,12 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
         if (user != null) {
           try {
             await user.reload();
-            print("User reloaded successfully.");
+            debugPrint("User reloaded successfully.");
           } catch (e) {
-            print("Reload failed: $e");
+            debugPrint("Reload failed: $e");
           }
         } else {
-          print("User is null, probably logged out.");
+          debugPrint("User is null, probably logged out.");
           timer.cancel(); // وقف التايمر عشان ميفضلش يشتغل بعد اللوج آوت
           return;
         }

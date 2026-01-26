@@ -22,14 +22,12 @@ class _PickupMapWidgetState extends State<PickupMapWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   void dispose() {
     controller.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 

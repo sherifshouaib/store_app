@@ -126,9 +126,9 @@ class CustomCard extends StatelessWidget {
                             //           BlocProvider.of<AuthBloc>(context)
                             //               .images,
                             //     })
-                            //     .then((value) => print("data Added"))
+                            //     .then((value) => debugPrint("data Added"))
                             //     .catchError((error) =>
-                            //         print("Failed to add data: $error"));
+                            //         debugPrint("Failed to add data: $error"));
                           },
                           icon: const Icon(
                             Icons.add,

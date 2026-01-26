@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../views/widgets/profile_picture_design_register.dart';
@@ -23,14 +24,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event is LoginEvent) {
         emit(LoginLoading());
         try {
-          UserCredential user =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: event.email,
             password: event.password,
           );
-          // print(FirebaseAuth.instance.currentUser!);
-          // print(FirebaseAuth.instance.currentUser!.displayName);
-          // print(FirebaseAuth.instance.currentUser!.email);
+          // debugPrint(FirebaseAuth.instance.currentUser!);
+          // debugPrint(FirebaseAuth.instance.currentUser!.displayName);
+          // debugPrint(FirebaseAuth.instance.currentUser!.email);
           emit(LoginSuccess());
         } on FirebaseAuthException catch (ex) {
           if (ex.code == 'user-not-found') {
@@ -57,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           // Get img url
           String urll = await storageRef.getDownloadURL();
 
-          print(credential.user!.uid);
+          debugPrint(credential.user!.uid);
           uploadDataToFireStore(credential, urll);
 
           emit(RegisterSuccess(succMessage: 'Success'));
@@ -107,8 +107,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           // 'titles': titles,
           // 'images': images,
         })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+        .then((value) => debugPrint("User Added"))
+        .catchError((error) => debugPrint("Failed to add user: $error"));
 
     users
         .doc(credential.user!.uid)
@@ -118,8 +118,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           'products': [],
           'totalPrice': 0.0,
         })
-        .then((value) => print("Cart Added"))
-        .catchError((error) => print("Failed to add cart: $error"));
+        .then((value) => debugPrint("Cart Added"))
+        .catchError((error) => debugPrint("Failed to add cart: $error"));
 
     users
         .doc(credential.user!.uid)
@@ -129,14 +129,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           "title": "",
           "subtitle": "",
         })
-        .then((value) => print("orderlocation Added"))
-        .catchError((error) => print("Failed to add orderlocation: $error"));
+        .then((value) => debugPrint("orderlocation Added"))
+        .catchError((error) => debugPrint("Failed to add orderlocation: $error"));
   }
 
   // @override
   // void onTransition(Transition<AuthEvent, AuthState> transition) {
-  //   // TODO: implement onTransition
   //   super.onTransition(transition);
-  //   print(transition);
+  //   debugPrint(transition);
   // }
 }

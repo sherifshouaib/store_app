@@ -33,7 +33,7 @@ class _ProfilePictureDesignRegisterState
 
     try {
       if (pickedImg != null) {
-        //   print(File(pickedImg.path));
+        //   debugPrint(File(pickedImg.path));
         // return;
         setState(() {
           ProfilePictureDesignRegister.imgPath = File(pickedImg.path);
@@ -43,13 +43,13 @@ class _ProfilePictureDesignRegisterState
           ProfilePictureDesignRegister.imgName =
               "$random${ProfilePictureDesignRegister.imgName}";
 
-          print(ProfilePictureDesignRegister.imgName);
+          debugPrint(ProfilePictureDesignRegister.imgName);
         });
       } else {
-        print("NO img selected");
+        debugPrint("NO img selected");
       }
     } catch (e) {
-      print("Error => $e");
+      debugPrint("Error => $e");
     }
 
     if (!mounted) return;

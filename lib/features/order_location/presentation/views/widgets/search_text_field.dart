@@ -5,10 +5,27 @@ import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
 
-class SearchTextField extends StatelessWidget {
+class SearchTextField extends StatefulWidget {
   const SearchTextField({super.key, required this.controller});
 
   final MapController controller;
+                           ///this widget was stls not stfl ,but i made it stfl to dispose controller 
+
+  @override
+  State<SearchTextField> createState() => _SearchTextFieldState();
+}
+
+class _SearchTextFieldState extends State<SearchTextField> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +59,7 @@ class SearchTextField extends StatelessWidget {
         );
       },
       onSelected: (address) async {
-        //  print(address.address!.name);
+        //  debugPrint(address.address!.name);
 
         final uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -52,9 +69,9 @@ class SearchTextField extends StatelessWidget {
               subtitle: address.address!.country!,
             );
 
-        await controller.moveTo(address.point!, animate: true);
+        await widget.controller.moveTo(address.point!, animate: true);
 
-        await controller.addMarker(
+        await widget.controller.addMarker(
           address.point!,
           markerIcon: MarkerIcon(
             icon: Icon(Icons.location_pin, color: Colors.red, size: 100),

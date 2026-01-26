@@ -11,7 +11,7 @@ class AuthCubit extends Cubit<AuthState> {
       {required String email, required String password}) async {
     emit(LoginLoading());
     try {
-      UserCredential user = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       emit(LoginSuccess());
     } on FirebaseAuthException catch (ex) {
@@ -20,7 +20,7 @@ class AuthCubit extends Cubit<AuthState> {
       } else if (ex.code == 'wrong-password') {
         emit(LoginFailure(errMessage: 'wrong password'));
       }
-    } on Exception catch (ex) {
+    } on Exception {
       emit(LoginFailure(errMessage: 'something went wrong'));
     }
   }
@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
       {required String email, required String password}) async {
     emit(RegisterLoading());
     try {
-      UserCredential user = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
       emit(RegisterSuccess(succMessage: 'Success'));
@@ -46,8 +46,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   // @override
   // void onChange(Change<AuthState> change) {
-  //   // TODO: implement onChange
   //   super.onChange(change);
-  //   print(change);
+  //   debugPrint(change);
   // }
 }

@@ -11,13 +11,13 @@ final class AuthInitial extends AuthState {}
 final class RegisterLoading extends AuthState {}
 
 final class RegisterSuccess extends AuthState {
-  String succMessage;
-  RegisterSuccess({required this.succMessage});
+ final String succMessage;
+  const RegisterSuccess({required this.succMessage});
 }
 
 final class RegisterFailure extends AuthState {
-  String errMessage;
-  RegisterFailure({required this.errMessage});
+ final String errMessage;
+  const RegisterFailure({required this.errMessage});
 }
 
 
@@ -28,7 +28,7 @@ final class LoginSuccess extends AuthState {}
 final class LoginLoading extends AuthState {}
 
 final class LoginFailure extends AuthState {
-  String errMessage;
+ final String errMessage;
 
-  LoginFailure({required this.errMessage,});
+ const LoginFailure({required this.errMessage,});
 }

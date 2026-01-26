@@ -12,7 +12,6 @@ class VerifyEmailView extends StatelessWidget {
 
   // @override
   // void initState() {
-  //   // TODO: implement initState
   //   super.initState();
   //   VerifyEmailView.isEmailVerified =
   //       FirebaseAuth.instance.currentUser!.emailVerified;

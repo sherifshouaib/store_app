@@ -1,12 +1,26 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 
-class ZoomOutButton extends StatelessWidget {
+class ZoomOutButton extends StatefulWidget {
   const ZoomOutButton({super.key, required this.controller});
 
   final MapController controller;
+                           ///this widget was stls not stfl ,but i made it stfl to dispose controller 
+  @override
+  State<ZoomOutButton> createState() => _ZoomOutButtonState();
+}
+
+class _ZoomOutButtonState extends State<ZoomOutButton> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +28,7 @@ class ZoomOutButton extends StatelessWidget {
       padding: EdgeInsets.all(5),
       child: InkWell(
         onTap: () async {
-          await controller.zoomOut();
+          await widget.controller.zoomOut();
         },
         child: Container(
           padding: const EdgeInsets.all(10),
