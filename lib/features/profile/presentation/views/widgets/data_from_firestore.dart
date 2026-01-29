@@ -18,6 +18,17 @@ class _GetDataFromFirestoreState extends State<GetDataFromFirestore> {
   final credential = FirebaseAuth.instance.currentUser;
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    dialogUsernameController.dispose();
+    super.dispose();
+  }
+
   myDialog(Map data, dynamic myKey) {
     showDialog(
       context: context,

@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/core/utils/app_router.dart';
@@ -22,6 +23,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+// Enable performance collection
+  await FirebasePerformance.instance.setPerformanceCollectionEnabled(true);
 
   setupServiceLocator();
   //  Stripe.publishableKey = ApiKeys.publishableKey;

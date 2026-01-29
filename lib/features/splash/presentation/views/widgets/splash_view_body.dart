@@ -1,4 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,9 +30,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void dispose() {
-    super.dispose();
-
     animationController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -70,7 +69,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
       //   transition: Transition.fade,
       //   duration: kTransitionDuration,
       // );
-
+      
+      if (!mounted) return; // 🔥 مهم جدًا
       GoRouter.of(context).pushReplacement(AppRouter.kAuthSelectionView);
     });
   }

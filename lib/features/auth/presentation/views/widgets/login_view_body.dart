@@ -76,6 +76,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             if (state is FacebookSignInExecution) {
               BlocProvider.of<FacebookSignInCubit>(context)
                   .signInWithFacebook(context);
+              if (!mounted) return; // 🔥 مهم جدًا
+              GoRouter.of(context).push(
+                AppRouter.kBottomNavigationPage,
+              );
             }
           },
         ),
