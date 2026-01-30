@@ -86,7 +86,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
                 height: 33,
               ),
               CustomElevatedButton(
-                colorfill: TColor.primary,
+                colorfill: TColor.primary2,
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     resetPassword();

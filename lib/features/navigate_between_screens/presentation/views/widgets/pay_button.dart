@@ -18,7 +18,7 @@ class PayButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(kPrimaryColor),
+          backgroundColor: WidgetStateProperty.all(kPrimaryColor2),
           padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
           shape: WidgetStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),

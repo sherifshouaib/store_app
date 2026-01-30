@@ -45,7 +45,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           child: BottomNavigationBar(
             currentIndex: myCurrentIndex,
             backgroundColor: Colors.white,
-            selectedItemColor: const Color.fromARGB(255, 237, 19, 95),
+          //  selectedItemColor: const Color.fromARGB(255, 237, 19, 95),
+            selectedItemColor: const Color.fromARGB(255, 245, 81, 4),
             unselectedItemColor: Colors.black,
             selectedFontSize: 12,
             showSelectedLabels: true,

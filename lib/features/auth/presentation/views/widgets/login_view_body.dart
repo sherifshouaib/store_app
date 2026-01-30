@@ -147,7 +147,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     height: 12,
                   ),
                   CustomElevatedButton(
-                    colorfill: TColor.primary,
+                    colorfill: TColor.primary2,
                     text: 'Login',
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {

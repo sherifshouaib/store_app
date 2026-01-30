@@ -13,6 +13,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> get2({required String endPoint}) async {
     var response = await _dio.get('$_baseUrl$endPoint');
+   // _dio.interceptors.add(DioFirebasePerformanceInterceptor());
     return response.data;
   }
 
@@ -20,15 +21,16 @@ class ApiService {
       {required body,
       required String url,
       required String token,
-      Map<String,String>? headers,
-      String? contentType
-      }) async {
+      Map<String, String>? headers,
+      String? contentType}) async {
     var response = await _dio.post(url,
         data: body,
         options: Options(
           contentType: contentType,
-          headers: headers ??  {'Authorization': 'Bearer $token'},
+          headers: headers ?? {'Authorization': 'Bearer $token'},
         ));
+  //  _dio.interceptors.add(DioFirebasePerformanceInterceptor());
+
     return response;
   }
 }

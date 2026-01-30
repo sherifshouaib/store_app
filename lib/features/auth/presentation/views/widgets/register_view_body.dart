@@ -103,8 +103,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       height: 20,
                     ),
 
-                  
-                     ProfilePictureDesignRegister(),
+                    ProfilePictureDesignRegister(),
 
                     const SizedBox(
                       height: 80,
@@ -266,7 +265,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       height: 22,
                     ),
                     CustomElevatedButton(
-                      colorfill: TColor.primary,
+                      colorfill: TColor.primary2,
                       onPressed: () async {
                         await registerValidation(context);
                       },

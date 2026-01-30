@@ -40,7 +40,7 @@ class AuthSelectionViewBody extends StatelessWidget {
               );
             },
             text: "Login",
-            colorfill: TColor.primary,
+            colorfill: TColor.primary2,
           ),
           const SizedBox(
             height: 10,
@@ -52,7 +52,7 @@ class AuthSelectionViewBody extends StatelessWidget {
               );
             },
             text: 'Create an Account',
-            colorfill: TColor.primary,
+            colorfill: TColor.primary2,
           ),
         ],
       ),
