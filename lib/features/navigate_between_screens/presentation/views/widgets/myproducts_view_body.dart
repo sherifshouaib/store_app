@@ -29,12 +29,13 @@ class MyProductsViewBody extends StatelessWidget {
                     return Card(
                       key: Key(state.cartProducts[index]['id'].toString()),
                       child: ListTile(
+                       // tileColor: Colors.black54,
                         title: Text(
                             state.cartProducts[index]['title'].substring(0, 6),
-                            style: TextStyle(fontSize: screenHeight * 0.035)),
+                            style: TextStyle(fontSize: screenHeight * 0.015)),
                         subtitle: Text(
                             state.cartProducts[index]['price'].toString(),
-                            style: TextStyle(fontSize: screenHeight * 0.025)),
+                            style: TextStyle(fontSize: screenHeight * 0.017)),
                         leading: CustomProductCartImage(
                           productImage: state.cartProducts[index]['image'],
                           heightt: screenHeight * 0.09,

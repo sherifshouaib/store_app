@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:store_app/core/utils/api_keys.dart';
-import 'package:store_app/core/utils/api_service.dart';
+import 'package:store_app/core/networking/api_service.dart';
 import 'package:store_app/features/checkout/data/models/ephemeral_key_model/ephemeral_key_model.dart';
 import 'package:store_app/features/checkout/data/models/payment_intent_input_model.dart';
 
@@ -13,10 +13,14 @@ class StripeService {
   Future<PaymentIntentModel> createPaymentIntent(
       PaymentIntentInputModel paymentIntentInputModel) async {
     var response = await apiService.post(
-        body: paymentIntentInputModel.toJson(),
-        contentType: Headers.formUrlEncodedContentType,
-        url: 'https://api.stripe.com/v1/payment_intents',
-        token: ApiKeys.secretKey);
+      body: paymentIntentInputModel.toJson(),
+      contentType: Headers.formUrlEncodedContentType,
+      url: dotenv.env['PAYMENTINTENTURL']!,
+
+      // 'https://api.stripe.com/v1/payment_intents',
+      token: dotenv.env['SECRETKEY']!,
+      // ApiKeys.secretKey
+    );
 
     var paymentIntentModel = PaymentIntentModel.fromJson(response.data);
     return paymentIntentModel;
@@ -63,10 +67,18 @@ class StripeService {
           'customer': customerId,
         },
         contentType: Headers.formUrlEncodedContentType,
-        url: 'https://api.stripe.com/v1/ephemeral_keys',
-        token: ApiKeys.secretKey,
+        url: dotenv.env['EPHEMERALKEYURL']!,
+
+        // 'https://api.stripe.com/v1/ephemeral_keys',
+        token: dotenv.env['SECRETKEY']!,
+
+        // ApiKeys.secretKey,
+
         headers: {
-          'Authorization': "Bearer ${ApiKeys.secretKey}",
+          'Authorization': "Bearer ${dotenv.env['SECRETKEY']!}",
+
+          // ${ApiKeys.secretKey}",
+
           'Stripe-Version': '2025-03-31.basil',
         });
 

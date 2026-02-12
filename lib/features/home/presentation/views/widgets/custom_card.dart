@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/core/utils/app_router.dart';
+import 'package:store_app/core/routing/app_router.dart';
 
 import '../../../data/models/product_model/product_model.dart';
 import '../../manager/cart_cubit/cart_cubit.dart';
@@ -132,8 +132,7 @@ class CustomCard extends StatelessWidget {
                           },
                           icon: const Icon(
                             Icons.add,
-                            color: Color.fromARGB(255, 16, 122, 16),
-                            // Colors.red,
+                            color:  Colors.red,
                           ),
                         ),
                       ],

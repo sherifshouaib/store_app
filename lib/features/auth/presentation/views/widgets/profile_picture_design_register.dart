@@ -26,7 +26,6 @@ class ProfilePictureDesignRegister extends StatefulWidget {
 class _ProfilePictureDesignRegisterState
     extends State<ProfilePictureDesignRegister> {
   CollectionReference users = FirebaseFirestore.instance.collection('userSSS');
-  final credential = FirebaseAuth.instance.currentUser;
 
   uploadImage2Screen(ImageSource sourcee) async {
     final pickedImg = await ImagePicker().pickImage(source: sourcee);
@@ -116,6 +115,11 @@ class _ProfilePictureDesignRegisterState
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      return const SizedBox(); // أو Container فاضي
+    }
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(

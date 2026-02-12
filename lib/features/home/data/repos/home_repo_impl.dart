@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:store_app/core/utils/api_service.dart';
+import 'package:store_app/core/networking/api_service.dart';
 import 'package:store_app/features/home/data/models/product_model/product_model.dart';
 import 'package:store_app/features/home/data/repos/home_repo.dart';
 

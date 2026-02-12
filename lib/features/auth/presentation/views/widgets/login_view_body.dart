@@ -10,7 +10,7 @@ import 'package:store_app/features/auth/presentation/views/widgets/no_logic_part
 import 'package:store_app/features/auth/presentation/views/widgets/upper_body_login.dart';
 
 import '../../../../../core/buttons/custom_elevated_button.dart';
-import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_form_text_field.dart';
 import '../../../../home/presentation/manager/cart_cubit/cart_cubit.dart';

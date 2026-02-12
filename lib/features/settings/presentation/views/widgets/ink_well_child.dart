@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/utils/colors.dart';
 
@@ -28,17 +29,34 @@ class InkWellChild extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      color: TColor.placeholder,
-                      borderRadius: BorderRadius.circular(25)),
-                  alignment: Alignment.center,
-                  child: Image.asset(mObj["image"].toString(),
-                      width: 25, height: 25, fit: BoxFit.contain),
-                ),
+                if (countBase < 0)
+                  Container(
+                    width: 50,
+                    height: 50,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        color: TColor.placeholder,
+                        borderRadius: BorderRadius.circular(25)),
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset(
+                      mObj["image"].toString(),
+                      width: 25,
+                      height: 25,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                if (countBase >= 0)
+                  Container(
+                    width: 50,
+                    height: 50,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        color: TColor.placeholder,
+                        borderRadius: BorderRadius.circular(25)),
+                    alignment: Alignment.center,
+                    child: Image.asset(mObj["image"].toString(),
+                        width: 25, height: 25, fit: BoxFit.contain),
+                  ),
                 const SizedBox(
                   width: 15,
                 ),

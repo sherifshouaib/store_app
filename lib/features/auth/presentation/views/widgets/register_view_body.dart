@@ -7,7 +7,7 @@ import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/aut
 import 'package:store_app/features/auth/presentation/views/widgets/custom_row_sign.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design_register.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
-import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
 import '../../../../../core/widgets/custom_form_text_field.dart';
 import 'row_passwordauth.dart';

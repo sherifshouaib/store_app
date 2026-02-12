@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/utils/colors.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     primaryColor: Color.fromARGB(255, 238, 238, 238),
     primaryColorLight: Colors.red,
     unselectedWidgetColor: Colors.white,
-    secondaryHeaderColor: Colors.white,
+    secondaryHeaderColor: TColor.primary2,
+    //Colors.white,
     textTheme: TextTheme(
       bodySmall: TextStyle(fontSize: 16, color: Colors.black),
       bodyMedium: TextStyle(fontSize: 14, color: Colors.black54),
@@ -15,7 +17,8 @@ class AppTheme {
   );
 
   static final ThemeData darkTheme = ThemeData(
-    primaryColor: Colors.grey[850],
+    primaryColor: Colors.black,
+    // Colors.grey[850],
     primaryColorLight: Colors.red,
     unselectedWidgetColor: Color.fromARGB(255, 37, 37, 38),
     secondaryHeaderColor: Colors.black,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/home/presentation/views/widgets/custom_row_appbar.dart';
 import 'package:store_app/features/navigate_between_screens/presentation/views/widgets/myproducts_view_body.dart';
 
@@ -12,7 +13,10 @@ class MyProductsView extends StatelessWidget {
         actions: const [
           CustomRowAppBar(),
         ],
-        title: const Text('My Products'),
+        title: const Text(
+          'My Products',
+          style: TextStyle(color: TColor.primary2),
+        ),
       ),
       body: const MyProductsViewBody(),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/utils/colors.dart';
 
-import '../../../../../constants.dart';
 
 class PayButton extends StatelessWidget {
   const PayButton({
@@ -18,7 +18,7 @@ class PayButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(kPrimaryColor2),
+          backgroundColor: WidgetStateProperty.all(TColor.primary2),
           padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
           shape: WidgetStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),

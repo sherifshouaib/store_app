@@ -24,20 +24,26 @@ class SettingsListView extends StatelessWidget {
       "image": "assets/images/settings_notification.png",
       "base": 15
     },
-    {
+     {
       "index": "4",
+      "name": "Dart & Light mode",
+      "image": "assets/images/dark-theme-svgrepo-com.svg",
+      "base": -1
+    },
+    {
+      "index": "5",
       "name": "Inbox",
       "image": "assets/images/settings_inbox.png",
       "base": 0
     },
     {
-      "index": "5",
+      "index": "6",
       "name": "About Us",
       "image": "assets/images/settings_info.png",
       "base": 0
     },
     {
-      "index": "6",
+      "index": "7",
       "name": "Logout",
       "image": "assets/images/settings_info.png",
       "base": 0

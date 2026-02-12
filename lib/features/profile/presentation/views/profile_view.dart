@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/utils/colors.dart';
 
-import 'widgets/custom_text_button_icon.dart';
 import 'widgets/profile_view_body.dart';
 
 class ProfileView extends StatelessWidget {
@@ -8,7 +8,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  //  var bloc = context.read<ChangeThemeBloc>();
+    //  var bloc = context.read<ChangeThemeBloc>();
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -38,13 +38,14 @@ class ProfileView extends StatelessWidget {
           // SizedBox(
           //   width: 150,
           // ),
-          CustomTextButtonIcon(),
+        //  CustomTextButtonIcon(),
         ],
-        title: const Text('My Profile'),
+        title: const Text(
+          'My Profile',
+          style: TextStyle(color: TColor.primary2),
+        ),
       ),
       body: const ProfileViewBody(),
     );
   }
 }
-
-

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/core/utils/service_locator.dart';
+import 'package:store_app/core/DI/service_locator.dart';
 import 'package:store_app/features/auth/presentation/views/auth_selection_view.dart';
 import 'package:store_app/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:store_app/features/auth/presentation/views/login_view.dart';
@@ -14,6 +14,7 @@ import 'package:store_app/features/home/presentation/views/home_view.dart';
 import 'package:store_app/features/home/presentation/views/product_details_view.dart';
 import 'package:store_app/features/profile/presentation/views/profile_view.dart';
 import 'package:store_app/features/settings/presentation/views/about_us_view.dart';
+import 'package:store_app/features/settings/presentation/views/dark_and_light_mode_view.dart';
 import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
 import 'package:store_app/features/splash/presentation/views/splash_view.dart';
@@ -27,8 +28,10 @@ import '../../features/settings/presentation/views/notifications_view.dart';
 abstract class AppRouter {
   static const kMyOrderView = '/myOrderView';
   static const kNotificationsView = '/notificationsView';
+  static const kDarkAndLightModeView = '/darkAndLightModeView';
   static const kInboxView = '/inboxView';
   static const kAboutUsView = '/aboutUsView';
+
   static const kBottomNavigationPage = '/bottomNavigationPage';
   static const kAuthSelectionView = '/authSelection';
   static const kLoginView = '/loginView';
@@ -48,7 +51,6 @@ abstract class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      
       GoRoute(
         path: '/',
         builder: (context, state) => const SplashView(),
@@ -114,6 +116,10 @@ abstract class AppRouter {
       GoRoute(
         path: kNotificationsView,
         builder: (context, state) => const NotificationsView(),
+      ),
+      GoRoute(
+        path: kDarkAndLightModeView,
+        builder: (context, state) => const DarkAndLightModeView(),
       ),
       GoRoute(
         path: kInboxView,

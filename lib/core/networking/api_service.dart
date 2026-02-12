@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiService {
-  final _baseUrl = 'https://fakestoreapi.com/';
+  final _baseUrl = dotenv.env['BASEURL']!;
+  // 'https://fakestoreapi.com/';
   final Dio _dio;
 
   ApiService(this._dio);
@@ -13,7 +15,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> get2({required String endPoint}) async {
     var response = await _dio.get('$_baseUrl$endPoint');
-   // _dio.interceptors.add(DioFirebasePerformanceInterceptor());
+    // _dio.interceptors.add(DioFirebasePerformanceInterceptor());
     return response.data;
   }
 
@@ -29,7 +31,7 @@ class ApiService {
           contentType: contentType,
           headers: headers ?? {'Authorization': 'Bearer $token'},
         ));
-  //  _dio.interceptors.add(DioFirebasePerformanceInterceptor());
+    //  _dio.interceptors.add(DioFirebasePerformanceInterceptor());
 
     return response;
   }

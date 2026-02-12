@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/buttons/custom_button.dart';
-import 'package:store_app/core/utils/app_router.dart';
+import 'package:store_app/core/routing/app_router.dart';
 
 import 'custom_credit_card.dart';
 import 'payment_methods_list_view.dart';

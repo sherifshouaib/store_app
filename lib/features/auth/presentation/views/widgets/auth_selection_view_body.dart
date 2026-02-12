@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/buttons/custom_elevated_button.dart';
 import 'package:store_app/core/utils/colors.dart';
 
-import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 
 class AuthSelectionViewBody extends StatelessWidget {

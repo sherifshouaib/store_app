@@ -1,8 +1,5 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 
-import 'favorites_view.dart';
 import '../../../home/presentation/views/home_view.dart';
 import 'myproducts_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
@@ -16,10 +13,10 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
-  int myCurrentIndex = 2;
+  int myCurrentIndex = 1;
 
   List pages = const [
-    FavoritesView(),
+    //  FavoritesView(),
     MyProductsView(),
     HomeView(),
     SettingsView(),
@@ -45,8 +42,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           child: BottomNavigationBar(
             currentIndex: myCurrentIndex,
             backgroundColor: Colors.white,
-          //  selectedItemColor: const Color.fromARGB(255, 237, 19, 95),
-            selectedItemColor: const Color.fromARGB(255, 245, 81, 4),
+            //  selectedItemColor: const Color.fromARGB(255, 237, 19, 95),
+            selectedItemColor: Theme.of(context).secondaryHeaderColor,
+
+            // const Color.fromARGB(255, 245, 81, 4),
             unselectedItemColor: Colors.black,
             selectedFontSize: 12,
             showSelectedLabels: true,
@@ -57,9 +56,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
               });
             },
             items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite_border_outlined),
-                  label: 'Favourite'),
+              // BottomNavigationBarItem(
+              //     icon: Icon(Icons.favorite_border_outlined),
+              //     label: 'Favourite'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.add_shopping_cart), label: 'My Products'),
               BottomNavigationBarItem(
