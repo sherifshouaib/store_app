@@ -68,6 +68,24 @@ android {
         }
     }
 
+flavorDimensions "default"
+
+productFlavors {
+    development {
+        dimension "default"
+        applicationIdSuffix ".dev"
+        versionNameSuffix "-dev"
+        resValue "string", "app_name", "Amazooon Development"
+    }
+
+    production {
+        dimension "default"
+        // مفيش applicationIdSuffix عشان ده النسخة الأساسية
+        resValue "string", "app_name", "Amazooon Production"
+    }
+}
+
+
     signingConfigs {
         release {
             if (keystorePropertiesFile.exists()) {
