@@ -1,4 +1,4 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,7 +25,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
     initSlidingAnimation();
 
-    navigateToAuthSelection();
+    // navigateToAuthSelection();
+    _checkAuth();
   }
 
   @override
@@ -69,9 +70,31 @@ class _SplashViewBodyState extends State<SplashViewBody>
       //   transition: Transition.fade,
       //   duration: kTransitionDuration,
       // );
-      
+
       if (!mounted) return; // 🔥 مهم جدًا
       GoRouter.of(context).pushReplacement(AppRouter.kAuthSelectionView);
     });
+  }
+
+  void _checkAuth() async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (!mounted) return;
+
+    if (user != null) {
+      GoRouter.of(context).pushReplacement(
+        AppRouter.kHomeView,
+        // extra: ProductModel,
+      );
+      context.go(AppRouter.kHomeView);
+    } else {
+      GoRouter.of(context).pushReplacement(
+        AppRouter.kAuthSelectionView,
+        // extra: ProductModel,
+      );
+      //   Navigator.pushReplacementNamed(context, '/authSelection');
+    }
   }
 }
