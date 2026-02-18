@@ -8,7 +8,6 @@ import 'package:safe_device/safe_device.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/core/app_bloc/app_bloc.dart';
 import 'package:store_app/core/app_bloc/app_state.dart';
-import 'package:store_app/core/utils/api_keys.dart';
 import 'package:store_app/core/routing/app_router.dart';
 import 'package:store_app/core/theming/app_themes.dart';
 import 'package:store_app/core/utils/local_notification_service.dart';

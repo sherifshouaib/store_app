@@ -85,10 +85,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
     if (user != null) {
       GoRouter.of(context).pushReplacement(
-        AppRouter.kHomeView,
+        AppRouter.kBottomNavigationPage,
         // extra: ProductModel,
       );
-      context.go(AppRouter.kHomeView);
     } else {
       GoRouter.of(context).pushReplacement(
         AppRouter.kAuthSelectionView,
