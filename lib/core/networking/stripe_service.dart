@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:store_app/core/networking/api_service.dart';
+import 'package:store_app/core/storage_helper/storage_helper.dart';
 import 'package:store_app/features/checkout/data/models/ephemeral_key_model/ephemeral_key_model.dart';
 import 'package:store_app/features/checkout/data/models/payment_intent_input_model.dart';
 
@@ -18,7 +19,10 @@ class StripeService {
       url: dotenv.env['PAYMENTINTENTURL']!,
 
       // 'https://api.stripe.com/v1/payment_intents',
-      token: dotenv.env['SECRETKEY']!,
+      token: await StorageHelper.getSecretKey(),
+
+      // ApiKeys.secretKey,
+      // token: dotenv.env['SECRETKEY']!,
       // ApiKeys.secretKey
     );
 
@@ -70,12 +74,16 @@ class StripeService {
         url: dotenv.env['EPHEMERALKEYURL']!,
 
         // 'https://api.stripe.com/v1/ephemeral_keys',
-        token: dotenv.env['SECRETKEY']!,
+
+        token: await StorageHelper.getSecretKey(),
+        //  token: dotenv.env['SECRETKEY']!,
 
         // ApiKeys.secretKey,
 
         headers: {
-          'Authorization': "Bearer ${dotenv.env['SECRETKEY']!}",
+          'Authorization': "Bearer ${await StorageHelper.getSecretKey()}",
+
+          //  'Authorization': "Bearer ${dotenv.env['SECRETKEY']!}",
 
           // ${ApiKeys.secretKey}",
 
