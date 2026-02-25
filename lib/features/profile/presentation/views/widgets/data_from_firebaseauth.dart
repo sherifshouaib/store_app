@@ -17,17 +17,19 @@ class GetDataFromFirebaseAuth extends StatefulWidget {
 }
 
 class _GetDataFromFirebaseAuthState extends State<GetDataFromFirebaseAuth> {
-  final credential = FirebaseAuth.instance.currentUser;
-
   @override
   Widget build(BuildContext context) {
+    final credential = FirebaseAuth.instance.currentUser;
+    if (credential == null) {
+      return Center(child: Text("User not logged in"));
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
           height: 11,
         ),
-        CustomText(textinput: 'Email: ${credential!.email}'),
+        CustomText(textinput: 'Email: ${credential.email}'),
         const SizedBox(
           height: 11,
         ),
@@ -40,25 +42,32 @@ class _GetDataFromFirebaseAuthState extends State<GetDataFromFirebaseAuth> {
         ),
         CustomText(
           textinput:
-              'Last Signed In: ${DateFormat("MMMM d, y").format(credential!.metadata.lastSignInTime!)}',
+              'Last Signed In: ${DateFormat("MMMM d, y").format(credential.metadata.lastSignInTime!)}',
         ),
         const SizedBox(
           height: 22,
         ),
         Center(
           child: CustomTextButton(
-            onPressed: () {
-              setState(() {
-                CollectionReference users =
-                    FirebaseFirestore.instance.collection('usersss');
+            onPressed: () async {
+              final user = FirebaseAuth.instance.currentUser;
+              if (user == null) return; // آمن لو logout قبل ما يضغط
 
-                credential!.delete();
-                users.doc(credential!.uid).delete();
+              CollectionReference users =
+                  FirebaseFirestore.instance.collection('usersss');
 
-                GoRouter.of(context).pushReplacement(
-                  AppRouter.kLoginView,
+              try {
+                await users.doc(user.uid).delete();
+                await user.delete();
+
+                if (!mounted) return;
+                GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+              } catch (e) {
+                if (!mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Failed to delete account: $e")),
                 );
-              });
+              }
             },
             text2: 'Delete Account',
             fontSize: 18,

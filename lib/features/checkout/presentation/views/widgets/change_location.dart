@@ -19,8 +19,11 @@ class _ChangeLocationState extends State<ChangeLocation> {
   @override
   void initState() {
     super.initState();
-    final uid = FirebaseAuth.instance.currentUser!.uid;
-    context.read<ChangeLocationCubit>().loadLocation(uid);
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      context.read<ChangeLocationCubit>().loadLocation(user.uid);
+    }
   }
 
   @override

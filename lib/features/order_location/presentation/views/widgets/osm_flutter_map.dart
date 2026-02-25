@@ -5,9 +5,9 @@ class OSMFlutterMap extends StatefulWidget {
   const OSMFlutterMap({super.key, required this.controller});
 
   final MapController controller;
-  
-                          ///this widget was stls not stfl ,but i made it stfl to dispose controller 
-                          ///  
+
+  ///this widget was stls not stfl ,but i made it stfl to dispose controller
+  ///
   @override
   State<OSMFlutterMap> createState() => _OSMFlutterMapState();
 }

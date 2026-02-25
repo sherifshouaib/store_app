@@ -47,7 +47,7 @@ abstract class AppRouter {
   static const kMyCartView = '/myCartView';
   static const kPaymentDetailsView = '/paymentDetailsView';
   static const kThankYouView = '/thankyouview';
-  static const kGoogleMapsView = '/googlemapsview';
+ // static const kGoogleMapsView = '/googlemapsview';
 
   static final router = GoRouter(
     routes: [

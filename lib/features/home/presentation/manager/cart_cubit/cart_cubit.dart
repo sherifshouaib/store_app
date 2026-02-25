@@ -9,10 +9,12 @@ class CartCubit extends Cubit<CartState> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
 
-  String get userId => _auth.currentUser!.uid;
+  String? get userId => _auth.currentUser?.uid;
 
   /// 🟢 إضافة منتج + تحديث Firestore
   Future<void> addProductToCart(Map<String, dynamic> product) async {
+    final uid = userId;
+    if (uid == null) return;
     emit(state.copyWith(isLoading: true));
 
     try {
@@ -43,6 +45,8 @@ class CartCubit extends Cubit<CartState> {
 
   /// 🔴 حذف منتج + تحديث Firestore
   Future<void> removeProductFromCart(Map<String, dynamic> product) async {
+    final uid = userId;
+    if (uid == null) return;
     emit(state.copyWith(isLoading: true));
 
     try {
@@ -73,6 +77,9 @@ class CartCubit extends Cubit<CartState> {
 
   /// 📥 تحميل البيانات من Firestore عند بداية التشغيل
   Future<void> loadCart() async {
+    final uid = userId;
+    if (uid == null) return;
+
     emit(state.copyWith(isLoading: true));
     try {
       final snapshot = await _firestore
@@ -97,7 +104,4 @@ class CartCubit extends Cubit<CartState> {
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
   }
-
-
-  
 }
