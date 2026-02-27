@@ -68,22 +68,27 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    email = BlocProvider.of<AuthBloc>(context).email;
-    password = BlocProvider.of<AuthBloc>(context).password;
+   // email = BlocProvider.of<AuthBloc>(context).email;
+   // password = BlocProvider.of<AuthBloc>(context).password;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
-          isLoading = true;
+          setState(() {
+            isLoading = true;
+          });
         } else if (state is RegisterSuccess) {
           // GoRouter.of(context).push(
           //   AppRouter.kHomeView,
           // );
+          setState(() {
+            isLoading = false;
+          });
           showSnackBar(context, state.succMessage);
-
-          isLoading = false;
         } else if (state is RegisterFailure) {
+          setState(() {
+            isLoading = false;
+          });
           showSnackBar(context, state.errMessage);
-          isLoading = false;
         }
       },
       builder: (context, state) {
@@ -99,11 +104,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
 
-                    ProfilePictureDesignRegister(),
+                    //  ProfilePictureDesignRegister(),
 
                     const SizedBox(
                       height: 80,
@@ -123,65 +128,71 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     const SizedBox(
                       height: 12,
                     ),
-                    CustomFormTextField(
-                      onChanged: (data) {
-                        BlocProvider.of<AuthBloc>(context).username = data;
-                      },
-                      validator: (data) {
-                        if (data!.isEmpty) {
-                          return 'field is required';
-                        }
-                        return null;
-                      },
-                      texttype: TextInputType.text,
-                      textfieldmessage: 'Username',
-                      icon: const Icon(
-                        Icons.person,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomFormTextField(
-                      onChanged: (data) {
-                        BlocProvider.of<AuthBloc>(context).age = data;
-                      },
-                      validator: (data) {
-                        if (data!.isEmpty) {
-                          return 'field is required';
-                        }
-                        return null;
-                      },
-                      texttype: TextInputType.number,
-                      textfieldmessage: 'Age',
-                      icon: const Icon(
-                        Icons.watch_later,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomFormTextField(
-                      onChanged: (data) {
-                        BlocProvider.of<AuthBloc>(context).title = data;
-                      },
-                      validator: (data) {
-                        if (data!.isEmpty) {
-                          return 'field is required';
-                        }
-                        return null;
-                      },
-                      texttype: TextInputType.text,
-                      textfieldmessage: 'Title',
-                      icon: const Icon(Icons.person_outline),
-                    ),
 
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    // CustomFormTextField(
+                    //   onChanged: (data) {
+                    //     BlocProvider.of<AuthBloc>(context).username = data;
+                    //   },
+                    //   validator: (data) {
+                    //     if (data!.isEmpty) {
+                    //       return 'field is required';
+                    //     }
+                    //     return null;
+                    //   },
+                    //   texttype: TextInputType.text,
+                    //   textfieldmessage: 'Username',
+                    //   icon: const Icon(
+                    //     Icons.person,
+                    //   ),
+                    // ),
+
+                    // const SizedBox(
+                    //   height: 8,
+                    // ),
+
+                    // CustomFormTextField(
+                    //   onChanged: (data) {
+                    //     BlocProvider.of<AuthBloc>(context).age = data;
+                    //   },
+                    //   validator: (data) {
+                    //     if (data!.isEmpty) {
+                    //       return 'field is required';
+                    //     }
+                    //     return null;
+                    //   },
+                    //   texttype: TextInputType.number,
+                    //   textfieldmessage: 'Age',
+                    //   icon: const Icon(
+                    //     Icons.watch_later,
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 8,
+                    // ),
+                    // CustomFormTextField(
+                    //   onChanged: (data) {
+                    //     BlocProvider.of<AuthBloc>(context).title = data;
+                    //   },
+                    //   validator: (data) {
+                    //     if (data!.isEmpty) {
+                    //       return 'field is required';
+                    //     }
+                    //     return null;
+                    //   },
+                    //   texttype: TextInputType.text,
+                    //   textfieldmessage: 'Title',
+                    //   icon: const Icon(Icons.person_outline),
+                    // ),
+
+                    // const SizedBox(
+                    //   height: 8,
+                    // ),
                     CustomFormTextField(
                       onChanged: (data) {
-                        BlocProvider.of<AuthBloc>(context).email = data;
+                      //  BlocProvider.of<AuthBloc>(context).email = data;
+                    
+                        email = data.trim(); // ✅ خزنت القيمة هنا
+
                       },
                       validator: (data) {
                         return data!.contains(RegExp(
@@ -205,9 +216,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       },
                       obscureText: isVisible ? false : true,
                       onChanged: (data) {
+
+                      //  BlocProvider.of<AuthBloc>(context).password = data;
+                         password = data.trim(); // ✅ خزنت الباسورد هنا
                         onPasswordChanged(data);
 
-                        BlocProvider.of<AuthBloc>(context).password = data;
+                     
                       },
                       texttype: TextInputType.text,
                       textfieldmessage: 'Password',
@@ -307,6 +321,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   Future<void> registerValidation(BuildContext context) async {
     if (formKey.currentState!.validate()) {
+
+if (email == null || password == null) {
+      showSnackBar(context, "Enter email and password");
+      return;
+    }
+
       if (isPassword8Char == false ||
           isPasswordHas1Number == false ||
           hasUppercase == false ||
@@ -315,13 +335,13 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         showSnackBar(context, 'weak password');
         return;
       }
-      if (ProfilePictureDesignRegister.imgName == null ||
-          ProfilePictureDesignRegister.imgPath == null) {
-        showSnackBar(context, 'Upload Your Image');
-        return;
-      }
+      // if (ProfilePictureDesignRegister.imgName == null ||
+      //     ProfilePictureDesignRegister.imgPath == null) {
+      //   showSnackBar(context, 'Upload Your Image');
+      //   return;
+      // }
 
-      isLoading = true;
+      // isLoading = true;
       BlocProvider.of<AuthBloc>(context)
           .add(RegisterEvent(email: email!, password: password!));
       // try {
@@ -341,7 +361,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       // } catch (ex) {
       //   showSnackBar(context, 'there was an error');
       // }
-      isLoading = false;
+      // isLoading = false;
       debugPrint('$isLoading');
     } else {}
   }

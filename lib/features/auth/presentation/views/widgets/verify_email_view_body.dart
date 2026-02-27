@@ -71,7 +71,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
 
           if (!mounted) return;
 
-          GoRouter.of(context).push(
+          GoRouter.of(context).pushReplacement(
             AppRouter.kBottomNavigationPage,
           );
         }
@@ -141,7 +141,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
                     : null,
                 text: "Resend Email",
                 width: 170,
-                colorfill: TColor.primary,
+                colorfill: TColor.primary2,
               ),
 
               const SizedBox(height: 11),

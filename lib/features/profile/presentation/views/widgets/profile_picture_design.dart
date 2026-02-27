@@ -127,9 +127,9 @@ class _ProfilePictureDesignState
     final user = FirebaseAuth.instance.currentUser;
 
     // ✅ لو المستخدم logout
-    if (user == null) {
-      return const SizedBox();
-    }
+    // if (user == null) {
+    //   return const SizedBox();
+    // }
 
     return Container(
       padding: const EdgeInsets.all(5),

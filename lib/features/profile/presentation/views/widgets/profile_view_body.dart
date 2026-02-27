@@ -18,10 +18,10 @@ class ProfileViewBody extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          const ProfilePictureDesign(),
-          const SizedBox(
-            height: 10,
-          ),
+         // const ProfilePictureDesign(),
+          // const SizedBox(
+          //   height: 10,
+          // ),
           Padding(
             padding: const EdgeInsets.all(22),
             child: PersonalInformation(),

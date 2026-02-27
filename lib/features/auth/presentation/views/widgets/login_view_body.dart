@@ -39,47 +39,48 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is LoginLoading) {
-              isLoading = true;
+              setState(() => isLoading = true);
             } else if (state is LoginSuccess) {
-              // GoRouter.of(context).push(
-              //   AppRouter.kBottomNavigationPage,
-              // );
-              onLoginSuccess();
+              setState(() => isLoading = false);
 
-              GoRouter.of(context).push(
-                AppRouter.kVerifyEmailView,
-              );
-              isLoading = false;
+              onLoginSuccess();
+              GoRouter.of(context).push(AppRouter.kVerifyEmailView);
             } else if (state is LoginFailure) {
+              setState(() => isLoading = false);
+
               showSnackBar(context, state.errMessage);
-              isLoading = false;
             }
           },
         ),
         BlocListener<GoogleSignInCubit, GoogleSignInState>(
           listener: (context, state) {
             if (state is GoogleSignInLoading) {
-              // show loading
-              isLoading = true;
+              setState(() => isLoading = true);
             } else if (state is GoogleSignInSuccess) {
-              context.read<CartCubit>().loadCart();
+              setState(() => isLoading = false);
+
+              onLoginSuccess();
               GoRouter.of(context).push(AppRouter.kBottomNavigationPage);
-              isLoading = false;
             } else if (state is GoogleSignInFailure) {
+              setState(() => isLoading = false);
+
               showSnackBar(context, state.message);
-              isLoading = false;
             }
           },
         ),
         BlocListener<FacebookSignInCubit, FacebookSignInState>(
           listener: (context, state) {
-            if (state is FacebookSignInExecution) {
-              BlocProvider.of<FacebookSignInCubit>(context)
-                  .signInWithFacebook(context);
-              if (!mounted) return; // 🔥 مهم جدًا
-              GoRouter.of(context).push(
-                AppRouter.kBottomNavigationPage,
-              );
+            if (state is FacebookSignInLoading) {
+              setState(() => isLoading = true);
+            } else if (state is FacebookSignInSuccess) {
+              setState(() => isLoading = false);
+
+              onLoginSuccess();
+              GoRouter.of(context).push(AppRouter.kBottomNavigationPage);
+            } else if (state is FacebookSignInFailure) {
+              setState(() => isLoading = false);
+
+              showSnackBar(context, state.message);
             }
           },
         ),

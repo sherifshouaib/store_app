@@ -22,7 +22,7 @@ class PersonalInformation extends StatelessWidget {
       children: [
         const PersonalInformationContainer(),
         const GetDataFromFirebaseAuth(),
-        GetDataFromFirestore(documentId: credential.uid),
+      //  GetDataFromFirestore(documentId: credential.uid),
       ],
     );
   }

@@ -18,7 +18,7 @@ class FacebookSignInMethod extends StatelessWidget {
         onTap: () async {
           // await  signInWithFacebook(context);
           await BlocProvider.of<FacebookSignInCubit>(context)
-              .signInWithFacebook(context);
+              .signInWithFacebook();
           // GoRouter.of(context).push(
           //   AppRouter.kBottomNavigationPage,
           // );

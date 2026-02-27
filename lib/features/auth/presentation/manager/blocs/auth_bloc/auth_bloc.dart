@@ -12,7 +12,7 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  String? username, age, title, email, password;
+  String? username = '', age = '', title = '';
   //double price = 0;
 //  List<ProductModel> selectedProducts = [];
   // List<double> prices = [];
@@ -24,10 +24,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event is LoginEvent) {
         emit(LoginLoading());
         try {
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+          final credential =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: event.email,
             password: event.password,
           );
+
+          await ensureUserDocumentExists(credential.user!.uid);
+
           // debugPrint(FirebaseAuth.instance.currentUser!);
           // debugPrint(FirebaseAuth.instance.currentUser!.displayName);
           // debugPrint(FirebaseAuth.instance.currentUser!.email);
@@ -44,30 +48,77 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
       if (event is RegisterEvent) {
         emit(RegisterLoading());
+
+
+
         try {
-          final UserCredential credential =
+          final credential =
               await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: event.email,
             password: event.password,
           );
 
-          // Upload image to firebase storage
-          Reference storageRef = await uploadImageToFirebaseStorage();
+          // Reference storageRef = await uploadImageToFirebaseStorage();
+          // String urll = await storageRef.getDownloadURL();
 
-          // Get img url
-          String urll = await storageRef.getDownloadURL();
+          await ensureUserDocumentExists(credential.user!.uid);
 
-          debugPrint(credential.user!.uid);
-          uploadDataToFireStore(credential, urll);
+          // uploadDataToFireStore(credential
+          //     //  , urll
+          //     );
 
           emit(RegisterSuccess(succMessage: 'Success'));
         } on FirebaseAuthException catch (ex) {
+          // 🔥🔥🔥 لو الايميل موجود على Provider تاني
           if (ex.code == 'email-already-in-use') {
-            emit(RegisterFailure(errMessage: 'email already in use'));
+            final methods = await FirebaseAuth.instance
+                .fetchSignInMethodsForEmail(event.email); // 🔥 NEW
+
+            if (methods.contains('google.com')) {
+              emit(RegisterFailure(
+                  errMessage:
+                      'Email registered with Google. Use Google login.'));
+            } else if (methods.contains('facebook.com')) {
+              emit(RegisterFailure(
+                  errMessage:
+                      'Email registered with Facebook. Use Facebook login.'));
+            } else {
+              emit(RegisterFailure(errMessage: 'Email already registered.'));
+            }
           } else if (ex.code == 'weak-password') {
-            emit(RegisterFailure(errMessage: 'weak password'));
+            emit(RegisterFailure(errMessage: 'Weak password'));
           }
-        } catch (ex) {
+        }
+
+
+
+
+        // try {
+        //   final UserCredential credential =
+        //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        //     email: event.email,
+        //     password: event.password,
+        //   );
+
+        //   // Upload image to firebase storage
+        //   Reference storageRef = await uploadImageToFirebaseStorage();
+
+        //   // Get img url
+        //   String urll = await storageRef.getDownloadURL();
+
+        //   debugPrint(credential.user!.uid);
+        //   uploadDataToFireStore(credential, urll);
+
+        //   emit(RegisterSuccess(succMessage: 'Success'));
+        // } on FirebaseAuthException catch (ex) {
+        //   if (ex.code == 'email-already-in-use') {
+        //     emit(RegisterFailure(errMessage: 'email already in use'));
+        //   } else if (ex.code == 'weak-password') {
+        //     emit(RegisterFailure(errMessage: 'weak password'));
+        //   }
+        // }
+
+        catch (ex) {
           emit(
             RegisterFailure(errMessage: 'there was an error ,please try again'),
           );
@@ -84,31 +135,43 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     return storageRef;
   }
 
-  void uploadDataToFireStore(UserCredential credential, String urll) {
+  Future<void> ensureUserDocumentExists(String uid) async {
     CollectionReference users = FirebaseFirestore.instance.collection(
       'users',
     );
+    final userDoc =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
-    users
-        .doc(credential.user!.uid)
-        .collection('user')
-        .doc('userData')
-        .set({
-          'imgLink': urll,
-          'username': username,
-          'age': age,
-          'title': title,
-          'email': email,
-          'pass': password,
-          ///////////////////////////////
-          //  'price': price,
-          // 'selectedProductslength': 0,
-          // 'prices': prices,
-          // 'titles': titles,
-          // 'images': images,
-        })
-        .then((value) => debugPrint("User Added"))
-        .catchError((error) => debugPrint("Failed to add user: $error"));
+    if (!userDoc.exists) {
+      await users
+          .doc(uid)
+          .collection('user')
+          .doc('userData')
+          .set({
+            'imgLink': '',
+            'username': username,
+            'age': age,
+            'title': title,
+          })
+          .then((value) => debugPrint("User Added"))
+          .catchError((error) => debugPrint("Failed to add user: $error"));
+
+      await users.doc(uid).collection('cart').doc('cartData').set({
+        'products': [],
+        'totalPrice': 0.0,
+      });
+
+      await users.doc(uid).collection('order').doc('orderlocation').set({
+        "title": "",
+        "subtitle": "",
+      });
+    }
+  }
+
+  void uploadDataToFireStore(UserCredential credential) {
+    CollectionReference users = FirebaseFirestore.instance.collection(
+      'users',
+    );
 
     users
         .doc(credential.user!.uid)
@@ -130,18 +193,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           "subtitle": "",
         })
         .then((value) => debugPrint("orderlocation Added"))
-        .catchError((error) => debugPrint("Failed to add orderlocation: $error"));
+        .catchError(
+            (error) => debugPrint("Failed to add orderlocation: $error"));
   }
-
-  // @override
-  // void onTransition(Transition<AuthEvent, AuthState> transition) {
-  //   super.onTransition(transition);
-  //   debugPrint(transition);
-  // }
 }
-
-
-
 
 // import 'package:bloc/bloc.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
