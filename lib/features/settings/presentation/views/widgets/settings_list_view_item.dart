@@ -12,6 +12,7 @@ class SettingsListViewItem extends StatelessWidget {
 
   final Map mObj;
   final int countBase;
+  static final googleSignIn = GoogleSignIn();
 
   @override
   Widget build(BuildContext context) {
@@ -65,18 +66,15 @@ class SettingsListViewItem extends StatelessWidget {
           //     MaterialPageRoute(builder: (context) => const AboutUsView()));
 
           case "7":
-            final googleSignIn = GoogleSignIn();
-
             try {
               if (await googleSignIn.isSignedIn()) {
-                await googleSignIn.disconnect();
+                await googleSignIn.signOut();
+                // if (!context.mounted) return;
+
+                // GoRouter.of(context).go(AppRouter.kLoginView);
               }
 
               await FirebaseAuth.instance.signOut();
-
-              if (!context.mounted) return;
-
-              GoRouter.of(context).go(AppRouter.kLoginView);
             } catch (e) {
               debugPrint('Logout error: $e');
             }

@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/DI/service_locator.dart';
@@ -17,6 +21,8 @@ import 'package:store_app/features/settings/presentation/views/about_us_view.dar
 import 'package:store_app/features/settings/presentation/views/dark_and_light_mode_view.dart';
 import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
+import 'package:store_app/features/settings/presentation/views/settings_view.dart';
+import 'package:store_app/features/settings/presentation/views/widgets/settings_list_view_item.dart';
 import 'package:store_app/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/auth/presentation/views/verify_email_view.dart';
@@ -47,18 +53,74 @@ abstract class AppRouter {
   static const kMyCartView = '/myCartView';
   static const kPaymentDetailsView = '/paymentDetailsView';
   static const kThankYouView = '/thankyouview';
- // static const kGoogleMapsView = '/googlemapsview';
+  // static const kSettingsView = '/settingsView';
+
+  // static const kGoogleMapsView = '/googlemapsview';
+  static final _auth = FirebaseAuth.instance;
 
   static final router = GoRouter(
+    refreshListenable: GoRouterRefreshStream(
+      _auth.authStateChanges(),
+    ),
+    redirect: (context, state) {
+      final user = _auth.currentUser;
+      final isSplash = state.matchedLocation == '/';
+
+      final isAuthPage = state.matchedLocation == kLoginView ||
+          state.matchedLocation == kRegisterView ||
+          state.matchedLocation == kForgotPassView;
+
+      final isVerifyPage = state.matchedLocation == kVerifyEmailView;
+
+      // 🟣 اسمح للـ Splash تفتح دايمًا
+      if (isSplash) return null;
+
+      // 🔴 لو مفيش user
+      if (user == null) {
+        return isAuthPage ? null : kLoginView;
+      }
+
+      // 🟡 لو user موجود لكن الايميل مش متفعل
+      if (!user.emailVerified) {
+        return isVerifyPage ? null : kVerifyEmailView;
+      }
+
+      // 🟢 لو user متفعل
+      if (user.emailVerified && (isAuthPage || isVerifyPage)) {
+        return kBottomNavigationPage;
+      }
+
+      return null;
+    },
     routes: [
       GoRoute(
         path: '/',
         builder: (context, state) => const SplashView(),
       ),
-      GoRoute(
-        path: kPaymentDetailsView,
-        builder: (context, state) => const PaymentDetailsView(),
-      ),
+      // GoRoute(
+      //   path: kPaymentDetailsView,
+      //   builder: (context, state) => const PaymentDetailsView(),
+      // ),
+
+      // GoRoute(
+      //   path: kSettingsView,
+      //   builder: (context, state) => StreamBuilder(
+      //     stream: FirebaseAuth.instance.authStateChanges(),
+
+      //     builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+      //       final user = FirebaseAuth.instance.currentUser;
+
+      //       if ((user == null ||
+      //           SettingsListViewItem.googleSignIn.currentUser == null)) {
+      //         return const LoginView();
+      //       } else {
+      //         return const SettingsView();
+      //       }
+      //     },
+      //     //  child: const SettingsView()),
+      //   ),
+      // ),
+
       GoRoute(
         path: kThankYouView,
         builder: (context, state) => const ThankYouView(),
@@ -75,7 +137,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kVerifyEmailView,
-        builder: (context, state) => const VerifyEmailView(),
+        builder: (context, state) => VerifyEmailView(),
       ),
       GoRoute(
         path: kForgotPassView,
@@ -147,4 +209,21 @@ abstract class AppRouter {
       ),
     ],
   );
+}
+
+class GoRouterRefreshStream extends ChangeNotifier {
+  GoRouterRefreshStream(Stream<dynamic> stream) {
+    notifyListeners();
+    _subscription = stream.listen(
+      (dynamic _) => notifyListeners(),
+    );
+  }
+
+  late final StreamSubscription<dynamic> _subscription;
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 }

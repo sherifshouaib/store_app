@@ -5,7 +5,7 @@ import 'package:store_app/features/auth/presentation/views/widgets/verify_email_
 import 'package:store_app/features/navigate_between_screens/presentation/views/bottom_navigation_page_view.dart';
 
 class VerifyEmailView extends StatelessWidget {
-  const VerifyEmailView({super.key});
+   VerifyEmailView({super.key});
 
   static bool isEmailVerified = false;
   // bool canResendEmail = false;
@@ -57,19 +57,20 @@ class VerifyEmailView extends StatelessWidget {
   //   timer?.cancel();
   //   super.dispose();
   // }
+    final user = FirebaseAuth.instance.currentUser;
+   // user?.emailVerified ?? false;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        if (snapshot.hasData && VerifyEmailView.isEmailVerified) {
+        if (snapshot.hasData && user !=null && user!.emailVerified == true) {
           return const BottomNavigationPage();
-        } else if (snapshot.hasData && !VerifyEmailView.isEmailVerified) {
+        }  if (snapshot.hasData && user !=null && user!.emailVerified == false) {
           return const VerifyEmailViewBody();
-        } else {
-          return const LoginView();
-        }
+        } 
+        return const LoginView();
       },
     );
 

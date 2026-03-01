@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
-import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/no_logic_part.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/upper_body_login.dart';
@@ -44,7 +43,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               setState(() => isLoading = false);
 
               onLoginSuccess();
-              GoRouter.of(context).push(AppRouter.kVerifyEmailView);
+             // context.go(AppRouter.kVerifyEmailView);
+
+              // GoRouter.of(context).push(AppRouter.kVerifyEmailView);
             } else if (state is LoginFailure) {
               setState(() => isLoading = false);
 
@@ -60,7 +61,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               setState(() => isLoading = false);
 
               onLoginSuccess();
-              GoRouter.of(context).push(AppRouter.kBottomNavigationPage);
+              context.go(AppRouter.kBottomNavigationPage);
+
+              //GoRouter.of(context).push(AppRouter.kBottomNavigationPage);
             } else if (state is GoogleSignInFailure) {
               setState(() => isLoading = false);
 
@@ -68,22 +71,22 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             }
           },
         ),
-        BlocListener<FacebookSignInCubit, FacebookSignInState>(
-          listener: (context, state) {
-            if (state is FacebookSignInLoading) {
-              setState(() => isLoading = true);
-            } else if (state is FacebookSignInSuccess) {
-              setState(() => isLoading = false);
+        // BlocListener<FacebookSignInCubit, FacebookSignInState>(
+        //   listener: (context, state) {
+        //     if (state is FacebookSignInLoading) {
+        //       setState(() => isLoading = true);
+        //     } else if (state is FacebookSignInSuccess) {
+        //       setState(() => isLoading = false);
 
-              onLoginSuccess();
-              GoRouter.of(context).push(AppRouter.kBottomNavigationPage);
-            } else if (state is FacebookSignInFailure) {
-              setState(() => isLoading = false);
+        //       onLoginSuccess();
+        //       GoRouter.of(context).push(AppRouter.kBottomNavigationPage);
+        //     } else if (state is FacebookSignInFailure) {
+        //       setState(() => isLoading = false);
 
-              showSnackBar(context, state.message);
-            }
-          },
-        ),
+        //       showSnackBar(context, state.message);
+        //     }
+        //   },
+        // ),
       ],
       child: ModalProgressHUD(
         inAsyncCall: isLoading,
@@ -177,35 +180,4 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   onLoginSuccess() {
     context.read<CartCubit>().loadCart();
   }
-
-  // Future<void> loginUser() async {
-  //   UserCredential user = await FirebaseAuth.instance
-  //       .signInWithEmailAndPassword(email: email!, password: password!);
-  // }
-
-  // Future<UserCredential> signInWithFacebook(BuildContext context) async {
-  //   // Trigger the sign-in flow
-  //   final LoginResult loginResult = await FacebookAuth.instance.login( );
-
-  //   log(loginResult.accessToken!.tokenString.toString());
-  //   log(loginResult.message.toString());
-
-  //   // Create a credential from the access token
-  //   final OAuthCredential facebookAuthCredential =
-  //       FacebookAuthProvider.credential('${loginResult.accessToken?.tokenString}');
-
-  //   // GoRouter.of(context).push(
-  //   //   AppRouter.kBottomNavigationPage,
-  //   // );
-
-  //   //igned in, return the UserCredential
-  //   UserCredential userCredential = await FirebaseAuth.instance
-  //       .signInWithCredential(facebookAuthCredential);
-
-  //   log(userCredential.additionalUserInfo!.username.toString());
-  //   log(userCredential.user!.email.toString());
-  //   log(userCredential.user!.photoURL.toString());
-
-  //   return userCredential;
-  // }
 }

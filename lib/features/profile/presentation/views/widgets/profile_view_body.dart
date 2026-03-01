@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/features/profile/presentation/views/widgets/profile_picture_design.dart';
 import 'package:store_app/features/profile/presentation/views/widgets/developer_name.dart';
 
 import 'personal_information.dart';

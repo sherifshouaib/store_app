@@ -72,7 +72,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       // );
 
       if (!mounted) return; // 🔥 مهم جدًا
-      GoRouter.of(context).pushReplacement(AppRouter.kAuthSelectionView);
+      GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
     });
   }
 
@@ -90,7 +90,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       );
     } else {
       GoRouter.of(context).pushReplacement(
-        AppRouter.kAuthSelectionView,
+        AppRouter.kLoginView,
         // extra: ProductModel,
       );
       //   Navigator.pushReplacementNamed(context, '/authSelection');

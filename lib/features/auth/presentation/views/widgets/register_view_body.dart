@@ -5,7 +5,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/custom_row_sign.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/profile_picture_design_register.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
@@ -68,8 +67,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-   // email = BlocProvider.of<AuthBloc>(context).email;
-   // password = BlocProvider.of<AuthBloc>(context).password;
+    // email = BlocProvider.of<AuthBloc>(context).email;
+    // password = BlocProvider.of<AuthBloc>(context).password;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
@@ -189,10 +188,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     // ),
                     CustomFormTextField(
                       onChanged: (data) {
-                      //  BlocProvider.of<AuthBloc>(context).email = data;
-                    
-                        email = data.trim(); // ✅ خزنت القيمة هنا
+                        //  BlocProvider.of<AuthBloc>(context).email = data;
 
+                        email = data.trim(); // ✅ خزنت القيمة هنا
                       },
                       validator: (data) {
                         return data!.contains(RegExp(
@@ -216,12 +214,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       },
                       obscureText: isVisible ? false : true,
                       onChanged: (data) {
-
-                      //  BlocProvider.of<AuthBloc>(context).password = data;
-                         password = data.trim(); // ✅ خزنت الباسورد هنا
+                        //  BlocProvider.of<AuthBloc>(context).password = data;
+                        password = data.trim(); // ✅ خزنت الباسورد هنا
                         onPasswordChanged(data);
-
-                     
                       },
                       texttype: TextInputType.text,
                       textfieldmessage: 'Password',
@@ -299,9 +294,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     ),
                     CustomRowSign(
                       onPressed: () {
-                        GoRouter.of(context).push(
-                          AppRouter.kLoginView,
-                        );
+                        context.go(AppRouter.kLoginView);
                       },
                       text1: 'Already have an account ?',
                       text2: ' Login',
@@ -321,11 +314,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   Future<void> registerValidation(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-
-if (email == null || password == null) {
-      showSnackBar(context, "Enter email and password");
-      return;
-    }
+      if (email == null || password == null) {
+        showSnackBar(context, "Enter email and password");
+        return;
+      }
 
       if (isPassword8Char == false ||
           isPasswordHas1Number == false ||
