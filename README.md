@@ -8,7 +8,7 @@ The app is designed with a clean architecture approach and uses modern Flutter d
 
 The main goal of the application is to simulate a real-world online store where users can create accounts, explore products, add them to the cart, and complete purchases securely.
 
-# ✨ Features
+## ✨ Features
 
 - 🔐 Authentication
 
