@@ -1,4 +1,4 @@
-# store_app
+# store_app 🛍️
 
 Introduction
 
@@ -7,6 +7,80 @@ Store App is a modern e-commerce mobile application built using Flutter. The app
 The app is designed with a clean architecture approach and uses modern Flutter development practices such as BLoC state management, Firebase services, and dependency injection.
 
 The main goal of the application is to simulate a real-world online store where users can create accounts, explore products, add them to the cart, and complete purchases securely.
+
+# ✨ Features
+
+- 🔐 Authentication
+
+Login with Email & Password
+
+Login with Google and Facebook
+
+Email verification
+
+Forgot password functionality
+
+- 🚀 Onboarding Experience
+
+Splash Screen
+
+Two onboarding screens introducing the app
+
+Easy navigation to login or register
+
+- 🛒 Shopping Experience
+
+Browse products from the Home screen
+
+Promotional banners
+
+View Product Details
+
+- 🧺 Cart Management
+
+Add products to the cart
+
+Review cart items before checkout
+
+- 💳 Multiple Payment Methods
+
+PayPal
+
+Stripe
+
+Credit Card
+
+Amazon Pay
+
+Cash App Pay
+
+- 📍 Location Services
+
+Detect user location using Google Maps
+
+- 🔔 Notifications
+
+Local notifications confirming successful payments
+
+- 🎨 Theme Support
+
+Light Mode
+
+Dark Mode
+
+- 👤 Profile Management
+
+Upload or change profile image using Camera or Gallery
+
+Store image URL in Firebase Firestore
+
+View user account information
+
+Delete account
+
+Logout from settings
+
+
 
 ## Getting Started
 
