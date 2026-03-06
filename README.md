@@ -1,4 +1,4 @@
-# store_app 🛍️
+#store_app 🛍️
 
 Introduction
 
@@ -8,9 +8,9 @@ The app is designed with a clean architecture approach and uses modern Flutter d
 
 The main goal of the application is to simulate a real-world online store where users can create accounts, explore products, add them to the cart, and complete purchases securely.
 
-## ✨ Features
+##✨ Features
 
-### 🔐 Authentication
+###🔐 Authentication
 
 - Login with Email & Password
 
@@ -20,7 +20,7 @@ The main goal of the application is to simulate a real-world online store where 
 
 - Forgot password functionality
 
-### 🚀 Onboarding Experience
+###🚀 Onboarding Experience
 
 - Splash Screen
 
@@ -28,7 +28,7 @@ The main goal of the application is to simulate a real-world online store where 
 
 - Easy navigation to login or register
 
-### 🛒 Shopping Experience
+###🛒 Shopping Experience
 
 - Browse products from the Home screen
 
