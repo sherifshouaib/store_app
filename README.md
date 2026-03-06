@@ -1,6 +1,12 @@
 # store_app
 
-A new Flutter project.
+Introduction
+
+Store App is a modern e-commerce mobile application built using Flutter. The application provides a complete shopping experience that allows users to browse products, view product details, manage their cart, and complete payments using multiple payment methods.
+
+The app is designed with a clean architecture approach and uses modern Flutter development practices such as BLoC state management, Firebase services, and dependency injection.
+
+The main goal of the application is to simulate a real-world online store where users can create accounts, explore products, add them to the cart, and complete purchases securely.
 
 ## Getting Started
 
