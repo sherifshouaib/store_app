@@ -10,75 +10,75 @@ The main goal of the application is to simulate a real-world online store where 
 
 ## ✨ Features
 
-- 🔐 Authentication
+### 🔐 Authentication
 
-Login with Email & Password
+- Login with Email & Password
 
-Login with Google and Facebook
+- Login with Google and Facebook
 
-Email verification
+- Email verification
 
-Forgot password functionality
+- Forgot password functionality
 
-- 🚀 Onboarding Experience
+### 🚀 Onboarding Experience
 
-Splash Screen
+- Splash Screen
 
-Two onboarding screens introducing the app
+- Two onboarding screens introducing the app
 
-Easy navigation to login or register
+- Easy navigation to login or register
 
-- 🛒 Shopping Experience
+### 🛒 Shopping Experience
 
-Browse products from the Home screen
+- Browse products from the Home screen
 
-Promotional banners
+- Promotional banners
 
-View Product Details
+- View Product Details
 
-- 🧺 Cart Management
+### 🧺 Cart Management
 
-Add products to the cart
+- Add products to the cart
 
-Review cart items before checkout
+- Review cart items before checkout
 
-- 💳 Multiple Payment Methods
+### 💳 Multiple Payment Methods
 
-PayPal
+- PayPal
 
-Stripe
+- Stripe
 
-Credit Card
+- Credit Card
 
-Amazon Pay
+- Amazon Pay
 
-Cash App Pay
+- Cash App Pay
 
-- 📍 Location Services
+### 📍 Location Services
 
 Detect user location using Google Maps
 
-- 🔔 Notifications
+### 🔔 Notifications
 
-Local notifications confirming successful payments
+- Local notifications confirming successful payments
 
-- 🎨 Theme Support
+### 🎨 Theme Support
 
-Light Mode
+- Light Mode
 
-Dark Mode
+- Dark Mode
 
-- 👤 Profile Management
+### 👤 Profile Management
 
-Upload or change profile image using Camera or Gallery
+- Upload or change profile image using Camera or Gallery
 
-Store image URL in Firebase Firestore
+- Store image URL in Firebase Firestore
 
-View user account information
+- View user account information
 
-Delete account
+- Delete account
 
-Logout from settings
+- Logout from settings
 
 
 
