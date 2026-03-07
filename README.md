@@ -80,7 +80,6 @@ Detect user location using Google Maps
 
 - Logout from settings
 
-
 ## Image Project
 
 <div>
@@ -99,12 +98,8 @@ Detect user location using Google Maps
  <img src="https://github.com/user-attachments/assets/4dbabfb0-4899-42db-ad74-9f1bdf6c57c3" width="300">
  <img src="https://github.com/user-attachments/assets/be301cb5-46f9-4e56-a00f-4058d7efc7d5" width="300">
  <img src="https://github.com/user-attachments/assets/3813f968-f763-4f1f-87f9-e6e70240a495" width="300">
- <img src="https://github.com/user-attachments/assets/cfb89974-6363-41d0-abd2-bbcefd8f430c" width="300">
-
+ <img src="https://github.com/user-attachments/assets/c42b5cb8-16cb-45f8-9574-52f5b8d97f56" width="300">
 </div>
-
-
-
 
 
 ## 🛠 Tech Stack
@@ -251,6 +246,39 @@ flutter pub get
 3️⃣ Run the project
 ```bash
 flutter run
+```
+
+
+## 🏗 Project Architecture
+```
+lib
+│
+├── core
+│   ├── app_bloc
+│   ├── buttons
+│   ├── di
+│   ├── errors
+│   ├── networking
+│   ├── routing
+│   ├── storage_helper
+│   ├── theming
+│   ├── utils
+│   └── widgets
+│
+├── features
+│   ├── auth
+│   ├── home
+│   ├── checkout
+│   ├── navigation
+│   ├── onboarding
+│   ├── order_location
+│   ├── profile
+│   ├── security
+│   ├── settings
+│   └── splash
+│
+├── main_development.dart
+└── main_production.dart
 ```
 
 ## 📖 Usage
