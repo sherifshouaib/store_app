@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:store_app/features/home/data/models/product_model_firestore/product_firestore_model.dart';
 
-import '../../../data/models/product_model/product_model.dart';
 
 class CustomProductImage extends StatelessWidget {
   const CustomProductImage({
@@ -11,7 +11,7 @@ class CustomProductImage extends StatelessWidget {
     required this.widthh,
   });
 
-  final ProductModel product;
+  final ProductFirestoreModel product;
   final double heightt, widthh;
   @override
   Widget build(BuildContext context) {

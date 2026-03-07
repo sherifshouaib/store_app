@@ -12,14 +12,14 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: const HomeviewBody(),
-      // drawer: const Drawer(
-      //   child: DrawerBody(),
-      // ),
       appBar: AppBar(
         // backgroundColor: appbarGreen,
         title: const Text(
           "Home",
-          style: TextStyle(color: TColor.primary2),
+          style: TextStyle(
+            color: TColor.primary2,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         actions: const [CustomRowAppBar()],
       ),

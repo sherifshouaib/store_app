@@ -38,11 +38,14 @@ class ProfileView extends StatelessWidget {
           // SizedBox(
           //   width: 150,
           // ),
-        //  CustomTextButtonIcon(),
+          //  CustomTextButtonIcon(),
         ],
         title: const Text(
           'My Profile',
-          style: TextStyle(color: TColor.primary2),
+          style: TextStyle(
+            color: TColor.primary2,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: const ProfileViewBody(),

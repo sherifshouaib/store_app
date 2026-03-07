@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/routing/app_router.dart';
+import 'package:store_app/features/home/data/models/product_model_firestore/product_firestore_model.dart';
 
-import '../../../data/models/product_model/product_model.dart';
 import '../../manager/cart_cubit/cart_cubit.dart';
 import 'custom_product.image.dart';
 
@@ -16,7 +16,7 @@ class CustomCard extends StatelessWidget {
     required this.product,
   });
 
-  ProductModel product;
+  ProductFirestoreModel product;
   final int indexx;
   static int indexxx = 0;
 
@@ -69,7 +69,7 @@ class CustomCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          r"$" "${product.price.toString()}",
+                          r"$" "${product.price.round().toString()}",
                           style: const TextStyle(
                             fontSize: 16,
                           ),
@@ -132,7 +132,7 @@ class CustomCard extends StatelessWidget {
                           },
                           icon: const Icon(
                             Icons.add,
-                            color:  Colors.red,
+                            color: Colors.red,
                           ),
                         ),
                       ],

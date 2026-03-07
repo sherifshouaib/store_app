@@ -25,8 +25,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
     initSlidingAnimation();
 
-    // navigateToAuthSelection();
-    _checkAuth();
+    navigateToOnboarding();
+    //  _checkAuth();
   }
 
   @override
@@ -63,7 +63,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     animationController.forward();
   }
 
-  void navigateToAuthSelection() {
+  void navigateToOnboarding() {
     Future.delayed(const Duration(seconds: 2), () {
       // Get.to(
       //   () => const HomeView(),
@@ -72,7 +72,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       // );
 
       if (!mounted) return; // 🔥 مهم جدًا
-      GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+      context.go(AppRouter.kOnboardingView);
     });
   }
 

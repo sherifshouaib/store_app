@@ -37,7 +37,7 @@ class NoLogicPart extends StatelessWidget {
         ),
         CustomRowSign(
           onPressed: () {
-            context.go(AppRouter.kRegisterView);
+            context.push(AppRouter.kRegisterView);
           },
           text1: 'don\'t have an account ?',
           text2: ' Register',

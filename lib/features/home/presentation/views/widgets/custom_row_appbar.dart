@@ -44,7 +44,7 @@ class CustomRowAppBar extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 12),
-              child: Text("${state.totalPrice.round()}"),
+              child: Text("${state.totalPrice.round()} \$"),
             )
           ],
         );

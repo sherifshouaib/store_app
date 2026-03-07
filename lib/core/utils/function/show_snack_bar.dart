@@ -4,7 +4,7 @@ import 'package:store_app/core/utils/colors.dart';
 void showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      backgroundColor: TColor.primary,
+      backgroundColor: TColor.primary2,
       content: Text(message),
     ),
   );

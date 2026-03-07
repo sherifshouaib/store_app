@@ -15,7 +15,10 @@ class MyProductsView extends StatelessWidget {
         ],
         title: const Text(
           'My Products',
-          style: TextStyle(color: TColor.primary2),
+          style: TextStyle(
+            color: TColor.primary2,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: const MyProductsViewBody(),

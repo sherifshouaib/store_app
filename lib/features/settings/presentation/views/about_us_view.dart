@@ -12,8 +12,10 @@ class AboutUsView extends StatefulWidget {
 class _AboutUsViewState extends State<AboutUsView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: AboutUsViewBody(),
+    return SafeArea(
+      child: const Scaffold(
+        body: AboutUsViewBody(),
+      ),
     );
   }
 }

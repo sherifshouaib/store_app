@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/custom_row_sign.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/upper_body_login_reg.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
@@ -13,6 +14,7 @@ import 'row_passwordauth.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
+  static bool isRegReturn = false;
 
   @override
   State<RegisterViewBody> createState() => _RegisterViewBodyState();
@@ -108,22 +110,23 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     // ),
 
                     //  ProfilePictureDesignRegister(),
-
                     const SizedBox(
-                      height: 80,
+                      height: 60,
                     ),
-                    const Row(
-                      children: [
-                        Text(
-                          'REGISTER',
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+                    UpperBodyLoginReg(title: 'REGISTER'),
+
+                    // const Row(
+                    //   children: [
+                    //     Text(
+                    //       'REGISTER',
+                    //       style: TextStyle(
+                    //         fontSize: 24,
+                    //         color: Colors.black,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     const SizedBox(
                       height: 12,
                     ),
@@ -276,6 +279,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     CustomElevatedButton(
                       colorfill: TColor.primary2,
                       onPressed: () async {
+                        RegisterViewBody.isRegReturn = true;
                         await registerValidation(context);
                       },
                       text: 'Register',

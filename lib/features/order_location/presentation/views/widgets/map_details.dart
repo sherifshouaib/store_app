@@ -10,15 +10,14 @@ class MapDetails extends StatefulWidget {
 
   final MapController controller;
 
-                       ///this widget was stls not stfl ,but i made it stfl to dispose controller 
-  
+  ///this widget was stls not stfl ,but i made it stfl to dispose controller
+
   @override
   State<MapDetails> createState() => _MapDetailsState();
 }
 
 class _MapDetailsState extends State<MapDetails> {
-
-   @override
+  @override
   void initState() {
     super.initState();
   }
@@ -28,10 +27,11 @@ class _MapDetailsState extends State<MapDetails> {
     widget.controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.7,
+      height: MediaQuery.sizeOf(context).height * 0.67,
       child: Stack(
         children: [
           OSMFlutterMap(controller: widget.controller),

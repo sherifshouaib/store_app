@@ -1,0 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+
+class CustomBanner extends StatelessWidget {
+  const CustomBanner({
+    super.key,
+    required this.banner,
+  });
+
+  final String banner;
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: CachedNetworkImage(
+        //   height: 180,
+        width: 310,
+        imageUrl: banner,
+        fit: BoxFit.cover,
+        //  width: double.infinity,
+        errorWidget: (context, url, error) => const Icon(
+          Icons.error,
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+}

@@ -39,52 +39,74 @@ class GoogleSignInCubit extends Cubit<GoogleSignInState> {
         await ensureUserDocumentExists(userCredential.user!.uid);
         emit(GoogleSignInSuccess());
       }
-
     } on FirebaseAuthException catch (e) {
-
       if (e.code == 'need-password') {
         emit(GoogleSignInFailure(e.message ?? ""));
       } else {
         emit(GoogleSignInFailure(e.message ?? "Auth error"));
       }
     }
-  
-   
   }
 
   Future<void> ensureUserDocumentExists(String uid) async {
-    CollectionReference users = FirebaseFirestore.instance.collection(
-      'users',
-    );
-    final userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
+    final cartDoc = await userDoc.collection('cart').doc('cartData').get();
+    final userDataDoc = await userDoc.collection('user').doc('userData').get();
 
-    if (!userDoc.exists) {
-      await users
-          .doc(uid)
-          .collection('user')
-          .doc('userData')
-          .set({
-            'imgLink': '',
-            'username': username,
-            'age': age,
-            'title': title,
-          })
-          .then((value) => debugPrint("User Added"))
-          .catchError((error) => debugPrint("Failed to add user: $error"));
+    // CollectionReference users = FirebaseFirestore.instance.collection(
+    //   'users',
+    // );
+    // final userDoc =
+    //     await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
-      await users.doc(uid).collection('cart').doc('cartData').set({
+    // لو userData مش موجود → أنشئه
+    if (!userDataDoc.exists) {
+      await userDoc.collection('user').doc('userData').set({
+        'imgLink': '',
+        'username': username,
+      });
+    }
+
+    // لو cart مش موجود → أنشئ cart فارغ
+    if (!cartDoc.exists) {
+      await userDoc.collection('cart').doc('cartData').set({
         'products': [],
         'totalPrice': 0.0,
       });
+    }
 
-      await users.doc(uid).collection('order').doc('orderlocation').set({
+    // لو order location مش موجود → أنشئه
+    final orderDoc =
+        await userDoc.collection('order').doc('orderlocation').get();
+    if (!orderDoc.exists) {
+      await userDoc.collection('order').doc('orderlocation').set({
         "title": "",
         "subtitle": "",
       });
     }
+    // if (!userDoc.exists) {
+    //   await users
+    //       .doc(uid)
+    //       .collection('user')
+    //       .doc('userData')
+    //       .set({
+    //         'imgLink': '',
+    //         'username': username,
+    //        // 'age': age,
+    //      //   'title': title,
+    //       })
+    //       .then((value) => debugPrint("User Added"))
+    //       .catchError((error) => debugPrint("Failed to add user: $error"));
+
+    //   await users.doc(uid).collection('cart').doc('cartData').set({
+    //     'products': [],
+    //     'totalPrice': 0.0,
+    //   });
+
+    //   await users.doc(uid).collection('order').doc('orderlocation').set({
+    //     "title": "",
+    //     "subtitle": "",
+    //   });
+    // }
   }
-
- 
 }
-

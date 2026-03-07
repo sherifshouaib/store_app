@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/features/home/data/models/product_model/product_model.dart';
+import 'package:store_app/features/home/data/models/product_model_firestore/product_firestore_model.dart';
 import 'package:store_app/features/home/presentation/views/widgets/custom_product.image.dart';
 
 import 'custom_contain.dart';
@@ -9,7 +9,7 @@ class ProductDetailsViewBody extends StatefulWidget {
     super.key,
     required this.product,
   });
-  final ProductModel product;
+  final ProductFirestoreModel product;
 
   @override
   State<ProductDetailsViewBody> createState() => _ProductDetailsViewBodyState();

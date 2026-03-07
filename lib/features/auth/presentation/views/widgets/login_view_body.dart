@@ -6,7 +6,7 @@ import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/no_logic_part.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/upper_body_login.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/upper_body_login_reg.dart';
 
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/routing/app_router.dart';
@@ -17,6 +17,7 @@ import 'sign_in_methods.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
+  static bool isLoginReturn = false;
 
   @override
   State<LoginViewBody> createState() => _LoginViewBodyState();
@@ -42,8 +43,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             } else if (state is LoginSuccess) {
               setState(() => isLoading = false);
 
-              onLoginSuccess();
-             // context.go(AppRouter.kVerifyEmailView);
+              // onLoginSuccess();
+              // context.go(AppRouter.kVerifyEmailView);
 
               // GoRouter.of(context).push(AppRouter.kVerifyEmailView);
             } else if (state is LoginFailure) {
@@ -99,7 +100,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const UpperBodyLogin(),
+                  const UpperBodyLoginReg(
+                    title: 'LOGIN',
+                  ),
                   CustomFormTextField(
                     validator: (data) {
                       return data!.contains(RegExp(
@@ -154,6 +157,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     colorfill: TColor.primary2,
                     text: 'Login',
                     onPressed: () async {
+                      LoginViewBody.isLoginReturn = true;
                       if (formKey.currentState!.validate()) {
                         //  isLoading = true;
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/features/profile/presentation/views/widgets/developer_name.dart';
+import 'package:store_app/features/profile/presentation/views/widgets/profile_picture_design.dart';
 
 import 'personal_information.dart';
 
@@ -10,24 +11,24 @@ class ProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          // UserAccountDetails(),
-          const SizedBox(
-            height: 12,
-          ),
-         // const ProfilePictureDesign(),
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          Padding(
-            padding: const EdgeInsets.all(22),
-            child: PersonalInformation(),
-          ),
-          const DeveloperName(),
-        ],
-      ),
+    return Column(
+      children: [
+        // UserAccountDetails(),
+
+        const SizedBox(
+          height: 12,
+        ),
+        const ProfilePictureDesign(),
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(22),
+          child: PersonalInformation(),
+        ),
+        Spacer(),
+        const DeveloperName(),
+      ],
     );
   }
 }

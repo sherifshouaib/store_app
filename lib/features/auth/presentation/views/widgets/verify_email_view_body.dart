@@ -1,6 +1,3 @@
-
-
-
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/routing/app_router.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/views/verify_email_view.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/login_view_body.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/register_view_body.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/buttons/custom_text_button.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';
@@ -62,8 +61,7 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
         if (!mounted) return;
 
         setState(() {
-          VerifyEmailView.isEmailVerified =
-              refreshedUser.emailVerified;
+          VerifyEmailView.isEmailVerified = refreshedUser.emailVerified;
         });
 
         if (VerifyEmailView.isEmailVerified) {
@@ -134,23 +132,35 @@ class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 25),
-
               CustomElevatedButton(
-                onPressed: canResendEmail
-                    ? sendVerificationEmail
-                    : null,
+                onPressed: canResendEmail ? sendVerificationEmail : null,
                 text: "Resend Email",
                 width: 170,
                 colorfill: TColor.primary2,
               ),
-
               const SizedBox(height: 11),
-
               CustomTextButton(
-                onPressed: () {
+                onPressed: () async {
                   VerifyEmailViewBody.isSentCancel = true;
-                  timer?.cancel(); // 👈 نقفل التايمر قبل الخروج
-                  GoRouter.of(context).pop();
+                  await FirebaseAuth.instance.signOut();
+                    timer?.cancel(); // 👈 نقفل التايمر قبل الخروج
+
+                  // if (LoginViewBody.isLoginReturn) {
+                  //   LoginViewBody.isLoginReturn = false;
+                  //   VerifyEmailViewBody.isSentCancel = false;
+                  //   timer?.cancel(); // 👈 نقفل التايمر قبل الخروج
+
+                  //   context.go(AppRouter.kLoginView);
+                  // }
+                  // if (RegisterViewBody.isRegReturn) {
+                  //   RegisterViewBody.isRegReturn = false;
+                  //   VerifyEmailViewBody.isSentCancel = false;
+                  //   timer?.cancel(); // 👈 نقفل التايمر قبل الخروج
+
+                  //   context.go(AppRouter.kRegisterView);
+                  // }
+
+                  // GoRouter.of(context).pop();
                 },
                 text2: 'Cancel',
               ),

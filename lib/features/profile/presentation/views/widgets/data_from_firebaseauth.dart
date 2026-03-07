@@ -17,6 +17,40 @@ class GetDataFromFirebaseAuth extends StatefulWidget {
 }
 
 class _GetDataFromFirebaseAuthState extends State<GetDataFromFirebaseAuth> {
+  Future<void> deleteUserData(String uid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    final cartCollection =
+        firestore.collection('users').doc(uid).collection('cart');
+
+    final userCollection =
+        firestore.collection('users').doc(uid).collection('user');
+
+    final orderCollection =
+        firestore.collection('users').doc(uid).collection('order');
+
+    // delete cart docs
+    final cartDocs = await cartCollection.get();
+    for (var doc in cartDocs.docs) {
+      await doc.reference.delete();
+    }
+
+    // delete user docs
+    final userDocs = await userCollection.get();
+    for (var doc in userDocs.docs) {
+      await doc.reference.delete();
+    }
+
+    // delete order docs
+    final orderDocs = await orderCollection.get();
+    for (var doc in orderDocs.docs) {
+      await doc.reference.delete();
+    }
+
+    // delete main document
+    await firestore.collection('users').doc(uid).delete();
+  }
+
   @override
   Widget build(BuildContext context) {
     final credential = FirebaseAuth.instance.currentUser;
@@ -53,11 +87,13 @@ class _GetDataFromFirebaseAuthState extends State<GetDataFromFirebaseAuth> {
               final user = FirebaseAuth.instance.currentUser;
               if (user == null) return; // آمن لو logout قبل ما يضغط
 
-              CollectionReference users =
-                  FirebaseFirestore.instance.collection('usersss');
+              // CollectionReference users =
+              //     FirebaseFirestore.instance.collection('users');
 
               try {
-                await users.doc(user.uid).delete();
+                //  await users.doc(user.uid).delete();
+                await deleteUserData(user.uid);
+
                 await user.delete();
 
                 if (!mounted) return;

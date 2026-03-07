@@ -14,22 +14,18 @@ class ProfilePictureDesign extends StatefulWidget {
   const ProfilePictureDesign({super.key});
 
   @override
-  State<ProfilePictureDesign> createState() =>
-      _ProfilePictureDesignState();
+  State<ProfilePictureDesign> createState() => _ProfilePictureDesignState();
 }
 
-class _ProfilePictureDesignState
-    extends State<ProfilePictureDesign> {
-
+class _ProfilePictureDesignState extends State<ProfilePictureDesign> {
   final CollectionReference users =
-      FirebaseFirestore.instance.collection('usersss');
+      FirebaseFirestore.instance.collection('users');
 
   File? imgPath;
   String? imgName;
 
   Future<void> uploadImage2Screen(ImageSource source) async {
-    final pickedImg =
-        await ImagePicker().pickImage(source: source);
+    final pickedImg = await ImagePicker().pickImage(source: source);
 
     if (pickedImg == null) {
       debugPrint("No image selected");
@@ -38,8 +34,7 @@ class _ProfilePictureDesignState
 
     setState(() {
       imgPath = File(pickedImg.path);
-      imgName =
-          "${Random().nextInt(9999999)}${basename(pickedImg.path)}";
+      imgName = "${Random().nextInt(9999999)}${basename(pickedImg.path)}";
     });
 
     if (!mounted) return;
@@ -56,16 +51,19 @@ class _ProfilePictureDesignState
     }
 
     try {
-      final storageRef = FirebaseStorage.instance
-          .ref("users-images/$imgName");
+      final storageRef = FirebaseStorage.instance.ref("users-images/$imgName");
 
       await storageRef.putFile(imgPath!);
 
       final url = await storageRef.getDownloadURL();
 
-      await users.doc(user.uid).update({
+      await users.doc(user.uid).collection('user').doc('userData').update({
         "imgLink": url,
       });
+
+      // await users.doc(user.uid).update({
+      //   "imgLink": url,
+      // });
 
       debugPrint("Image uploaded successfully");
     } catch (e) {
@@ -82,13 +80,11 @@ class _ProfilePictureDesignState
           height: 170,
           width: double.infinity,
           child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: () async {
-                  await uploadImage2Screen(
-                      ImageSource.camera);
+                  await uploadImage2Screen(ImageSource.camera);
                   await _uploadToFirebase();
                 },
                 child: const Row(
@@ -102,14 +98,12 @@ class _ProfilePictureDesignState
               const SizedBox(height: 22),
               GestureDetector(
                 onTap: () async {
-                  await uploadImage2Screen(
-                      ImageSource.gallery);
+                  await uploadImage2Screen(ImageSource.gallery);
                   await _uploadToFirebase();
                 },
                 child: const Row(
                   children: [
-                    Icon(Icons.photo_outlined,
-                        size: 30),
+                    Icon(Icons.photo_outlined, size: 30),
                     SizedBox(width: 11),
                     Text('From Gallery'),
                   ],
@@ -135,8 +129,7 @@ class _ProfilePictureDesignState
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color:
-            Color.fromARGB(125, 78, 91, 110),
+        color: Color.fromARGB(125, 78, 91, 110),
       ),
       child: Stack(
         children: [
@@ -150,10 +143,8 @@ class _ProfilePictureDesignState
             bottom: -10,
             child: IconButton(
               onPressed: showModel,
-              icon:
-                  const Icon(Icons.add_a_photo),
-              color: const Color.fromARGB(
-                  255, 94, 115, 128),
+              icon: const Icon(Icons.add_a_photo),
+              color: const Color.fromARGB(255, 94, 115, 128),
             ),
           ),
         ],

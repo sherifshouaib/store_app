@@ -114,7 +114,7 @@ class _ProfilePictureDesignRegisterState
 
   @override
   Widget build(BuildContext context) {
-   // final user = FirebaseAuth.instance.currentUser;
+    // final user = FirebaseAuth.instance.currentUser;
 
     // if (user == null) {
     //   return const SizedBox(); // أو Container فاضي

@@ -9,6 +9,9 @@ import 'package:store_app/features/auth/presentation/views/auth_selection_view.d
 import 'package:store_app/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:store_app/features/auth/presentation/views/login_view.dart';
 import 'package:store_app/features/auth/presentation/views/register_view.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/login_view_body.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/register_view_body.dart';
+import 'package:store_app/features/auth/presentation/views/widgets/verify_email_view_body.dart';
 import 'package:store_app/features/checkout/presentation/views/my_cart_view.dart';
 import 'package:store_app/features/checkout/presentation/views/payment_details_view.dart';
 import 'package:store_app/features/checkout/presentation/views/thank_you_view.dart';
@@ -16,6 +19,7 @@ import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/product_details_cubit/product_details_cubit.dart';
 import 'package:store_app/features/home/presentation/views/home_view.dart';
 import 'package:store_app/features/home/presentation/views/product_details_view.dart';
+import 'package:store_app/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:store_app/features/profile/presentation/views/profile_view.dart';
 import 'package:store_app/features/settings/presentation/views/about_us_view.dart';
 import 'package:store_app/features/settings/presentation/views/dark_and_light_mode_view.dart';
@@ -53,6 +57,8 @@ abstract class AppRouter {
   static const kMyCartView = '/myCartView';
   static const kPaymentDetailsView = '/paymentDetailsView';
   static const kThankYouView = '/thankyouview';
+  static const kOnboardingView = '/onboardingView';
+
   // static const kSettingsView = '/settingsView';
 
   // static const kGoogleMapsView = '/googlemapsview';
@@ -65,6 +71,7 @@ abstract class AppRouter {
     redirect: (context, state) {
       final user = _auth.currentUser;
       final isSplash = state.matchedLocation == '/';
+      final isOnboarding = state.matchedLocation == kOnboardingView;
 
       final isAuthPage = state.matchedLocation == kLoginView ||
           state.matchedLocation == kRegisterView ||
@@ -73,10 +80,23 @@ abstract class AppRouter {
       final isVerifyPage = state.matchedLocation == kVerifyEmailView;
 
       // 🟣 اسمح للـ Splash تفتح دايمًا
-      if (isSplash) return null;
+      if (isSplash || isOnboarding) return null;
 
       // 🔴 لو مفيش user
       if (user == null) {
+        if (LoginViewBody.isLoginReturn) {
+          LoginViewBody.isLoginReturn = false;
+          VerifyEmailViewBody.isSentCancel = false;
+
+          return kLoginView;
+        }
+        if (RegisterViewBody.isRegReturn) {
+          RegisterViewBody.isRegReturn = false;
+          VerifyEmailViewBody.isSentCancel = false;
+
+          return kRegisterView;
+        }
+
         return isAuthPage ? null : kLoginView;
       }
 
@@ -129,6 +149,11 @@ abstract class AppRouter {
       GoRoute(
         path: kMyCartView,
         builder: (context, state) => const MyCartView(),
+      ),
+
+      GoRoute(
+        path: kOnboardingView,
+        builder: (context, state) => const OnboardingView(),
       ),
 
       GoRoute(

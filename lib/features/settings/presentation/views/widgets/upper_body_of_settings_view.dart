@@ -25,12 +25,12 @@ class UpperBodyOfSettingsView extends StatelessWidget {
           ),
           IconButtonNavigation(
             navigate: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MyOrderView(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const MyOrderView(),
+              //   ),
+              // );
             },
             navigationIcon: Image.asset(
               "assets/images/shopping_cart.png",

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 
-class UpperBodyLogin extends StatelessWidget {
-  const UpperBodyLogin({super.key});
+class UpperBodyLoginReg extends StatelessWidget {
+  const UpperBodyLoginReg({super.key, required this.title});
 
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,10 +28,10 @@ class UpperBodyLogin extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        const Row(
+        Row(
           children: [
             Text(
-              'LOGIN',
+              title,
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.black,

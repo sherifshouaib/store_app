@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
+
+// فى هذا ال file احنا مستخدمين الطريقتين ب dio و http عشان نقدر نستخدمهم فى ال repo بتاعنا و نختار اللى احنا عاوزينه فى ال repo
 class ApiService {
   final String _baseUrl = dotenv.env['BASEURL']!;
   final Dio _dio;

@@ -16,7 +16,8 @@ import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/aut
 import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
-import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
+import 'package:store_app/features/home/presentation/manager/banners_firestore_cubit/banners_firestore_cubit.dart';
+import 'package:store_app/features/home/presentation/manager/products_firestore_cubit/products_firestore_cubit.dart';
 import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
 import 'package:store_app/features/security/presentation/views/security_blocked_view.dart';
 
@@ -39,7 +40,7 @@ void main() async {
   setupServiceLocator();
   Stripe.publishableKey = dotenv.env['PUBLISHABLEKEY']!;
 
- // ApiKeys.publishableKey;
+  // ApiKeys.publishableKey;
   await Stripe.instance.applySettings();
 
   //Bloc.observer = SimpleBlocObserver();
@@ -65,8 +66,6 @@ class StoreApp extends StatefulWidget {
 }
 
 class _StoreAppState extends State<StoreApp> {
-//ChangeThemeBloc? changeThemeBloc;
-
   AppBloc? appBloc;
   bool _securityChecked = false;
 
@@ -108,44 +107,6 @@ class _StoreAppState extends State<StoreApp> {
     }
   }
 
-  // isJailBroken() async {
-  //   if (kIsWeb) {
-  //     // Web → تجاهل الفحص
-  //     return;
-  //   }
-  //   bool isJailBroken = await SafeDevice.isJailBroken;
-  //   // print(isJailBroken);
-  //   if (isJailBroken) {
-  //     showDialog(
-  //       context: context,
-  //       builder: (_) => AlertDialog(
-  //         title: Text('Security Warning'),
-  //         content: Text('This app cannot run on rooted devices'),
-  //       ),
-  //     );
-  //     exit(0);
-  //   }
-  // }
-
-  // isDeveloperOptionsEnabled() async {
-  //   if (kIsWeb) {
-  //     // Web → تجاهل الفحص
-  //     return;
-  //   }
-  //   bool isDevelopmentModeEnable = await SafeDevice.isDevelopmentModeEnable;
-
-  //   if (isDevelopmentModeEnable) {
-  //     showDialog(
-  //       context: context,
-  //       builder: (_) => AlertDialog(
-  //         title: Text('Security Warning'),
-  //         content: Text('This app cannot run on rooted devices'),
-  //       ),
-  //     );
-  //     exit(0);
-  //   }
-  // }
-
   @override
   void initState() {
     // isJailBroken();
@@ -162,29 +123,23 @@ class _StoreAppState extends State<StoreApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // BlocProvider(
+        //   create: (context) => ProductsCubit(
+        //     getIt.get<HomeRepoImpl>(),
+        //   )..getAllProducts(),
+        // ),
         BlocProvider(
-          create: (context) => ProductsCubit(
-            getIt.get<HomeRepoImpl>(),
-          )..getAllProducts(),
+          create: (_) => getIt<ProductsFirestoreCubit>()..fetchProducts(),
         ),
-        // BlocProvider(create: (context) => CounterCubit()),
-        // BlocProvider(create: (context) => LoginCubit()),
-        // BlocProvider(create: (context) => RegisterCubit()),
-        //  BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(
+          create: (_) => getIt<BannersFirestoreCubit>()..getBanners(),
+        ),
+
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
         BlocProvider(create: (context) => FacebookSignInCubit()),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(create: (context) => ChangeLocationCubit()),
-
-        // BlocProvider<AppBloc>(
-        //   create: (context) => AppBloc(theme!),
-        // ),
-
-        //  BlocProvider(create: (context) => ChangeLocationCubit()),
-
-        // BlocProvider<ChangeThemeBloc>(
-        //     create: (context) => ChangeThemeBloc(theme!)),
       ],
       child: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
@@ -199,9 +154,6 @@ class _StoreAppState extends State<StoreApp> {
             routerConfig: AppRouter.router,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
-
-            // theme: ThemeData.dark().copyWith(
-            //   scaffoldBackgroundColor: Colors.white,),
             darkTheme: AppTheme.darkTheme,
             themeMode:
                 appBloc!.theme == 'light' ? ThemeMode.light : ThemeMode.dark,

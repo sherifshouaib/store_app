@@ -26,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: event.password,
           );
 
-          await ensureUserDocumentExists(credential.user!.uid);
+          // await ensureUserDocumentExists(credential.user!.uid);
 
           emit(LoginSuccess());
         } on FirebaseAuthException catch (ex) {
@@ -102,64 +102,96 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> ensureUserDocumentExists(String uid) async {
-    CollectionReference users = FirebaseFirestore.instance.collection(
-      'users',
-    );
-    final userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
+    final cartDoc = await userDoc.collection('cart').doc('cartData').get();
+    final userDataDoc = await userDoc.collection('user').doc('userData').get();
 
-    if (!userDoc.exists) {
-      await users
-          .doc(uid)
-          .collection('user')
-          .doc('userData')
-          .set({
-            'imgLink': '',
-            'username': username,
-            'age': age,
-            'title': title,
-          })
-          .then((value) => debugPrint("User Added"))
-          .catchError((error) => debugPrint("Failed to add user: $error"));
+    // لو userData مش موجود → أنشئه
+    if (!userDataDoc.exists) {
+      await userDoc.collection('user').doc('userData').set({
+        'imgLink': '',
+        'username': username,
+      });
+    }
 
-      await users.doc(uid).collection('cart').doc('cartData').set({
+    // لو cart مش موجود → أنشئ cart فارغ
+    if (!cartDoc.exists) {
+      await userDoc.collection('cart').doc('cartData').set({
         'products': [],
         'totalPrice': 0.0,
       });
+    }
 
-      await users.doc(uid).collection('order').doc('orderlocation').set({
+    // لو order location مش موجود → أنشئه
+    final orderDoc =
+        await userDoc.collection('order').doc('orderlocation').get();
+    if (!orderDoc.exists) {
+      await userDoc.collection('order').doc('orderlocation').set({
         "title": "",
         "subtitle": "",
       });
     }
   }
 
-  void uploadDataToFireStore(UserCredential credential) {
-    CollectionReference users = FirebaseFirestore.instance.collection(
-      'users',
-    );
+  // Future<void> ensureUserDocumentExists(String uid) async {
+  //   CollectionReference users = FirebaseFirestore.instance.collection(
+  //     'users',
+  //   );
+  //   final userDoc =
+  //       await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
-    users
-        .doc(credential.user!.uid)
-        .collection('cart')
-        .doc('cartData')
-        .set({
-          'products': [],
-          'totalPrice': 0.0,
-        })
-        .then((value) => debugPrint("Cart Added"))
-        .catchError((error) => debugPrint("Failed to add cart: $error"));
+  //   if (!userDoc.exists) {
+  //     await users
+  //         .doc(uid)
+  //         .collection('user')
+  //         .doc('userData')
+  //         .set({
+  //           'imgLink': '',
+  //           'username': username,
+  //         //  'age': age,
+  //         //  'title': title,
+  //         })
+  //         .then((value) => debugPrint("User Added"))
+  //         .catchError((error) => debugPrint("Failed to add user: $error"));
 
-    users
-        .doc(credential.user!.uid)
-        .collection('order')
-        .doc('orderlocation')
-        .set({
-          "title": "",
-          "subtitle": "",
-        })
-        .then((value) => debugPrint("orderlocation Added"))
-        .catchError(
-            (error) => debugPrint("Failed to add orderlocation: $error"));
-  }
+  //     await users.doc(uid).collection('cart').doc('cartData').set({
+  //       'products': [],
+  //       'totalPrice': 0.0,
+  //     });
+
+  //     await users.doc(uid).collection('order').doc('orderlocation').set({
+  //       "title": "",
+  //       "subtitle": "",
+  //     });
+  //   }
+  // }
+
+  // void uploadDataToFireStore(UserCredential credential) {
+  //   CollectionReference users = FirebaseFirestore.instance.collection(
+  //     'users',
+  //   );
+
+  //   users
+  //       .doc(credential.user!.uid)
+  //       .collection('cart')
+  //       .doc('cartData')
+  //       .set({
+  //         'products': [],
+  //         'totalPrice': 0.0,
+  //       })
+  //       .then((value) => debugPrint("Cart Added"))
+  //       .catchError((error) => debugPrint("Failed to add cart: $error"));
+
+  //   users
+  //       .doc(credential.user!.uid)
+  //       .collection('order')
+  //       .doc('orderlocation')
+  //       .set({
+  //         "title": "",
+  //         "subtitle": "",
+  //       })
+  //       .then((value) => debugPrint("orderlocation Added"))
+  //       .catchError(
+  //           (error) => debugPrint("Failed to add orderlocation: $error"));
+  // }
 }

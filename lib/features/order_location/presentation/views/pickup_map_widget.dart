@@ -33,19 +33,21 @@ class _PickupMapWidgetState extends State<PickupMapWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(centerTitle: false, title: Text('Pick Up Location ')),
-      body: ListView(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
-        children: [
-          SearchTextField(controller: controller),
-          const SizedBox(height: 10),
-          MapDetails(controller: controller),
-          const SizedBox(height: 20),
-          SavedLocations(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(centerTitle: false, title: Text('Pick Up Location ')),
+        body: ListView(
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
+          children: [
+            SearchTextField(controller: controller),
+            const SizedBox(height: 10),
+            MapDetails(controller: controller),
+            const SizedBox(height: 20),
+            SavedLocations(),
+          ],
+        ),
       ),
     );
   }

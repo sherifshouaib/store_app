@@ -33,7 +33,12 @@ class MyCartViewBody extends StatelessWidget {
           const SizedBox(
             height: 18,
           ),
-          Image.asset('assets/images/basket_image.png'),
+          Image.asset(
+            'assets/images/paymentlogo.jpg',
+            height: 380,
+          ),
+
+          // Image.asset('assets/images/basket_image.png'),
           DataCartViewFromFireStore(),
           const SizedBox(
             height: 16,

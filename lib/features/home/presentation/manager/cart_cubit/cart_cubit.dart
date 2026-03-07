@@ -4,7 +4,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  CartCubit() : super(const CartState());
+  CartCubit() : super(const CartState()) {
+    _auth.authStateChanges().listen((user) {
+      if (user == null) {
+        emit(const CartState()); // reset
+      } else {
+        loadCart();
+      }
+    });
+  }
 
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
@@ -78,8 +86,10 @@ class CartCubit extends Cubit<CartState> {
   /// 📥 تحميل البيانات من Firestore عند بداية التشغيل
   Future<void> loadCart() async {
     final uid = userId;
-    if (uid == null) return;
-
+    if (uid == null) {
+      emit(const CartState());
+      return;
+    }
     emit(state.copyWith(isLoading: true));
     try {
       final snapshot = await _firestore
@@ -98,10 +108,13 @@ class CartCubit extends Cubit<CartState> {
           isLoading: false,
         ));
       } else {
-        emit(state.copyWith(isLoading: false));
+        emit(const CartState()); // ✅ مهم جدًا
       }
     } catch (e) {
-      emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
+      emit(state.copyWith(
+        isLoading: false,
+        errorMessage: e.toString(),
+      ));
     }
   }
 }
