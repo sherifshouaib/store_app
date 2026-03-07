@@ -83,7 +83,28 @@ Detect user location using Google Maps
 
 ## Image Project
 
-![image here] (file:///C:/Users/Ahmed%20Shouaib/Desktop/Screenshot_20260307_035541_Amazooon%20Production.jpg)
+<div>
+ <img src="https://github.com/user-attachments/assets/f074140e-f3b6-4679-a6d7-aab474d4f2ad" width="300">
+ <img src="https://github.com/user-attachments/assets/d8e6c15f-f951-48d9-8070-07b2233416df" width="300">
+ <img src="https://github.com/user-attachments/assets/117ea778-f1f8-4514-88e1-c0f31c84a486" width="300">
+ <img src="https://github.com/user-attachments/assets/c2708269-60de-40b2-82dc-322410629ce9" width="300">
+ <img src="https://github.com/user-attachments/assets/49b35151-0ca5-483a-a74c-d3f69ded2fe7" width="300">
+ <img src="https://github.com/user-attachments/assets/225aa98c-b25c-40db-91db-e471dd6c9cfc" width="300">
+ <img src="https://github.com/user-attachments/assets/5ffb4e8a-6623-4806-91fa-028f7da3b4f5" width="300">
+ <img src="https://github.com/user-attachments/assets/c20c216b-f79c-46e6-a338-763edc7f2c36" width="300">
+ <img src="https://github.com/user-attachments/assets/f56dc7a5-248d-4089-812d-82688166a137" width="300">
+ <img src="https://github.com/user-attachments/assets/b4e41533-cfe3-4ed1-9cbc-56ebcc7eebe4" width="300">
+ <img src="https://github.com/user-attachments/assets/3f65c157-7fbd-4d36-810c-1420696b741a" width="300">
+ <img src="https://github.com/user-attachments/assets/cb65d47a-a947-4c20-bb2f-a352e4b80cc6" width="300">
+ <img src="https://github.com/user-attachments/assets/4dbabfb0-4899-42db-ad74-9f1bdf6c57c3" width="300">
+ <img src="https://github.com/user-attachments/assets/be301cb5-46f9-4e56-a00f-4058d7efc7d5" width="300">
+ <img src="https://github.com/user-attachments/assets/3813f968-f763-4f1f-87f9-e6e70240a495" width="300">
+ <img src="https://github.com/user-attachments/assets/cfb89974-6363-41d0-abd2-bbcefd8f430c" width="300">
+
+</div>
+
+
+
 
 
 ## 🛠 Tech Stack
@@ -220,6 +241,7 @@ Media
 1️⃣ Clone the repository
 ```bash
 git clone https://github.com/your-username/store_app.git
+cd project
 ```
 
 2️⃣ Install dependencies
