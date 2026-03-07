@@ -111,7 +111,7 @@ Two networking approaches were implemented:
 
 This demonstrates the usage of different networking solutions in Flutter.
 
-🔐 Security & Configuration
+## 🔐 Security & Configuration
 
 Several techniques were used to improve security and protect sensitive information:
 
@@ -124,12 +124,12 @@ Used to keep API URLs and Stripe keys in environment variables so they are not e
 - safe_device
 Detects whether the device is rooted (Android) or jailbroken (iOS) to help protect the application from insecure environments.
 
-💾 Local Storage
+## 💾 Local Storage
 
 - SharedPreferences
 Used to store the selected theme (Dark / Light mode) locally on the device.
 
-📦 Additional Packages
+## 📦 Additional Packages
 Core
 
 - bloc
@@ -209,7 +209,8 @@ Media
 - image_picker
 
 
-🚀 Getting Started
+## 🚀 Getting Started
+
 1️⃣ Clone the repository
 ```bash
 git clone https://github.com/your-username/store_app.git
@@ -224,19 +225,28 @@ flutter pub get
 flutter run
 ```
 
-🔮 Future Improvements
+## 📖 Usage
+
+The Store App allows users to register or log in using Email & Password, Google, or Facebook. After authentication, users can browse products fetched from an API, view product details, add items to the cart, and complete purchases using multiple payment methods such as Stripe, PayPal, and Credit Card.
+
+Users can also manage their profile, upload or change their profile image, enable dark or light theme, and receive notifications confirming successful payments. The app also detects the user's location using maps to enhance the shopping experience.
+
+
+## 🔮 Future Improvements
 
 - Product search functionality
 
 - Product filtering
 
-- Order history
-
 - Admin dashboard
 
 - Push notifications using Firebase Cloud Messaging
 
-👨‍💻 Author
+## 🤝 Support
+
+If you encounter any issues or have questions about the project, please open an issue in this GitHub repository and I will be happy to help.
+
+## 👨‍💻 Author
 
 Sherif Shouaib
 
