@@ -23,11 +23,14 @@ class MyCartViewBody extends StatelessWidget {
             child: Text(
               "Delivery Address",
               textAlign: TextAlign.center,
-              style: TextStyle(color: TColor.secondaryText, fontSize: 12),
+              style: TextStyle(
+                  color: TColor.secondaryText,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(
-            height: 8,
+            height: 2,
           ),
           ChangeLocation(),
           const SizedBox(

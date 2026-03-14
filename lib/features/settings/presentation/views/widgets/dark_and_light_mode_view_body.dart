@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app/core/app_bloc/app_bloc.dart';
 import 'package:store_app/core/app_bloc/app_event.dart';
 import 'package:store_app/core/app_bloc/app_state.dart';
+import 'package:store_app/features/settings/presentation/views/widgets/middle_text_view.dart';
+import 'package:store_app/features/settings/presentation/views/widgets/upper_body_item.dart';
 
 class DarkAndLightModeViewBody extends StatelessWidget {
   const DarkAndLightModeViewBody({
@@ -16,11 +18,14 @@ class DarkAndLightModeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Choose how your Amazooon experience looks for this device'),
-        SizedBox(
-          height: 50,
+        const SizedBox(
+          height: 20,
         ),
-        Text('Dark Mode'),
+        UpperBodyItem(text: "Change Theme"),
+        const SizedBox(
+          height: 30,
+        ),
+        MiddleTextView(),
         BlocBuilder<AppBloc, AppState>(
           builder: (context, state) {
             return Switch(

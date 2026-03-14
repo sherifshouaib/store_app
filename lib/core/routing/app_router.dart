@@ -25,8 +25,6 @@ import 'package:store_app/features/settings/presentation/views/about_us_view.dar
 import 'package:store_app/features/settings/presentation/views/dark_and_light_mode_view.dart';
 import 'package:store_app/features/settings/presentation/views/inbox_view.dart';
 import 'package:store_app/features/settings/presentation/views/my_order_view.dart';
-import 'package:store_app/features/settings/presentation/views/settings_view.dart';
-import 'package:store_app/features/settings/presentation/views/widgets/settings_list_view_item.dart';
 import 'package:store_app/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/auth/presentation/views/verify_email_view.dart';
@@ -59,9 +57,6 @@ abstract class AppRouter {
   static const kThankYouView = '/thankyouview';
   static const kOnboardingView = '/onboardingView';
 
-  // static const kSettingsView = '/settingsView';
-
-  // static const kGoogleMapsView = '/googlemapsview';
   static final _auth = FirebaseAuth.instance;
 
   static final router = GoRouter(
@@ -117,45 +112,18 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashView(),
       ),
-      // GoRoute(
-      //   path: kPaymentDetailsView,
-      //   builder: (context, state) => const PaymentDetailsView(),
-      // ),
-
-      // GoRoute(
-      //   path: kSettingsView,
-      //   builder: (context, state) => StreamBuilder(
-      //     stream: FirebaseAuth.instance.authStateChanges(),
-
-      //     builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-      //       final user = FirebaseAuth.instance.currentUser;
-
-      //       if ((user == null ||
-      //           SettingsListViewItem.googleSignIn.currentUser == null)) {
-      //         return const LoginView();
-      //       } else {
-      //         return const SettingsView();
-      //       }
-      //     },
-      //     //  child: const SettingsView()),
-      //   ),
-      // ),
-
       GoRoute(
         path: kThankYouView,
         builder: (context, state) => const ThankYouView(),
       ),
-
       GoRoute(
         path: kMyCartView,
         builder: (context, state) => const MyCartView(),
       ),
-
       GoRoute(
         path: kOnboardingView,
         builder: (context, state) => const OnboardingView(),
       ),
-
       GoRoute(
         path: kProfileView,
         builder: (context, state) => const ProfileView(),
@@ -176,10 +144,6 @@ abstract class AppRouter {
         path: kRegisterView,
         builder: (context, state) => const RegisterView(),
       ),
-      // GoRoute(
-      //   path: '/',
-      //   builder: (context, state) => const BottomNavigationPage(),
-      // ),
       GoRoute(
         path: kBottomNavigationPage,
         builder: (context, state) => const BottomNavigationPage(),
@@ -227,9 +191,7 @@ abstract class AppRouter {
         path: kProductDetailsView,
         builder: (context, state) => BlocProvider(
           create: (context) => ProductDetailsCubit(getIt.get<HomeRepoImpl>()),
-          child: const ProductDetailsView(
-              //  product: state.extra as ProductModel,
-              ),
+          child: const ProductDetailsView(),
         ),
       ),
     ],

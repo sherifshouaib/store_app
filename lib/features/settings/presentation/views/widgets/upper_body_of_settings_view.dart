@@ -24,14 +24,7 @@ class UpperBodyOfSettingsView extends StatelessWidget {
                 fontWeight: FontWeight.w800),
           ),
           IconButtonNavigation(
-            navigate: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const MyOrderView(),
-              //   ),
-              // );
-            },
+            navigate: () {},
             navigationIcon: Image.asset(
               "assets/images/shopping_cart.png",
               width: 25,
