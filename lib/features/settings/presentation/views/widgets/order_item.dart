@@ -33,8 +33,8 @@ class OrderItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: CachedNetworkImage(
-              height: 100,
-              width: 85,
+              height: 90,
+              width: 80,
               imageUrl: product.image,
               errorWidget: (context, url, error) => const Icon(
                 Icons.error,
@@ -43,7 +43,7 @@ class OrderItem extends StatelessWidget {
             ),
           ),
           //  const Icon(Icons.shopping_bag_outlined, size: 32),
-          const SizedBox(width: 12),
+          const SizedBox(width: 27),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
