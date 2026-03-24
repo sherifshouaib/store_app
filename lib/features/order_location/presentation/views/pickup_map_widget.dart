@@ -4,7 +4,8 @@ import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import '../../../../core/utils/colors.dart';
 import 'widgets/map_details.dart';
 import 'widgets/search_text_field.dart';
-
+ 
+ 
 class PickupMapWidget extends StatefulWidget {
   const PickupMapWidget({super.key});
 
