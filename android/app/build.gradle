@@ -81,7 +81,7 @@ productFlavors {
     production {
         dimension "default"
         // مفيش applicationIdSuffix عشان ده النسخة الأساسية
-        resValue "string", "app_name", "Amazooon Production"
+        resValue "string", "app_name", "Amazooon"
     }
 }
 

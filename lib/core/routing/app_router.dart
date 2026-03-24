@@ -109,7 +109,7 @@ abstract class AppRouter {
     },
     routes: [
       GoRoute(
-        path: '/',
+        path: kSplashView,
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(

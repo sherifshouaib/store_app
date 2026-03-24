@@ -1,16 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:store_app/features/home/data/models/product_model_firestore/product_firestore_model.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem({
     super.key,
-    required this.productName,
-    required this.price,
     required this.status,
+    required this.product,
   });
 
-  final String productName;
-  final String price;
   final String status;
+  final ProductFirestoreModel product;
 
   Color getStatusColor() {
     if (status == "Delivered") {
@@ -30,14 +30,26 @@ class OrderItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.shopping_bag_outlined, size: 32),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: CachedNetworkImage(
+              height: 100,
+              width: 85,
+              imageUrl: product.image,
+              errorWidget: (context, url, error) => const Icon(
+                Icons.error,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          //  const Icon(Icons.shopping_bag_outlined, size: 32),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  productName,
+                  product.title,
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -46,7 +58,7 @@ class OrderItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  price,
+                  product.price.toString(),
                   style: TextStyle(color: Colors.black),
                 ),
                 const SizedBox(height: 6),
