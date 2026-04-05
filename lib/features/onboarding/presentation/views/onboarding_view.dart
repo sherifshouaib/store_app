@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/onboarding/data/models/onboarding_model.dart';
 import 'package:store_app/features/onboarding/presentation/views/widgets/bottom_button.dart';
 import 'package:store_app/features/onboarding/presentation/views/widgets/horizontal_scroll_slider.dart';

@@ -23,54 +23,38 @@ class _SpecialBannersState extends State<SpecialBanners> {
     }
   }
 
+  final List<String> banners = [
+    'assets/images/banners_images/banner1.webp',
+    'assets/images/banners_images/banner2.webp',
+    'assets/images/banners_images/banner3.webp',
+    'assets/images/banners_images/banner4.webp',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<BannersFirestoreCubit, BannersFirestoreState>(
-      listener: (context, state) {
-        if (state is BannersFirestoreSuccess) {
-          _preloadImages(state.banners);
-        }
-      },
-      builder: (context, state) {
-        if (state is BannersFirestoreLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        if (state is BannersFirestoreFailure) {
-          return Center(child: Text(state.errmessage));
-        }
-
-        if (state is BannersFirestoreSuccess) {
-          final banners = state.banners;
-
-          return Column(
-            children: [
-              CarouselSlider(
-                items: banners.map((banner) {
-                  return CustomBanner(banner: banner);
-                }).toList(),
-                options: CarouselOptions(
-                  height: 200,
-                  autoPlay: true,
-                  viewportFraction: 1,
-                  autoPlayInterval: const Duration(seconds: 3),
-                  // autoPlayAnimationDuration: const Duration(milliseconds: 600),
-                  // enlargeCenterPage: false,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                ),
-              ),
-              const SizedBox(height: 10),
-              AnimationSliderDot(banners: banners, currentIndex: currentIndex)
-            ],
-          );
-        }
-
-        return const SizedBox();
-      },
+    return Column(
+      children: [
+        CarouselSlider(
+          items: banners.map((banner) {
+            return CustomBanner(banner: banner);
+          }).toList(),
+          options: CarouselOptions(
+            height: 200,
+            autoPlay: true,
+            viewportFraction: 1,
+            autoPlayInterval: const Duration(seconds: 3),
+            // autoPlayAnimationDuration: const Duration(milliseconds: 600),
+            // enlargeCenterPage: false,
+            onPageChanged: (index, reason) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+          ),
+        ),
+        const SizedBox(height: 10),
+        AnimationSliderDot(banners: banners, currentIndex: currentIndex)
+      ],
     );
   }
 }

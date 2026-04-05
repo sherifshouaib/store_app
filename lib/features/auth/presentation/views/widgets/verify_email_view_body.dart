@@ -5,8 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/routing/app_router.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/auth/presentation/views/verify_email_view.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/login_view_body.dart';
-import 'package:store_app/features/auth/presentation/views/widgets/register_view_body.dart';
 import '../../../../../core/buttons/custom_elevated_button.dart';
 import '../../../../../core/buttons/custom_text_button.dart';
 import '../../../../../core/utils/function/show_snack_bar.dart';

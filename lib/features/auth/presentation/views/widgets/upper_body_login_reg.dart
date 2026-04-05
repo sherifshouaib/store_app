@@ -18,7 +18,7 @@ class UpperBodyLoginReg extends StatelessWidget {
           height: 150,
         ),
         const Text(
-          'AMAZON',
+          'SHOPYRA',
           style: TextStyle(
             fontSize: 32,
             color: Colors.black,

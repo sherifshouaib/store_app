@@ -1,7 +1,7 @@
   
   <resources>
 
-  <string name= "app_name">store app</string>
+  <string name= "app_name">Shopyra</string>
 <string name="fb_login_protocol_scheme">fb1374168653809897</string>
 
     <string name="facebook_app_id">722894997573197</string>

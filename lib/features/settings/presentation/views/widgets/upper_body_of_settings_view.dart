@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/buttons/icon_button_navigation.dart';
 import '../../../../../core/utils/colors.dart';
-import '../my_order_view.dart';
 
 class UpperBodyOfSettingsView extends StatelessWidget {
   const UpperBodyOfSettingsView({

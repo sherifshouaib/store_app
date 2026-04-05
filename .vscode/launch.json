@@ -4,7 +4,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Amazooon Development",
+            "name": "Shopyra Development",
             "request": "launch",
             "type": "dart",
             "program": "lib/main_development.dart",
@@ -12,7 +12,7 @@
 
         },
         {
-            "name": "Amazooon Production",
+            "name": "Shopyra",
             "request": "launch",
             "type": "dart",
             "program": "lib/main_production.dart",

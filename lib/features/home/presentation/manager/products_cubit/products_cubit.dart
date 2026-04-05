@@ -14,7 +14,7 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   Future<void> getAllProducts() async {
     emit(ProductsLoading());
-
+//////
     var result = await homeRepo.getAllProducts();
 
     result.fold((failure){

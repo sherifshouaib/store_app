@@ -19,10 +19,10 @@ import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/products_cubit/products_cubit.dart';
 import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
 import 'package:store_app/features/security/presentation/views/security_blocked_view.dart';
+import 'package:store_app/firebase_options_prod.dart';
 
 import 'core/app_bloc/app_event.dart';
 import 'features/home/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'firebase_options.dart';
 
 String? theme;
 void main() async {

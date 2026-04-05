@@ -15,15 +15,14 @@ import 'package:store_app/core/DI/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
-import 'package:store_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:store_app/features/home/presentation/manager/banners_firestore_cubit/banners_firestore_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_firestore_cubit/products_firestore_cubit.dart';
 import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
 import 'package:store_app/features/security/presentation/views/security_blocked_view.dart';
+import 'package:store_app/firebase_options_prod.dart';
 
 import 'core/app_bloc/app_event.dart';
 import 'features/home/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'firebase_options.dart';
 
 String? theme;
 void main() async {
@@ -33,9 +32,12 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 //  String theme;
   theme = prefs.getString('theme') ?? 'light';
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
 
   setupServiceLocator();
   Stripe.publishableKey = dotenv.env['PUBLISHABLEKEY']!;

@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "181086195492",
+    "project_id": "shopyra-app",
+    "storage_bucket": "shopyra-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181086195492:android:0f2203f03a4274a7916db1",
+        "android_client_info": {
+          "package_name": "com.sherifshouaib.shopyra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181086195492-3jt1r6bgh4kqbp88debi5u19cbve2ssh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sherifshouaib.shopyra",
+            "certificate_hash": "932d7fc73af8524f8d96ff04fff5c2b40488b015"
+          }
+        },
+        {
+          "client_id": "181086195492-3qo90ctaecqmb7nn178mvda64mttnagr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sherifshouaib.shopyra",
+            "certificate_hash": "69a78373326efc408cd5515e236ea54f7ef76e5c"
+          }
+        },
+        {
+          "client_id": "181086195492-7o9g2i4gt07e0eksjc5je0j6kep5fbfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9m-pmOZOnSlfPypQsVnkSi1-m79NKRLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181086195492-70gg2plfbabnqmj5veco636s3m0pc27i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "181086195492-i7c0doe8idfa22gj8bbpo89qnnters1b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sherifshouaib.shopyra"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

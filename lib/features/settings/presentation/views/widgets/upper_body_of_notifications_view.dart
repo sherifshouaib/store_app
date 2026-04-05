@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/features/settings/presentation/views/widgets/upper_body_item.dart';
 
-import '../../../../../core/utils/colors.dart';
 
 class UpperBodyOfNotificationsView extends StatelessWidget {
   const UpperBodyOfNotificationsView({

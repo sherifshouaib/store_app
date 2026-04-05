@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:store_app/features/home/data/models/banner_firestore_model.dart/banner_firestore_model.dart';
 import 'package:store_app/features/home/data/models/product_model_firestore/product_firestore_model.dart';
 
 class DataRepositoryFirestore {

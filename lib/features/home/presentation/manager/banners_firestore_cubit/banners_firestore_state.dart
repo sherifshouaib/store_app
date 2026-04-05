@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:store_app/features/home/data/models/banner_firestore_model.dart/banner_firestore_model.dart';
 
 abstract class BannersFirestoreState extends Equatable {
   @override

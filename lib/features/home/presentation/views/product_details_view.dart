@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store_app/features/home/presentation/manager/product_details_cubit/product_details_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_firestore_cubit/products_firestore_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_firestore_cubit/products_firestore_state.dart';
 import 'package:store_app/features/home/presentation/views/widgets/custom_card.dart';

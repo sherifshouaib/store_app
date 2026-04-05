@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:store_app/features/auth/presentation/views/login_view.dart';
 import 'package:store_app/features/auth/presentation/views/widgets/verify_email_view_body.dart';
-import 'package:store_app/features/navigate_between_screens/presentation/views/bottom_navigation_page_view.dart';
 
 class VerifyEmailView extends StatelessWidget {
   VerifyEmailView({super.key});
