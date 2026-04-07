@@ -42,7 +42,6 @@ class OrderItem extends StatelessWidget {
               ),
             ),
           ),
-          //  const Icon(Icons.shopping_bag_outlined, size: 32),
           const SizedBox(width: 27),
           Expanded(
             child: Column(

@@ -15,7 +15,6 @@ class DataCartViewFromFireStore extends StatelessWidget {
       builder: (context, state) {
         final String subTotal = "${(state.totalPrice.round().toString())}\$";
 
-        //  final num rawPrice = state.totalPrice ?? 0; // يقبل int أو double
         final double price = state.totalPrice.roundToDouble();
         final String total =
             price == 0 ? "0" : "\$${(price + 8).round().toString()}";

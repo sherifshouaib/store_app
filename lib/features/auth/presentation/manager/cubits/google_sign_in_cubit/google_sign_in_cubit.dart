@@ -52,12 +52,6 @@ class GoogleSignInCubit extends Cubit<GoogleSignInState> {
     final cartDoc = await userDoc.collection('cart').doc('cartData').get();
     final userDataDoc = await userDoc.collection('user').doc('userData').get();
 
-    // CollectionReference users = FirebaseFirestore.instance.collection(
-    //   'users',
-    // );
-    // final userDoc =
-    //     await FirebaseFirestore.instance.collection('users').doc(uid).get();
-
     // لو userData مش موجود → أنشئه
     if (!userDataDoc.exists) {
       await userDoc.collection('user').doc('userData').set({
@@ -83,29 +77,5 @@ class GoogleSignInCubit extends Cubit<GoogleSignInState> {
         "subtitle": "",
       });
     }
-    // if (!userDoc.exists) {
-    //   await users
-    //       .doc(uid)
-    //       .collection('user')
-    //       .doc('userData')
-    //       .set({
-    //         'imgLink': '',
-    //         'username': username,
-    //        // 'age': age,
-    //      //   'title': title,
-    //       })
-    //       .then((value) => debugPrint("User Added"))
-    //       .catchError((error) => debugPrint("Failed to add user: $error"));
-
-    //   await users.doc(uid).collection('cart').doc('cartData').set({
-    //     'products': [],
-    //     'totalPrice': 0.0,
-    //   });
-
-    //   await users.doc(uid).collection('order').doc('orderlocation').set({
-    //     "title": "",
-    //     "subtitle": "",
-    //   });
-    // }
   }
 }

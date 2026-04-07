@@ -4,7 +4,6 @@ import 'package:store_app/features/profile/presentation/views/widgets/data_from_
 
 import 'personal_information_container.dart';
 
-
 class PersonalInformation extends StatelessWidget {
   const PersonalInformation({super.key});
 
@@ -21,27 +20,7 @@ class PersonalInformation extends StatelessWidget {
       children: [
         const PersonalInformationContainer(),
         const GetDataFromFirebaseAuth(),
-      //  GetDataFromFirestore(documentId: credential.uid),
       ],
     );
   }
 }
-
-// class PersonalInformation extends StatelessWidget {
-//   PersonalInformation({
-//     super.key,
-//   });
-//   final credential = FirebaseAuth.instance.currentUser;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         const PersonalInformationContainer(),
-//         const GetDataFromFirebaseAuth(),
-//         GetDataFromFirestore(documentId: credential!.uid),
-//       ],
-//     );
-//   }
-// }

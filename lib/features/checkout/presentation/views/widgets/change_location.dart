@@ -103,10 +103,6 @@ class WithLocationDelivery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final double price = state.totalPrice.roundToDouble();
-    //   final String total =
-    //       price == 0 ? "0" : "\$${(price + 8).round().toString()}";
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [

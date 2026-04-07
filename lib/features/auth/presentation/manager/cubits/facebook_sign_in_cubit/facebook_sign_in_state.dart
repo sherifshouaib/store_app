@@ -21,6 +21,5 @@ final class FacebookSignInFailure extends FacebookSignInState {
 
 
 
-//final class FacebookSignInExecution extends FacebookSignInState {}
 
 

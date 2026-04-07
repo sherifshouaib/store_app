@@ -43,10 +43,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             } else if (state is LoginSuccess) {
               setState(() => isLoading = false);
 
-              // onLoginSuccess();
-              // context.go(AppRouter.kVerifyEmailView);
-
-              // GoRouter.of(context).push(AppRouter.kVerifyEmailView);
             } else if (state is LoginFailure) {
               setState(() => isLoading = false);
 

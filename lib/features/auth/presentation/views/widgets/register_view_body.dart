@@ -69,8 +69,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    // email = BlocProvider.of<AuthBloc>(context).email;
-    // password = BlocProvider.of<AuthBloc>(context).password;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
@@ -78,9 +76,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             isLoading = true;
           });
         } else if (state is RegisterSuccess) {
-          // GoRouter.of(context).push(
-          //   AppRouter.kHomeView,
-          // );
           setState(() {
             isLoading = false;
           });
@@ -105,94 +100,15 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // const SizedBox(
-                    //   height: 20,
-                    // ),
-
-                    //  ProfilePictureDesignRegister(),
                     const SizedBox(
                       height: 60,
                     ),
                     UpperBodyLoginReg(title: 'REGISTER'),
-
-                    // const Row(
-                    //   children: [
-                    //     Text(
-                    //       'REGISTER',
-                    //       style: TextStyle(
-                    //         fontSize: 24,
-                    //         color: Colors.black,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                     const SizedBox(
                       height: 12,
                     ),
-
-                    // CustomFormTextField(
-                    //   onChanged: (data) {
-                    //     BlocProvider.of<AuthBloc>(context).username = data;
-                    //   },
-                    //   validator: (data) {
-                    //     if (data!.isEmpty) {
-                    //       return 'field is required';
-                    //     }
-                    //     return null;
-                    //   },
-                    //   texttype: TextInputType.text,
-                    //   textfieldmessage: 'Username',
-                    //   icon: const Icon(
-                    //     Icons.person,
-                    //   ),
-                    // ),
-
-                    // const SizedBox(
-                    //   height: 8,
-                    // ),
-
-                    // CustomFormTextField(
-                    //   onChanged: (data) {
-                    //     BlocProvider.of<AuthBloc>(context).age = data;
-                    //   },
-                    //   validator: (data) {
-                    //     if (data!.isEmpty) {
-                    //       return 'field is required';
-                    //     }
-                    //     return null;
-                    //   },
-                    //   texttype: TextInputType.number,
-                    //   textfieldmessage: 'Age',
-                    //   icon: const Icon(
-                    //     Icons.watch_later,
-                    //   ),
-                    // ),
-                    // const SizedBox(
-                    //   height: 8,
-                    // ),
-                    // CustomFormTextField(
-                    //   onChanged: (data) {
-                    //     BlocProvider.of<AuthBloc>(context).title = data;
-                    //   },
-                    //   validator: (data) {
-                    //     if (data!.isEmpty) {
-                    //       return 'field is required';
-                    //     }
-                    //     return null;
-                    //   },
-                    //   texttype: TextInputType.text,
-                    //   textfieldmessage: 'Title',
-                    //   icon: const Icon(Icons.person_outline),
-                    // ),
-
-                    // const SizedBox(
-                    //   height: 8,
-                    // ),
                     CustomFormTextField(
                       onChanged: (data) {
-                        //  BlocProvider.of<AuthBloc>(context).email = data;
-
                         email = data.trim(); // ✅ خزنت القيمة هنا
                       },
                       validator: (data) {
@@ -217,7 +133,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       },
                       obscureText: isVisible ? false : true,
                       onChanged: (data) {
-                        //  BlocProvider.of<AuthBloc>(context).password = data;
                         password = data.trim(); // ✅ خزنت الباسورد هنا
                         onPasswordChanged(data);
                       },
@@ -243,7 +158,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     const SizedBox(
                       height: 12,
                     ),
-
                     RowPasswordauth(
                         rowPassMessage: 'At least 8 characters',
                         passAuth: isPassword8Char),
@@ -272,7 +186,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       rowPassMessage: 'Has Special Characters',
                       passAuth: hasSpecialCharacters,
                     ),
-
                     const SizedBox(
                       height: 22,
                     ),
@@ -284,15 +197,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       },
                       text: 'Register',
                     ),
-
-                    // CommonReglogBody(
-                    //   textfield1message: 'Email',
-                    //   textfield2message: 'Password',
-                    //   buttonmessage: 'Register',
-                    // ),
-                    // const CustomButton(
-                    //   text1: 'LOGIN',
-                    // ),
                     const SizedBox(
                       height: 5,
                     ),
@@ -331,39 +235,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         showSnackBar(context, 'weak password');
         return;
       }
-      // if (ProfilePictureDesignRegister.imgName == null ||
-      //     ProfilePictureDesignRegister.imgPath == null) {
-      //   showSnackBar(context, 'Upload Your Image');
-      //   return;
-      // }
 
-      // isLoading = true;
       BlocProvider.of<AuthBloc>(context)
           .add(RegisterEvent(email: email!, password: password!));
-      // try {
-      //   await registerUser();
-      //   showSnackBar(context, 'Success');
-      //   // GoRouter.of(context).push(
-      //   //   AppRouter.kLoginView,
-      //   //   // extra: ProductModel,
-      //   // );
-      //   // Navigator.push(context, );
-      // } on FirebaseAuthException catch (ex) {
-      //   if (ex.code == 'weak-password') {
-      //     showSnackBar(context, 'weak password');
-      //   } else if (ex.code == 'email-already-in-use') {
-      //     showSnackBar(context, 'email already exists');
-      //   }
-      // } catch (ex) {
-      //   showSnackBar(context, 'there was an error');
-      // }
-      // isLoading = false;
+
       debugPrint('$isLoading');
     } else {}
   }
-
-  // Future<void> registerUser() async {
-  //   UserCredential user = await FirebaseAuth.instance
-  //       .createUserWithEmailAndPassword(email: email!, password: password!);
-  // }
 }

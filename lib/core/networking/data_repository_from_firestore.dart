@@ -14,20 +14,22 @@ class DataRepositoryFirestore {
     }).toList();
   }
 
-  Future<List<String>> getBanners() async {
-    try {
-      final doc =
-          await firestore.collection('banners').doc('special_banners').get();
+  // Future<List<String>> getBanners() async {
+  //   try {
+  //     final doc =
+  //         await firestore.collection('banners').doc('special_banners').get();
 
-      if (!doc.exists) {
-        return [];
-      }
+  //     if (!doc.exists) {
+  //       return [];
+  //     }
 
-      final data = doc.data();
+  //     final data = doc.data();
 
-      return List<String>.from(data?['banners'] ?? []);
-    } catch (e) {
-      return [];
-    }
-  }
+  //     return List<String>.from(data?['banners'] ?? []);
+  //   } catch (e) {
+  //     return [];
+  //   }
+  // }
+
+
 }

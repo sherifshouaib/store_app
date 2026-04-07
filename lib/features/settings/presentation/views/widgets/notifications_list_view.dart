@@ -1,12 +1,10 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/colors.dart';
 import 'notification_item.dart';
 
 class NotificationsListView extends StatelessWidget {
-   NotificationsListView({super.key});
+  NotificationsListView({super.key});
 
   final List notificationArr = [
     {

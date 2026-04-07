@@ -49,9 +49,6 @@ class MyCartViewBody extends StatelessWidget {
           CustomButton(
             text: 'Complete Payment',
             onTap: () {
-              // GoRouter.of(context).push(
-              //   AppRouter.kPaymentDetailsView,
-              // );
               showModalBottomSheet(
                   context: context,
                   shape: RoundedRectangleBorder(

@@ -33,8 +33,6 @@ class BottomButton extends StatelessWidget {
             if (currentIndex == pages.length - 1) {
               if (!mounted) return; // 🔥 مهم جدًا
               context.go(AppRouter.kLoginView);
-              // GoRouter.of(context)
-              //     .pushReplacement(AppRouter.kLoginView);
             } else {
               _controller.nextPage(
                 duration: const Duration(milliseconds: 400),

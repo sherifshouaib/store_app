@@ -8,7 +8,6 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  var bloc = context.read<ChangeThemeBloc>();
     return Scaffold(
       appBar: AppBar(
         actions: [],

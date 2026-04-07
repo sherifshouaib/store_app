@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -51,6 +52,17 @@ class _GetDataFromFirebaseAuthState extends State<GetDataFromFirebaseAuth> {
     await firestore.collection('users').doc(uid).delete();
   }
 
+  Future<void> deleteProfileImage(String uid) async {
+    try {
+      final ref = FirebaseStorage.instance.ref("users-images/$uid");
+      await ref.delete();
+
+      debugPrint("Profile image deleted successfully");
+    } catch (e) {
+      debugPrint("Image not found or already deleted");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final credential = FirebaseAuth.instance.currentUser;
@@ -91,6 +103,9 @@ class _GetDataFromFirebaseAuthState extends State<GetDataFromFirebaseAuth> {
               //     FirebaseFirestore.instance.collection('users');
 
               try {
+                // ✅ 1. امسح صورة البروفايل من Storage
+                await deleteProfileImage(user.uid);
+
                 //  await users.doc(user.uid).delete();
                 await deleteUserData(user.uid);
 

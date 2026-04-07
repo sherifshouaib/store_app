@@ -13,7 +13,6 @@ class HomeView extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColor,
       body: const HomeviewBody(),
       appBar: AppBar(
-        // backgroundColor: appbarGreen,
         title: const Text(
           "Home",
           style: TextStyle(

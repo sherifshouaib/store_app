@@ -11,12 +11,8 @@ import 'widgets/custom_row_appbar.dart';
 class ProductDetailsView extends StatefulWidget {
   const ProductDetailsView({
     super.key,
-    // required this.product,
-    // required this.indexx,
   });
 
-  // final ProductModel product;
-  // final int indexx;
   @override
   State<ProductDetailsView> createState() => _ProductDetailsViewState();
 }
@@ -24,9 +20,6 @@ class ProductDetailsView extends StatefulWidget {
 class _ProductDetailsViewState extends State<ProductDetailsView> {
   @override
   void initState() {
-    // BlocProvider.of<ProductDetailsCubit>(context)
-    //     .getProductDetails(productNo: CustomCard.indexxx + 1);
-
     super.initState();
   }
 
@@ -34,7 +27,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: appbarGreen,
         title: const Text(
           "Product Details",
           style: TextStyle(
@@ -49,7 +41,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             return SafeArea(
               child: ProductDetailsViewBody(
                 product:
-                    //state.products[0],
                     state.products[CustomCard.indexxx],
               ),
             );

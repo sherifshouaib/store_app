@@ -42,10 +42,6 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
     } on FirebaseException {
       showSnackBar(context, "ERROR : Email Not found ");
     }
-
-//stop indicator
-    // if (!mounted) return;
-    // showSnackBar(context, 'Done - Please check ur email');
   }
 
   @override

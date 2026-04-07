@@ -39,7 +39,7 @@ void main() async {
   setupServiceLocator();
   Stripe.publishableKey = dotenv.env['PUBLISHABLEKEY']!;
 
- // ApiKeys.publishableKey;
+  // ApiKeys.publishableKey;
   await Stripe.instance.applySettings();
 
   //Bloc.observer = SimpleBlocObserver();
@@ -167,24 +167,11 @@ class _StoreAppState extends State<StoreApp> {
             getIt.get<HomeRepoImpl>(),
           )..getAllProducts(),
         ),
-        // BlocProvider(create: (context) => CounterCubit()),
-        // BlocProvider(create: (context) => LoginCubit()),
-        // BlocProvider(create: (context) => RegisterCubit()),
-        //  BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
         BlocProvider(create: (context) => FacebookSignInCubit()),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(create: (context) => ChangeLocationCubit()),
-
-        // BlocProvider<AppBloc>(
-        //   create: (context) => AppBloc(theme!),
-        // ),
-
-        //  BlocProvider(create: (context) => ChangeLocationCubit()),
-
-        // BlocProvider<ChangeThemeBloc>(
-        //     create: (context) => ChangeThemeBloc(theme!)),
       ],
       child: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
@@ -199,9 +186,6 @@ class _StoreAppState extends State<StoreApp> {
             routerConfig: AppRouter.router,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
-
-            // theme: ThemeData.dark().copyWith(
-            //   scaffoldBackgroundColor: Colors.white,),
             darkTheme: AppTheme.darkTheme,
             themeMode:
                 appBloc!.theme == 'light' ? ThemeMode.light : ThemeMode.dark,

@@ -25,8 +25,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: event.password,
           );
 
-          // await ensureUserDocumentExists(credential.user!.uid);
-
           emit(LoginSuccess());
         } on FirebaseAuthException catch (ex) {
           // 🔥🔥🔥 الجديد
@@ -53,14 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: event.password,
           );
 
-          // Reference storageRef = await uploadImageToFirebaseStorage();
-          // String urll = await storageRef.getDownloadURL();
-
           await ensureUserDocumentExists(credential.user!.uid);
-
-          // uploadDataToFireStore(credential
-          //     //  , urll
-          //     );
 
           emit(RegisterSuccess(succMessage: 'Success'));
         } on FirebaseAuthException catch (ex) {
@@ -73,12 +64,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(RegisterFailure(
                   errMessage:
                       'Email registered with Google. Use Google login.'));
-            } else if (methods.contains('facebook.com')) {
+              return;
+            }
+            if (methods.contains('facebook.com')) {
               emit(RegisterFailure(
                   errMessage:
                       'Email registered with Facebook. Use Facebook login.'));
+              return;
             } else {
-              emit(RegisterFailure(errMessage: 'Email already registered.'));
+              emit(RegisterFailure(
+                  errMessage:
+                      'Email registered with Google. Use Google login.'));
+              //emit(RegisterFailure(errMessage: 'Email already registered.'));
             }
           } else if (ex.code == 'weak-password') {
             emit(RegisterFailure(errMessage: 'Weak password'));
@@ -131,66 +128,4 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     }
   }
-
-  // Future<void> ensureUserDocumentExists(String uid) async {
-  //   CollectionReference users = FirebaseFirestore.instance.collection(
-  //     'users',
-  //   );
-  //   final userDoc =
-  //       await FirebaseFirestore.instance.collection('users').doc(uid).get();
-
-  //   if (!userDoc.exists) {
-  //     await users
-  //         .doc(uid)
-  //         .collection('user')
-  //         .doc('userData')
-  //         .set({
-  //           'imgLink': '',
-  //           'username': username,
-  //         //  'age': age,
-  //         //  'title': title,
-  //         })
-  //         .then((value) => debugPrint("User Added"))
-  //         .catchError((error) => debugPrint("Failed to add user: $error"));
-
-  //     await users.doc(uid).collection('cart').doc('cartData').set({
-  //       'products': [],
-  //       'totalPrice': 0.0,
-  //     });
-
-  //     await users.doc(uid).collection('order').doc('orderlocation').set({
-  //       "title": "",
-  //       "subtitle": "",
-  //     });
-  //   }
-  // }
-
-  // void uploadDataToFireStore(UserCredential credential) {
-  //   CollectionReference users = FirebaseFirestore.instance.collection(
-  //     'users',
-  //   );
-
-  //   users
-  //       .doc(credential.user!.uid)
-  //       .collection('cart')
-  //       .doc('cartData')
-  //       .set({
-  //         'products': [],
-  //         'totalPrice': 0.0,
-  //       })
-  //       .then((value) => debugPrint("Cart Added"))
-  //       .catchError((error) => debugPrint("Failed to add cart: $error"));
-
-  //   users
-  //       .doc(credential.user!.uid)
-  //       .collection('order')
-  //       .doc('orderlocation')
-  //       .set({
-  //         "title": "",
-  //         "subtitle": "",
-  //       })
-  //       .then((value) => debugPrint("orderlocation Added"))
-  //       .catchError(
-  //           (error) => debugPrint("Failed to add orderlocation: $error"));
-  // }
 }

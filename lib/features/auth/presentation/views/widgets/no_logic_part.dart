@@ -22,16 +22,6 @@ class NoLogicPart extends StatelessWidget {
           text2: 'Forgot password',
           fontSize: 18,
         ),
-
-        // const CommonReglogBody(
-        //   textfield1message: 'Email',
-        //   textfield2message: 'Password',
-        //   buttonmessage: 'Login',
-        // ),
-
-        // const CustomButton(
-        //   text1: 'LOGIN',
-        // ),
         const SizedBox(
           height: 5,
         ),
@@ -45,7 +35,6 @@ class NoLogicPart extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-
         const ORDivider(),
       ],
     );

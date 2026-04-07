@@ -52,23 +52,6 @@ class HomeviewBody extends StatelessWidget {
                     mainAxisSpacing: 100,
                   ),
                 );
-
-                //   itemCount: state.products.length,
-                //   physics: const BouncingScrollPhysics(),
-                //   clipBehavior: Clip.none,
-                //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //     crossAxisCount: 2,
-                //     childAspectRatio: 1.5,
-                //     crossAxisSpacing: 10,
-                //     mainAxisSpacing: 100,
-                //   ),
-                //   itemBuilder: (context, index) {
-                //     return CustomCard(
-                //       product: products[index],
-                //       indexx: index,
-                //     );
-                //   },
-                // );
               } else if (state is ProductsFirestoreFailure) {
                 return SliverToBoxAdapter(
                     child: CustomErrorWidget(errMessage: state.errMessage));

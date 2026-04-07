@@ -7,7 +7,6 @@ class AppTheme {
     primaryColorLight: Colors.red,
     unselectedWidgetColor: Colors.white,
     secondaryHeaderColor: TColor.primary2,
-    //Colors.white,
     textTheme: TextTheme(
       bodySmall: TextStyle(fontSize: 16, color: Colors.black),
       bodyMedium: TextStyle(fontSize: 14, color: Colors.black54),

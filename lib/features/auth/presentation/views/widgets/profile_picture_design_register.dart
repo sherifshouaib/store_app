@@ -31,8 +31,6 @@ class _ProfilePictureDesignRegisterState
 
     try {
       if (pickedImg != null) {
-        //   debugPrint(File(pickedImg.path));
-        // return;
         setState(() {
           ProfilePictureDesignRegister.imgPath = File(pickedImg.path);
           ProfilePictureDesignRegister.imgName = basename(pickedImg.path);
@@ -114,11 +112,6 @@ class _ProfilePictureDesignRegisterState
 
   @override
   Widget build(BuildContext context) {
-    // final user = FirebaseAuth.instance.currentUser;
-
-    // if (user == null) {
-    //   return const SizedBox(); // أو Container فاضي
-    // }
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(

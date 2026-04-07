@@ -15,7 +15,7 @@ class MyProductsViewBody extends StatelessWidget {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         return SizedBox(
-          height: screenHeight*0.77,
+          height: screenHeight * 0.77,
           child: Column(
             children: [
               Expanded(
@@ -23,13 +23,10 @@ class MyProductsViewBody extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   itemCount: state.cartProducts.length,
                   itemBuilder: (BuildContext context, int index) {
-                    // final product =
-                    //     ProductModel.fromJson(state.cartProducts[index]);
-          
                     return Card(
                       key: Key(state.cartProducts[index]['id'].toString()),
                       child: ListTile(
-                       // tileColor: Colors.black54,
+                        // tileColor: Colors.black54,
                         title: Text(
                             state.cartProducts[index]['title'].substring(0, 6),
                             style: TextStyle(fontSize: screenHeight * 0.015)),
@@ -45,27 +42,6 @@ class MyProductsViewBody extends StatelessWidget {
                             onPressed: () {
                               context.read<CartCubit>().removeProductFromCart(
                                   state.cartProducts[index]);
-          
-                              // context.read<CounterCubit>().productsDecrement(
-                              //       productPrice:
-                              //           state.selectedProducts[index].price,
-                              //       product: state.selectedProducts[index],
-                              //     );
-          
-                              // setState(() {
-                              //   users.doc(credential.uid).update({
-                              //     "titles": FieldValue.arrayRemove(
-                              //         [data['titles'][index]]),
-                              //   });
-                              //   users.doc(credential.uid).update({
-                              //     "images": FieldValue.arrayRemove(
-                              //         data['images'][index])
-                              //   });
-                              //   users.doc(credential.uid).update({
-                              //     "prices": FieldValue.arrayRemove(
-                              //         data['prices'][index])
-                              //   });
-                              // });
                             },
                             icon: Icon(
                               Icons.remove,

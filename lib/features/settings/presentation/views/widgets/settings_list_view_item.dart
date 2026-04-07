@@ -22,48 +22,26 @@ class SettingsListViewItem extends StatelessWidget {
           case "1":
             GoRouter.of(context).push(AppRouter.kMyCartView);
 
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const PaymentDetailsView()));
-
             break;
 
           case "2":
             GoRouter.of(context).push(AppRouter.kMyOrderView);
 
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => const MyOrderView()));
             break;
           case "3":
             GoRouter.of(context).push(AppRouter.kNotificationsView);
-
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const NotificationsView()));
 
             break;
           case "4":
             GoRouter.of(context).push(AppRouter.kDarkAndLightModeView);
 
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const NotificationsView()));
-
             break;
           case "5":
             GoRouter.of(context).push(AppRouter.kInboxView);
 
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => const InboxView()));
             break;
           case "6":
             GoRouter.of(context).push(AppRouter.kAboutUsView);
-
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => const AboutUsView()));
 
           case "7":
             try {
@@ -79,12 +57,6 @@ class SettingsListViewItem extends StatelessWidget {
               debugPrint('Logout error: $e');
             }
             break;
-          // GoogleSignIn googleSignIn = GoogleSignIn();
-          // googleSignIn.disconnect();
-          // FirebaseAuth.instance.signOut();
-          // GoRouter.of(context).pushReplacement(
-          //   AppRouter.kLoginView,
-          // );
 
           default:
         }

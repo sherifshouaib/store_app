@@ -15,7 +15,6 @@ import 'package:store_app/core/DI/service_locator.dart';
 import 'package:store_app/features/auth/presentation/manager/blocs/auth_bloc/auth_bloc.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/facebook_sign_in_cubit/facebook_sign_in_cubit.dart';
 import 'package:store_app/features/auth/presentation/manager/cubits/google_sign_in_cubit/google_sign_in_cubit.dart';
-import 'package:store_app/features/home/presentation/manager/banners_firestore_cubit/banners_firestore_cubit.dart';
 import 'package:store_app/features/home/presentation/manager/products_firestore_cubit/products_firestore_cubit.dart';
 import 'package:store_app/features/order_location/presentation/manager/cubit/change_location_cubit.dart';
 import 'package:store_app/features/security/presentation/views/security_blocked_view.dart';
@@ -125,18 +124,9 @@ class _StoreAppState extends State<StoreApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // BlocProvider(
-        //   create: (context) => ProductsCubit(
-        //     getIt.get<HomeRepoImpl>(),
-        //   )..getAllProducts(),
-        // ),
         BlocProvider(
           create: (_) => getIt<ProductsFirestoreCubit>()..fetchProducts(),
         ),
-        BlocProvider(
-          create: (_) => getIt<BannersFirestoreCubit>()..getBanners(),
-        ),
-
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => GoogleSignInCubit()),
         BlocProvider(create: (context) => FacebookSignInCubit()),

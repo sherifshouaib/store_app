@@ -17,9 +17,6 @@ class GoogleSignInMethod extends StatelessWidget {
       child: GestureDetector(
         onTap: () async {
           await BlocProvider.of<GoogleSignInCubit>(context).signInWithGoogle();
-          // GoRouter.of(context).push(
-          //   AppRouter.kBottomNavigationPage,
-          // );
         },
         child: Container(
           padding: const EdgeInsets.all(13),

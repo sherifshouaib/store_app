@@ -12,10 +12,6 @@ class CustomRowAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
-        // final double rowPrice = (data['price']);
-        // final String selectedProductslength =
-        //     (data['selectedProductslength']).toString();
-
         return Row(
           children: [
             Stack(

@@ -41,25 +41,27 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return CustomButton(
-            onTap: () {
-              PaymentIntentInputModel paymentIntentInputModel =
-                  PaymentIntentInputModel(
-                      amount: '100',
-                      currency: 'USD',
-                      customerId: 'cus_SFj36u4d9CleY3');
+        return SafeArea(
+          child: CustomButton(
+              onTap: () {
+                PaymentIntentInputModel paymentIntentInputModel =
+                    PaymentIntentInputModel(
+                        amount: '100',
+                        currency: 'USD',
+                        customerId: 'cus_SFj36u4d9CleY3');
 
-              var transactionsData = getTransactionsData();
-              LocalNotificationService.showBasicNotification();
+                var transactionsData = getTransactionsData();
+                LocalNotificationService.showBasicNotification();
 
-              PaymentMethodsListView.activeIndex ==
-                      1 // ال3 سطور دول هم اللى كانوا موقفين تشغيل الدفع
-                  ? executePaypalPayment(context, transactionsData)
-                  : BlocProvider.of<PaymentCubit>(context).makePayment(
-                      paymentIntentInputModel: paymentIntentInputModel);
-            },
-            isLoading: state is PaymentLoading ? true : false,
-            text: 'Continue');
+                PaymentMethodsListView.activeIndex ==
+                        1 // ال3 سطور دول هم اللى كانوا موقفين تشغيل الدفع
+                    ? executePaypalPayment(context, transactionsData)
+                    : BlocProvider.of<PaymentCubit>(context).makePayment(
+                        paymentIntentInputModel: paymentIntentInputModel);
+              },
+              isLoading: state is PaymentLoading ? true : false,
+              text: 'Continue'),
+        );
       },
     );
   }
